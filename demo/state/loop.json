@@ -1,0 +1,84 @@
+{
+ "loop": "loop-20261017-141624",
+ "gen": 1,
+ "gens": 6,
+ "base": "/Users/shuhanzhang/miles-hackathon/evolve/versions/v0",
+ "best": "/Users/shuhanzhang/miles-hackathon/evolve/versions/v0",
+ "best_pass": 8,
+ "noise": 1,
+ "n": 16,
+ "workers": 4,
+ "seeds": 1,
+ "briefs": [
+  "wNmiL6TJEBo",
+  "sMH5ryP6IhQ",
+  "w298TXv-KJk",
+  "ym1N_7dqEVE",
+  "vLp4WP_-tfk",
+  "2G4CL1STU2o",
+  "aP5b3hmTsLw",
+  "zDy7zYJ1ZE8",
+  "EkgIoePtE4s",
+  "JGcwgSWBx0Y",
+  "sV4rANCXUG8",
+  "3-0fAuCjKsc",
+  "GP-dvf2r6Z0",
+  "IKg3NrH6YmU",
+  "BD5u-zlbb8w",
+  "ESj67i9gYLY"
+ ],
+ "history": [
+  {
+   "gen": 1,
+   "hypothesis": "Miles often ignores accidentals (#/b) and mode when parsing the key from the brief, causing the written key to be off by a semitone or to default to the relative major/minor.",
+   "kind": "addendum",
+   "patch": {
+    "hypothesis": "Miles often ignores accidentals (#/b) and mode when parsing the key from the brief, causing the written key to be off by a semitone or to default to the relative major/minor.",
+    "kind": "addendum",
+    "text": "When reading the brief\u2019s key (e.g., \"C#m\" or \"Eb major\"), preserve the accidental symbol (# or b) and the mode (major/minor) exactly as given; do not strip or alter them, and do not substitute the relative major/minor unless explicitly asked."
+   },
+   "patch_desc": "addendum +1 rule",
+   "version": "/Users/shuhanzhang/miles-hackathon/evolve/versions/loop-20261017-141624/g1",
+   "run": "/Users/shuhanzhang/miles-hackathon/evolve/runs/loop-20261017-141624-g1/g1",
+   "before": 8,
+   "after": 8,
+   "n": 16,
+   "checks": {
+    "delivered": 14,
+    "tempo": 13,
+    "key": 11,
+    "clean": 16
+   },
+   "kept": false
+  }
+ ],
+ "current": {
+  "gen": 2,
+  "phase": "scoring",
+  "stamp": "loop-20261017-141624-g2",
+  "version": "g2",
+  "hypothesis": "Miles frequently drops accidentals (#/b) and mode (major/minor) information from the brief when determining the target key, causing the written key to be off by a semitone or to default to the relative major/minor.",
+  "patch": {
+   "hypothesis": "Miles frequently drops accidentals (#/b) and mode (major/minor) information from the brief when determining the target key, causing the written key to be off by a semitone or to default to the relative major/minor.",
+   "kind": "addendum",
+   "text": "When parsing the key from the brief, retain the exact key token as written\u2014including any sharp (#) or flat (b) symbol and the mode word (major/minor)\u2014and use it verbatim as the target key. Do not convert to enharmonic equivalents, relative keys, or alter accidentals/mode unless the brief explicitly requests a change."
+  },
+  "patch_desc": "addendum +1 rule"
+ },
+ "baseline_runs": [
+  "/Users/shuhanzhang/miles-hackathon/evolve/runs/loop-20261017-141624-g0/v0"
+ ],
+ "spent": {
+  "llm_usd": 0.0087,
+  "llm_calls": 2
+ },
+ "at": 1792273045.520658,
+ "best_checks": {
+  "delivered": 15,
+  "tempo": 13,
+  "key": 11,
+  "clean": 16
+ },
+ "best_run": "/Users/shuhanzhang/miles-hackathon/evolve/runs/loop-20261017-141624-g0/v0",
+ "v0_pass": 8
+}

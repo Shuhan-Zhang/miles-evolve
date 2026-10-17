@@ -1,0 +1,317 @@
+{
+ "stamp": "loop-20261017-141624-g2",
+ "version": "g2",
+ "total": 16,
+ "done": 5,
+ "workers": {
+  "w1": {
+   "state": "building",
+   "at": 1792273117.259358,
+   "brief": "2G4CL1STU2o",
+   "seed": 1,
+   "title": "( FREE ) Giveon x R&B Soul Type beat \"Deep In My Soul\"",
+   "passed": false,
+   "best": {
+    "song": "s_520e33",
+    "tempo": true,
+    "key": false,
+    "clean": true,
+    "delivered": true,
+    "pass": false,
+    "why": [
+     "key: heard Fm, brief says Am (song claims Bbm)"
+    ],
+    "skipped": [],
+    "measured": {
+     "claimed_bpm": 80.0,
+     "claimed_key": "Bbm",
+     "status": "ready",
+     "bpm": 79.5,
+     "bpm_support": 1.0,
+     "key": "Fm",
+     "key_r": 0.863,
+     "key_margin": 0.151,
+     "key_runner_up": "C#",
+     "stems": [
+      "bass",
+      "drums",
+      "sample"
+     ],
+     "ear": {
+      "bass": {
+       "notes": 8,
+       "fit": 0.66,
+       "clash": 0.0,
+       "absent": 0.12,
+       "tune": 2.0,
+       "sample_tuning": 1.0,
+       "bass_pcs": [
+        1,
+        5,
+        6,
+        8,
+        10
+       ]
+      },
+      "sample": {
+       "lock": 1.13,
+       "late_ms": 29.0,
+       "off": 0.42
+      },
+      "drums": {
+       "lock": 2.8,
+       "late_ms": 6.0,
+       "off": 0.0
+      },
+      "balance": {
+       "bass": -3.0,
+       "sample": -9.2
+      },
+      "missing": []
+     }
+    },
+    "contract": {
+     "bpm": 80.0,
+     "key": "Am",
+     "style": "joey badass",
+     "refs": [
+      "/Users/shuhanzhang/miles-studio/bench/refs/wNmiL6TJEBo.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/sMH5ryP6IhQ.m4a",
+      "/Users/shuhanzhang/miles-hackathon/bench/refs/w298TXv-KJk.m4a"
+     ]
+    },
+    "ref": {
+     "score": 0.593,
+     "nearest": "wNmiL6TJEBo",
+     "mean": 0.514,
+     "n_refs": 3,
+     "dims": {
+      "tempo": 0.3,
+      "timbre": 0.88,
+      "brightness": 0.37,
+      "low_end": 0.28,
+      "busyness": 0.74
+     },
+     "gaps": [
+      "less low end than the refs (59 % vs 80 % under 120 Hz)",
+      "tempo feel 80.7 vs the refs' 92.3"
+     ],
+     "ours": {
+      "bpm": 80.7,
+      "centroid": 2022,
+      "low": 0.592,
+      "onsets": 3.75
+     },
+     "pass": true
+    }
+   }
+  },
+  "w2": {
+   "state": "building",
+   "at": 1792273235.555149,
+   "brief": "EkgIoePtE4s",
+   "seed": 1,
+   "title": "frank ocean type beat - california",
+   "passed": false,
+   "best": {
+    "song": "s_40da8e",
+    "tempo": true,
+    "key": false,
+    "clean": true,
+    "delivered": true,
+    "pass": false,
+    "why": [
+     "key: heard G#, brief says Cm (song claims Cm)"
+    ],
+    "skipped": [],
+    "measured": {
+     "claimed_bpm": 93.0,
+     "claimed_key": "Cm",
+     "status": "ready",
+     "bpm": 184.6,
+     "bpm_support": 1.0,
+     "key": "G#",
+     "key_r": 0.919,
+     "key_margin": 0.155,
+     "key_runner_up": "Fm",
+     "stems": [
+      "bass",
+      "drums",
+      "sample"
+     ],
+     "ear": {
+      "bass": {
+       "notes": 25,
+       "fit": 0.57,
+       "clash": 0.0,
+       "absent": 0.28,
+       "tune": -1.0,
+       "sample_tuning": 1.0,
+       "bass_pcs": [
+        0,
+        1,
+        5,
+        8,
+        10
+       ]
+      },
+      "sample": {
+       "lock": 1.32,
+       "late_ms": 5.0,
+       "off": 0.11
+      },
+      "drums": {
+       "lock": 2.65,
+       "late_ms": 8.0,
+       "off": 0.09
+      },
+      "balance": {
+       "sample": -6.0,
+       "bass": -2.3
+      },
+      "missing": []
+     }
+    },
+    "contract": {
+     "bpm": 93.0,
+     "key": "Cm",
+     "style": "6lack",
+     "refs": [
+      "/Users/shuhanzhang/miles-studio/bench/refs/zDy7zYJ1ZE8.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/2G4CL1STU2o.m4a",
+      "/Users/shuhanzhang/miles-hackathon/bench/refs/aP5b3hmTsLw.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/EkgIoePtE4s.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/JGcwgSWBx0Y.m4a"
+     ]
+    },
+    "ref": {
+     "score": 0.615,
+     "nearest": "JGcwgSWBx0Y",
+     "mean": 0.54,
+     "n_refs": 5,
+     "dims": {
+      "tempo": 0.49,
+      "timbre": 0.9,
+      "brightness": 0.36,
+      "low_end": 0.43,
+      "busyness": 0.53
+     },
+     "gaps": [
+      "brighter than the refs (centroid 1087 vs 842 Hz)",
+      "less low end than the refs (52 % vs 64 % under 120 Hz)"
+     ],
+     "ours": {
+      "bpm": 92.3,
+      "centroid": 1087,
+      "low": 0.523,
+      "onsets": 4.17
+     },
+     "pass": true
+    }
+   }
+  },
+  "w3": {
+   "state": "building",
+   "at": 1792273046.468105,
+   "brief": "w298TXv-KJk",
+   "seed": 1,
+   "title": "KENDRICK LAMAR TYPE BEAT \"TURF\""
+  },
+  "w4": {
+   "state": "building",
+   "at": 1792273146.876659,
+   "brief": "aP5b3hmTsLw",
+   "seed": 1,
+   "title": "Kehlani x Aaliyah R&B Type Beat - \"Falling For You\"",
+   "passed": true,
+   "best": {
+    "song": "s_4a6eaa",
+    "tempo": true,
+    "key": true,
+    "clean": true,
+    "delivered": true,
+    "pass": true,
+    "why": [],
+    "skipped": [],
+    "measured": {
+     "claimed_bpm": 87.0,
+     "claimed_key": "Bbm",
+     "status": "ready",
+     "bpm": 87.6,
+     "bpm_support": 1.0,
+     "key": "A#m",
+     "key_r": 0.807,
+     "key_margin": 0.202,
+     "key_runner_up": "A#",
+     "stems": [
+      "bass",
+      "drums",
+      "sample"
+     ],
+     "ear": {
+      "bass": {
+       "notes": 14,
+       "fit": 0.62,
+       "clash": 0.0,
+       "absent": 0.07,
+       "tune": -4.0,
+       "sample_tuning": 1.0,
+       "bass_pcs": [
+        5,
+        6
+       ]
+      },
+      "sample": {
+       "lock": 1.13,
+       "late_ms": 9.0,
+       "off": 0.13
+      },
+      "drums": {
+       "lock": 2.81,
+       "late_ms": 6.0,
+       "off": 0.0
+      },
+      "balance": {
+       "sample": -7.7,
+       "bass": -2.7
+      },
+      "missing": []
+     }
+    },
+    "contract": {
+     "bpm": 87.0,
+     "key": "C#",
+     "style": "lofi",
+     "refs": [
+      "/Users/shuhanzhang/miles-studio/bench/refs/ym1N_7dqEVE.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/vLp4WP_-tfk.m4a"
+     ]
+    },
+    "ref": {
+     "score": 0.606,
+     "nearest": "ym1N_7dqEVE",
+     "mean": 0.537,
+     "n_refs": 2,
+     "dims": {
+      "tempo": 0.87,
+      "timbre": 0.96,
+      "brightness": 0.27,
+      "low_end": 0.04,
+      "busyness": 0.55
+     },
+     "gaps": [
+      "less low end than the refs (14 % vs 64 % under 120 Hz)",
+      "brighter than the refs (centroid 1616 vs 880 Hz)"
+     ],
+     "ours": {
+      "bpm": 87.6,
+      "centroid": 1616,
+      "low": 0.139,
+      "onsets": 4.44
+     },
+     "pass": true
+    }
+   }
+  }
+ }
+}

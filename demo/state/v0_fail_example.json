@@ -1,0 +1,31 @@
+{
+ "brief_id": "aP5b3hmTsLw",
+ "title": "(FREE) Kehlani x Aaliyah R&B Type Beat - \"Falling For You\"",
+ "brief_text": "Kehlani x Aaliyah R&B Type Beat - \"Falling For You\", 127 BPM, F minor \u2014 make 1 beat like that",
+ "stated": {
+  "bpm": 127.0,
+  "key": "Fm"
+ },
+ "miles_claimed": {
+  "bpm": 127.0,
+  "key": "Eb"
+ },
+ "measured": {
+  "bpm": 172.3,
+  "key": "G#"
+ },
+ "verdict": {
+  "tempo": false,
+  "key": true,
+  "clean": true,
+  "pass": false
+ },
+ "why": [
+  "tempo: measured 172.3 BPM, brief says 127 (song claims 127)"
+ ],
+ "audio_on_mac": [
+  "/Users/shuhanzhang/miles-hackathon/evolve/work/w3/songs/s_98674c/v1.wav"
+ ],
+ "run": "evolve/runs/loop-20261017-141624-g0/v0/aP5b3hmTsLw-s1.json",
+ "audio_copy_on_mac": "/Users/shuhanzhang/miles-demo-audio/v0_fail_aP5b3hmTsLw.wav"
+}
