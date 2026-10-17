@@ -1,0 +1,27 @@
+resuming loop-20261017-141624 at gen 2/6
+
+gen 2/6: coach reading 8 failures of v0
+  hypothesis: Miles does not self-check its output, so key and tempo errors go uncorrected.
+  patch: flag MILES_SELF_CHECK=1
+   w3 w298TXv-KJk-s1 PASS
+   w2 sMH5ryP6IhQ-s1 fail
+   w1 wNmiL6TJEBo-s1 PASS
+   w4 ym1N_7dqEVE-s1 PASS
+   w3 vLp4WP_-tfk-s1 PASS
+   w1 aP5b3hmTsLw-s1 fail
+   w4 zDy7zYJ1ZE8-s1 PASS
+   w3 EkgIoePtE4s-s1 fail
+   w1 JGcwgSWBx0Y-s1 PASS
+   w4 sV4rANCXUG8-s1 PASS
+   w2 2G4CL1STU2o-s1 fail
+   w4 IKg3NrH6YmU-s1 PASS
+   w2 BD5u-zlbb8w-s1 fail
+   w3 3-0fAuCjKsc-s1 fail
+   w1 GP-dvf2r6Z0-s1 fail
+   w4 ESj67i9gYLY-s1 fail
+  train 8/16 → 8/16 (noise 1) ✗ rejected
+
+gen 3/6: coach reading 8 failures of v0
+  hypothesis: Miles's bass lines often emphasize the fifth scale degree, causing automatic key detection to hear a key a fourth/fifth away from the intended tonic.
+  patch: addendum +1 rule
+   w1 wNmiL6TJEBo-s1 fail

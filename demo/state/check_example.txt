@@ -1,0 +1,3 @@
+$ python evolve/check.py evolve/work/w3/songs/s_98674c --task aP5b3hmTsLw
+s_98674c   FAIL  tempo ✗ 172.3  key ✓ G#  clean ✓  delivered ✓  | want 127.0 Fm  ref 0.739 ~aP5b3hmTsLw
+    - tempo: measured 172.3 BPM, brief says 127 (song claims 127)

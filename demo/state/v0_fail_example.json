@@ -24,8 +24,8 @@
   "tempo: measured 172.3 BPM, brief says 127 (song claims 127)"
  ],
  "audio_on_mac": [
-  "/Users/shuhanzhang/miles-hackathon/evolve/work/w3/songs/s_98674c/v1.wav"
+  "~/miles-hackathon/evolve/work/w3/songs/s_98674c/v1.wav"
  ],
  "run": "evolve/runs/loop-20261017-141624-g0/v0/aP5b3hmTsLw-s1.json",
- "audio_copy_on_mac": "/Users/shuhanzhang/miles-demo-audio/v0_fail_aP5b3hmTsLw.wav"
+ "audio_copy_on_mac": "~/miles-demo-audio/v0_fail_aP5b3hmTsLw.wav"
 }

@@ -1,0 +1,21 @@
+{
+ "gen": 1,
+ "hypothesis": "Miles often ignores accidentals (#/b) and mode when parsing the key from the brief, causing the written key to be off by a semitone or to default to the relative major/minor.",
+ "kind": "addendum",
+ "patch": {
+  "hypothesis": "Miles often ignores accidentals (#/b) and mode when parsing the key from the brief, causing the written key to be off by a semitone or to default to the relative major/minor.",
+  "kind": "addendum",
+  "text": "When reading the brief’s key (e.g., \"C#m\" or \"Eb major\"), preserve the accidental symbol (# or b) and the mode (major/minor) exactly as given; do not strip or alter them, and do not substitute the relative major/minor unless explicitly asked."
+ },
+ "patch_desc": "addendum +1 rule",
+ "before": 8,
+ "after": 8,
+ "n": 16,
+ "checks": {
+  "delivered": 14,
+  "tempo": 13,
+  "key": 11,
+  "clean": 16
+ },
+ "kept": false
+}

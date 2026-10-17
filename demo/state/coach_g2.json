@@ -1,0 +1,22 @@
+{
+ "gen": 2,
+ "hypothesis": "Miles does not self-check its output, so key and tempo errors go uncorrected.",
+ "kind": "flag",
+ "patch": {
+  "hypothesis": "Miles does not self-check its output, so key and tempo errors go uncorrected.",
+  "kind": "flag",
+  "flag": "MILES_SELF_CHECK",
+  "value": "1"
+ },
+ "patch_desc": "flag MILES_SELF_CHECK=1",
+ "before": 8,
+ "after": 8,
+ "n": 16,
+ "checks": {
+  "delivered": 11,
+  "tempo": 12,
+  "key": 10,
+  "clean": 13
+ },
+ "kept": false
+}

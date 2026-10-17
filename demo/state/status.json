@@ -1,267 +1,36 @@
 {
- "stamp": "loop-20261017-141624-g2",
- "version": "g2",
+ "stamp": "loop-20261017-141624-g3",
+ "version": "g3",
  "total": 16,
- "done": 15,
+ "done": 0,
  "workers": {
   "w1": {
-   "state": "idle",
-   "at": 1792274302.440556,
-   "brief": null,
+   "state": "building",
+   "at": 1792274419.223923,
+   "brief": "wNmiL6TJEBo",
    "seed": 1,
-   "title": "METRO BOOMIN x 21 SAVAGE TYPE BEAT - \"GOLD TETH\"",
-   "passed": false,
-   "best": {
-    "song": null,
-    "tempo": null,
-    "key": null,
-    "clean": null,
-    "delivered": false,
-    "pass": false,
-    "why": [
-     "not delivered: no song came back (timeout)"
-    ],
-    "contract": {
-     "bpm": 164.0,
-     "key": "Am",
-     "style": "metro boomin",
-     "refs": [
-      "/Users/shuhanzhang/miles-studio/bench/refs/GP-dvf2r6Z0.webm",
-      "/Users/shuhanzhang/miles-studio/bench/refs/3-0fAuCjKsc.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/IKg3NrH6YmU.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/ESj67i9gYLY.m4a"
-     ]
-    }
-   }
+   "title": "Joey Bada$$ x Boom Bap Type Beat"
   },
   "w2": {
-   "state": "idle",
-   "at": 1792274159.790709,
-   "brief": null,
+   "state": "building",
+   "at": 1792274419.236602,
+   "brief": "sMH5ryP6IhQ",
    "seed": 1,
-   "title": "FREE DON TOLIVER x TRAVIS SCOTT Type Beat - \"HALLWAY\"",
-   "passed": false,
-   "best": {
-    "song": "s_f9cf3e",
-    "tempo": true,
-    "key": false,
-    "clean": true,
-    "delivered": true,
-    "pass": false,
-    "why": [
-     "key: heard Em, brief says E (song claims Em)"
-    ],
-    "skipped": [],
-    "measured": {
-     "claimed_bpm": 130.0,
-     "claimed_key": "Em",
-     "status": "ready",
-     "bpm": 132.5,
-     "bpm_support": 1.25,
-     "key": "Em",
-     "key_r": 0.836,
-     "key_margin": 0.232,
-     "key_runner_up": "E",
-     "stems": [
-      "bass",
-      "drums",
-      "sample"
-     ],
-     "ear": {
-      "bass": {
-       "notes": 16,
-       "fit": 0.94,
-       "clash": 0.0,
-       "absent": 0.0,
-       "tune": 3.0,
-       "sample_tuning": -3.0,
-       "bass_pcs": [
-        0,
-        4,
-        7,
-        9
-       ]
-      },
-      "sample": {
-       "lock": 1.46,
-       "late_ms": 7.0,
-       "off": 0.04
-      },
-      "drums": {
-       "lock": 1.9,
-       "late_ms": 6.0,
-       "off": 0.0
-      },
-      "balance": {
-       "sample": -12.7,
-       "bass": -2.8
-      },
-      "missing": []
-     }
-    },
-    "contract": {
-     "bpm": 130.0,
-     "key": "E",
-     "style": "travis scott",
-     "refs": [
-      "/Users/shuhanzhang/miles-studio/bench/refs/3-0fAuCjKsc.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/GP-dvf2r6Z0.webm",
-      "/Users/shuhanzhang/miles-studio/bench/refs/IKg3NrH6YmU.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/ESj67i9gYLY.m4a"
-     ]
-    },
-    "ref": {
-     "score": 0.713,
-     "nearest": "3-0fAuCjKsc",
-     "mean": 0.605,
-     "n_refs": 4,
-     "dims": {
-      "tempo": 0.51,
-      "timbre": 0.87,
-      "brightness": 0.38,
-      "low_end": 0.73,
-      "busyness": 0.54
-     },
-     "gaps": [
-      "brighter than the refs (centroid 1485 vs 1414 Hz)"
-     ],
-     "ours": {
-      "bpm": 129.2,
-      "centroid": 1485,
-      "low": 0.755,
-      "onsets": 6.03
-     },
-     "pass": true
-    }
-   }
+   "title": "\"ARRESTED\" - Rap Freestyle Type Beat"
   },
   "w3": {
-   "state": "idle",
-   "at": 1792274265.939144,
-   "brief": null,
+   "state": "building",
+   "at": 1792274419.242644,
+   "brief": "w298TXv-KJk",
    "seed": 1,
-   "title": "\"NO TRESPASSING\"",
-   "passed": false,
-   "best": {
-    "song": null,
-    "tempo": null,
-    "key": null,
-    "clean": null,
-    "delivered": false,
-    "pass": false,
-    "why": [
-     "not delivered: no song came back (timeout)"
-    ],
-    "contract": {
-     "bpm": 134.0,
-     "key": "C#m",
-     "style": "trap",
-     "refs": [
-      "/Users/shuhanzhang/miles-studio/bench/refs/3-0fAuCjKsc.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/GP-dvf2r6Z0.webm",
-      "/Users/shuhanzhang/miles-studio/bench/refs/IKg3NrH6YmU.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/ESj67i9gYLY.m4a"
-     ]
-    }
-   }
+   "title": "KENDRICK LAMAR TYPE BEAT \"TURF\""
   },
   "w4": {
-   "state": "verifying",
-   "at": 1792274370.717769,
-   "brief": "ESj67i9gYLY",
+   "state": "building",
+   "at": 1792274419.245406,
+   "brief": "ym1N_7dqEVE",
    "seed": 1,
-   "title": "Lil Baby Type Beat - \"No Joke\"",
-   "passed": true,
-   "best": {
-    "song": "s_3f925b",
-    "tempo": true,
-    "key": true,
-    "clean": true,
-    "delivered": true,
-    "pass": true,
-    "why": [],
-    "skipped": [],
-    "measured": {
-     "claimed_bpm": 125.0,
-     "claimed_key": "F",
-     "status": "ready",
-     "bpm": 126.0,
-     "bpm_support": 1.13,
-     "key": "F",
-     "key_r": 0.744,
-     "key_margin": 0.108,
-     "key_runner_up": "A#",
-     "stems": [
-      "bass",
-      "drums",
-      "sample"
-     ],
-     "ear": {
-      "bass": {
-       "notes": 5,
-       "fit": 0.51,
-       "clash": 0.2,
-       "absent": 0.2,
-       "tune": 22.0,
-       "sample_tuning": 2.0,
-       "bass_pcs": [
-        6,
-        10
-       ]
-      },
-      "sample": {
-       "lock": 1.12,
-       "late_ms": 8.0,
-       "off": 0.28
-      },
-      "drums": {
-       "lock": 2.02,
-       "late_ms": 7.0,
-       "off": 0.04
-      },
-      "balance": {
-       "bass": -2.3,
-       "sample": -7.6
-      },
-      "missing": []
-     }
-    },
-    "contract": {
-     "bpm": 125.0,
-     "key": "Dm",
-     "style": "don toliver",
-     "refs": [
-      "/Users/shuhanzhang/miles-studio/bench/refs/IKg3NrH6YmU.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/3-0fAuCjKsc.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/GP-dvf2r6Z0.webm",
-      "/Users/shuhanzhang/miles-studio/bench/refs/ESj67i9gYLY.m4a"
-     ]
-    },
-    "ref": {
-     "score": 0.639,
-     "nearest": "3-0fAuCjKsc",
-     "mean": 0.574,
-     "n_refs": 4,
-     "dims": {
-      "tempo": 0.63,
-      "timbre": 0.89,
-      "brightness": 0.42,
-      "low_end": 0.23,
-      "busyness": 0.68
-     },
-     "gaps": [
-      "less low end than the refs (58 % vs 79 % under 120 Hz)",
-      "brighter than the refs (centroid 1890 vs 1414 Hz)"
-     ],
-     "ours": {
-      "bpm": 126.0,
-      "centroid": 1890,
-      "low": 0.584,
-      "onsets": 5.34
-     },
-     "pass": true
-    }
-   }
+   "title": "boombap x lofi type beat - \"SUMMERTIME FEELINGS\""
   }
  }
 }
