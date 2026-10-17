@@ -162,6 +162,26 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 #video-wrap { display: none; }
 .has-video #video-wrap { display: block; position: absolute; right: 12px; bottom: 12px; width: 320px; z-index: 6; border: 1px solid #000; box-shadow: 0 10px 30px rgba(0,0,0,.6); }
 #video { display: block; width: 100%; background: #000; }
+.tbtn.txt { width: auto; padding: 0 9px; font: 700 10px/1 var(--mono); letter-spacing: .08em; }
+.tbtn.on { background: #1f3527; color: var(--ok); }
+.tbtn:active { transform: translateY(1px); }
+.meters, .meters * { cursor: default; pointer-events: none; }
+.ms { cursor: pointer; user-select: none; }
+.ms.m-on { background: var(--amber) !important; color: #111 !important; }
+.ms.s-on { background: #4f86ff !important; color: #fff !important; }
+.ms.dis { opacity: .3; pointer-events: none; }
+.lane.muted .clip { opacity: .35; filter: grayscale(.7); }
+.track, .ruler { cursor: text; }
+.ruler { cursor: col-resize; }
+.fader { position: relative; width: 22px; height: 100%; margin-left: 10px; background: #0b0b0b; border: 1px solid #000; cursor: ns-resize; touch-action: none; }
+.fader::before { content: ""; position: absolute; left: 50%; top: 4px; bottom: 4px; width: 2px; margin-left: -1px; background: #333; }
+.fader .cap-k { position: absolute; left: -3px; right: -3px; height: 12px; margin-top: -6px; background: linear-gradient(#ddd, #888); border: 1px solid #000; border-radius: 2px; box-shadow: 0 2px 4px rgba(0,0,0,.6); }
+.hist { cursor: pointer; } .hist:hover { background: #222; }
+.hist.open .h { -webkit-line-clamp: unset; display: block; }
+.item { cursor: pointer; }
+#ledger { overscroll-behavior: contain; }
+.toast { position: fixed; left: 50%; bottom: 214px; transform: translateX(-50%); padding: 8px 14px; background: #2a2a2a; border: 1px solid #000; font: 600 11px/1 var(--mono); color: var(--ink); border-radius: 3px; opacity: 0; transition: opacity .2s; pointer-events: none; z-index: 50; }
+.toast.on { opacity: 1; }
 </style>
 </head>
 <body>
@@ -171,7 +191,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
     <div class="tp">
       <button class="tbtn" id="stop" title="Stop"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12"/></svg></button>
       <button class="tbtn" id="play" title="Play"><svg id="play-ico" viewBox="0 0 24 24" fill="currentColor"><path d="M7 5v14l12-7z"/></svg></button>
-      <button class="tbtn on" id="loop" title="Auto-advance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12a6 6 0 0 1 6-6h9m0 0-3-3m3 3-3 3M20 12a6 6 0 0 1-6 6H5m0 0 3 3m-3-3 3-3"/></svg></button>
+      <button class="tbtn" id="loop" title="Loop this beat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12a6 6 0 0 1 6-6h9m0 0-3-3m3 3-3 3M20 12a6 6 0 0 1-6 6H5m0 0 3 3m-3-3 3-3"/></svg></button>
+      <button class="tbtn on txt" id="auto" title="Auto-advance through the browser">AUTO</button>
     </div>
     <div class="tp"><div class="lcd"><span class="cap">Tempo</span><span class="v" id="lcd-bpm">—</span></div>
       <div class="lcd"><span class="cap">Key</span><span class="v" id="lcd-key">—</span></div>
@@ -206,7 +227,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
       <div class="lanes" id="lanes"></div>
       <div id="playhead"></div>
       <div id="video-wrap"><video id="video" muted playsinline></video></div>
-      <audio id="audio" preload="auto"></audio>
+      
     </section>
 
     <aside class="side right">
@@ -227,8 +248,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   </div>
 
   <footer class="bottom">
-    <div class="chan"><div style="display:flex;justify-content:space-between"><span class="name">MASTER</span><span class="db" id="db">-∞ dB</span></div>
-      <div class="stereo"><span class="col"><i id="vu-l"></i></span><span class="col"><i id="vu-r"></i></span>
+    <div class="chan"><div style="display:flex;justify-content:space-between"><span class="name">MASTER</span><span class="db"><span id="db">-∞ dB</span> · vol <span id="vol-v">0.0 dB</span></span></div>
+      <div class="stereo"><span class="col"><i id="vu-l"></i></span><span class="col"><i id="vu-r"></i></span><div class="fader" id="fader" title="Master volume (drag)"><span class="cap-k" id="fader-k"></span></div>
         <div style="margin-left:10px;display:flex;flex-direction:column;justify-content:flex-end;gap:4px" class="cap"><span>built</span><span class="mono" style="font-size:16px;color:var(--ink)" id="built">—</span></div></div></div>
     <div class="rack">
       <div class="ph"><span class="cap">Master · device rack · <b>Miles Self-Check</b> — measured from the audio</span><span class="cap" id="src"></span></div>
@@ -239,138 +260,87 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   </footer>
 </div>
 
+<div class="toast" id="toast"></div>
 <script>
 const $ = (id) => document.getElementById(id);
-const audio = $("audio");
-const S = { beats: [], cur: -1, peaks: {}, raf: 0, sim: null, autoplay: true, videoUrl: null };
 const LANES = [["drums", "Drums", "--c-drums"], ["bass", "Bass", "--c-bass"], ["sample", "Sample · melody", "--c-sample"], ["mix", "Master", "--c-master"]];
-const NAMES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
 const fmt = (s) => !isFinite(s) ? "0:00.0" : `${Math.floor(s / 60)}:${(s % 60).toFixed(1).padStart(4, "0")}`;
 const keyShort = (k) => !k ? "—" : k.endsWith("m") ? `${k.slice(0, -1)} min` : `${k} maj`;
 const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const S = { beats: [], cur: -1, auto: true, loop: false, videoUrl: null, token: 0, raf: 0 };
+function toast(t) { const el = $("toast"); el.textContent = t; el.classList.add("on"); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove("on"), 1400); }
 
-async function peaksFor(url, n) {
-  const key = url + "|" + n;
-  if (S.peaks[key]) return S.peaks[key];
-  try {
-    const buf = await (await fetch(url)).arrayBuffer();
-    const a = await new OfflineAudioContext(1, 44100, 44100).decodeAudioData(buf);
-    const ch = a.getChannelData(0), step = Math.floor(ch.length / n), p = [];
-    for (let i = 0; i < n; i++) { let mx = 0; for (let j = i * step; j < (i + 1) * step; j += 16) mx = Math.max(mx, Math.abs(ch[j])); p.push(mx); }
-    return (S.peaks[key] = p);
-  } catch (e) { return (S.peaks[key] = Array(n).fill(0.05)); }
-}
-function drawWave(cv, peaks, color, norm) {
-  const dpr = window.devicePixelRatio || 1, w = cv.clientWidth, h = cv.clientHeight;
-  if (!w || !h) return;
-  cv.width = w * dpr; cv.height = h * dpr;
-  const g = cv.getContext("2d"); g.setTransform(dpr, 0, 0, dpr, 0, 0);
-  const top = norm || Math.max(...peaks) || 1, mid = h / 2;
-  g.fillStyle = color; g.beginPath();
-  peaks.forEach((p, i) => { const x = (i / peaks.length) * w, a = Math.min(1, p / top) * (mid - 2); g.rect(x, mid - a, Math.max(1, w / peaks.length - 0.3), a * 2 || 1); });
-  g.fill();
-}
-
-// ---------------------------------------------------------------- arrangement
-function bpmOf(b) { let x = b.bpm || (b.heard && b.heard.bpm) || 90; return x; }
-function buildArrangement(b) {
-  const dur = audio.duration || 20, bpm = bpmOf(b), bar = 240 / bpm, bars = Math.ceil(dur / bar);
-  const ruler = $("ruler");
-  let r = "";
-  for (let i = 0; i <= bars; i++) {
-    r += `<span style="left:${(i * bar / dur) * 100}%">${i + 1}</span>`;
-    for (let q = 1; q < 4; q++) r += `<span class="beat" style="left:${((i * bar + q * bar / 4) / dur) * 100}%"></span>`;
+// ================================================================ audio engine: real stems, one gain per lane
+const AC = window.AudioContext || window.webkitAudioContext;
+const E = { ctx: null, master: null, gains: {}, bufs: {}, peaks: {}, srcs: [], playing: false, offset: 0, t0: 0, dur: 0,
+  mute: {}, solo: {}, vol: 1, stems: false, cache: {} };
+try { E.ctx = new AC(); E.master = E.ctx.createGain(); E.master.connect(E.ctx.destination); } catch (e) { E.ctx = null; }
+const now = () => performance.now() / 1000;
+E.time = () => Math.max(0, Math.min(E.dur || 0, E.playing ? E.offset + (now() - E.t0) : E.offset));
+function stopSources() { E.srcs.forEach((s) => { try { s.onended = null; s.stop(); } catch (e) {} }); E.srcs = []; }
+function startSources() {
+  stopSources();
+  if (!E.ctx || E.ctx.state !== "running") return;
+  const off = E.time();
+  for (const [k, buf] of Object.entries(E.bufs)) {
+    if (k === "mix" && E.stems) continue;                 // with stems, the master lane is the sum of them
+    const loops = buf.duration < E.dur - 0.05;            // stems are loops: repeat them across the mix's length
+    if (!loops && off >= buf.duration) continue;
+    const s = E.ctx.createBufferSource(); s.buffer = buf; s.loop = loops; s.connect(E.gains[k]); s.start(0, loops ? off % buf.duration : off);
+    if (loops) s.stop(E.ctx.currentTime + (E.dur - off));
+    E.srcs.push(s);
   }
-  ruler.innerHTML = r;
-  const grid = Array.from({ length: bars + 1 }, (_, i) => `<i style="position:absolute;top:0;bottom:0;left:${(i * bar / dur) * 100}%;border-left:1px solid #262626"></i>`).join("");
-  $("lanes").innerHTML = LANES.map(([k, name, c]) => {
-    const has = k === "mix" || (b.stems && b.stems[k]);
-    return `<div class="lane ${k === "mix" ? "master" : ""}" style="--c:var(${c})" data-lane="${k}">
-      <div class="lh"><span class="sw"></span><div class="in"><div><div class="name">${name}</div><div class="sub">${k === "mix" ? "bounce · self-checked" : has ? "Miles · stem" : "—"}</div></div>
-        <div class="ctl"><span class="ms">M</span><span class="ms">S</span><span class="vu"><i></i></span></div></div></div>
-      <div class="track"><div class="grid-lines">${grid}</div>${has ? `<div class="clip" style="width:100%"><div class="cn">${k === "mix" ? b.title : name.toUpperCase() + " · " + b.title}</div><canvas></canvas></div>` : ""}</div></div>`;
-  }).join("");
-  LANES.forEach(([k, , c]) => {
-    const url = k === "mix" ? b.url : b.stems && b.stems[k];
-    if (!url) return;
-    peaksFor(url, 600).then((p) => {
-      const cv = document.querySelector(`.lane[data-lane="${k}"] canvas`);
-      if (cv && S.beats[S.cur] === b) drawWave(cv, p, css(c));
-    });
-    peaksFor(url, 300);
-  });
 }
-
-// ---------------------------------------------------------------- transport + meters
-const curTime = () => S.sim ? (performance.now() - S.sim.t0) / 1000 : audio.currentTime;
-const curDur = () => S.sim ? S.sim.dur : audio.duration;
-const playing = () => !!S.sim || !audio.paused;
-const SP = new Float32Array(48);
-function frame() {
-  const b = S.beats[S.cur];
-  if (!b) return;
-  const t = curTime(), d = curDur() || 1, frac = Math.min(1, t / d), live = playing();
-  const arr = $("arr"), lanesW = arr.clientWidth - 168;
-  $("playhead").style.left = (168 + frac * lanesW) + "px";
-  const bpm = bpmOf(b), beats = t * bpm / 60, bar = Math.floor(beats / 4) + 1, beat = Math.floor(beats % 4) + 1, six = Math.floor((beats % 1) * 4) + 1;
-  $("lcd-pos").textContent = `${bar}.${beat}.${six}`;
-  $("lcd-time").textContent = fmt(t);
-  const lvl = (k) => { const url = k === "mix" ? b.url : b.stems && b.stems[k], p = url && S.peaks[url + "|300"]; return p && live ? Math.min(1, p[Math.min(p.length - 1, Math.floor(frac * p.length))] * 1.15) : 0; };
-  LANES.forEach(([k]) => { const i = document.querySelector(`.lane[data-lane="${k}"] .vu i`); if (i) i.style.width = (lvl(k) * 100).toFixed(0) + "%"; });
-  const m = lvl("mix"), jit = () => (Math.random() - 0.5) * 0.05;
-  $("vu-l").style.height = Math.max(0, Math.min(100, (m + jit()) * 100)) + "%";
-  $("vu-r").style.height = Math.max(0, Math.min(100, (m * 0.96 + jit()) * 100)) + "%";
-  $("db").textContent = m > 0.001 ? `${(20 * Math.log10(m)).toFixed(1)} dB` : "-∞ dB";
-  const cpu = live ? 18 + 10 * m + 4 * Math.sin(t * 2) : 3, disk = live ? 6 + 5 * Math.abs(Math.sin(t * 0.7)) : 0;
-  $("m-cpu").style.width = cpu + "%"; $("m-cpu-v").textContent = Math.round(cpu) + "%";
-  $("m-disk").style.width = disk + "%"; $("m-disk-v").textContent = Math.round(disk) + "%";
-  spectrum(b, t, frac, live);
-  syncVideo(true);
-  if (S.sim && t >= S.sim.dur) { S.sim = null; onEnded(); return; }
-  S.raf = requestAnimationFrame(frame);
-}
-function spectrum(b, t, frac, live) {
-  const cv = $("spectrum"), dpr = window.devicePixelRatio || 1, w = cv.clientWidth, h = cv.clientHeight;
-  if (!w) return;
-  if (cv.width !== w * dpr) { cv.width = w * dpr; cv.height = h * dpr; }
-  const g = cv.getContext("2d"); g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, w, h);
-  const at = (url) => { const p = url && S.peaks[url + "|300"]; return p ? p[Math.min(p.length - 1, Math.floor(frac * p.length))] : 0; };
-  const st = b.stems || {}, eD = at(st.drums), eB = at(st.bass), eS = at(st.sample), n = SP.length, bw = w / n;
-  for (let k = 0; k < n; k++) {
-    const x = k / n;
-    const band = x < 0.2 ? eB * 1.2 + eD * 0.5 : x < 0.55 ? eS * 0.9 + eD * 0.35 : eD * 0.7 + eS * 0.3 * (1 - x);
-    const tex = 0.6 + 0.4 * Math.sin(t * (2.5 + k * 0.41) + k * 1.3);
-    const target = live ? Math.min(1, 1.7 * band * tex * (1 - x * 0.35)) : 0;
-    SP[k] += (target - SP[k]) * (target > SP[k] ? 0.55 : 0.1);
-    const bh = Math.max(1, SP[k] * (h - 4));
-    g.fillStyle = x < 0.2 ? css("--c-bass") : x < 0.55 ? css("--c-sample") : css("--c-drums");
-    g.globalAlpha = 0.5 + 0.5 * SP[k];
-    g.fillRect(k * bw + 1, h - bh, bw - 2, bh);
+function applyGains() {
+  const anySolo = Object.values(E.solo).some(Boolean);
+  for (const k of Object.keys(E.gains)) {
+    const on = !E.mute[k] && (!anySolo || E.solo[k]);
+    E.gains[k].gain.setTargetAtTime(on ? 1 : 0, E.ctx.currentTime, 0.01);
+    const lane = document.querySelector(`.lane[data-lane="${k}"]`);
+    if (lane) lane.classList.toggle("muted", !on);
   }
-  g.globalAlpha = 1;
+  if (E.master) E.master.gain.setTargetAtTime(E.mute.mix ? 0 : E.vol, E.ctx.currentTime, 0.01);
+  document.querySelector('.lane[data-lane="mix"]')?.classList.toggle("muted", !!E.mute.mix);
 }
-function setPlayUI() { const on = playing(); $("play").classList.toggle("on", on); $("play-ico").innerHTML = on ? '<path d="M7 5h4v14H7zM13 5h4v14h-4z"/>' : '<path d="M7 5v14l12-7z"/>'; }
-async function start() {
-  S.sim = null;
-  try { await audio.play(); } catch (e) { audio.muted = true; try { await audio.play(); } catch (e2) { S.sim = { t0: performance.now(), dur: audio.duration || 20 }; } }
-  setPlayUI(); cancelAnimationFrame(S.raf); frame();
+function play() {
+  if (E.playing || !E.dur) return;
+  if (E.offset >= E.dur - 0.05) E.offset = 0;
+  E.playing = true; E.t0 = now();
+  if (E.ctx && E.ctx.state !== "running") E.ctx.resume().then(() => { if (E.playing) { E.offset = E.time(); E.t0 = now(); startSources(); } }).catch(() => {});
+  startSources(); setPlayUI(); syncVideo(false);
 }
-function stop() { S.sim = null; audio.pause(); audio.currentTime = 0; setPlayUI(); frame(); }
-function onEnded() { setPlayUI(); if (S.autoplay && S.beats.length) setTimeout(() => select((S.cur + 1) % S.beats.length, true), 700); }
-audio.addEventListener("ended", onEnded);
-audio.addEventListener("play", setPlayUI); audio.addEventListener("pause", setPlayUI);
-$("play").onclick = () => (playing() ? (S.sim = null, audio.pause(), setPlayUI()) : start());
-$("stop").onclick = () => { S.autoplay = false; $("loop").classList.remove("on"); stop(); };
-$("loop").onclick = () => { S.autoplay = !S.autoplay; $("loop").classList.toggle("on", S.autoplay); };
-$("arr").addEventListener("click", (e) => {
-  const r = $("arr").getBoundingClientRect(), x = e.clientX - r.left - 168;
-  if (x > 0 && audio.duration && !S.sim) audio.currentTime = (x / (r.width - 168)) * audio.duration;
-});
+function pause() { if (!E.playing) return; E.offset = E.time(); E.playing = false; stopSources(); setPlayUI(); syncVideo(false); }
+function seek(t) { E.offset = Math.max(0, Math.min(E.dur || 0, t)); if (E.playing) { E.t0 = now(); startSources(); } syncVideo(false); frame(true); }
+function toStart() { pause(); seek(0); }
+// a click anywhere unlocks audio (autoplay policy): if we were "playing" silently, bring the sound in at the right spot
+document.addEventListener("pointerdown", () => {
+  if (E.ctx && E.ctx.state !== "running") E.ctx.resume().then(() => { if (E.playing) { E.offset = E.time(); E.t0 = now(); startSources(); } }).catch(() => {});
+}, true);
 
-// ---------------------------------------------------------------- select a beat
+async function decode(url) {
+  if (E.cache[url]) return E.cache[url];
+  const p = (async () => {
+    const data = await (await fetch(url)).arrayBuffer();
+    const ctx = E.ctx || new OfflineAudioContext(1, 44100, 44100);
+    return await new Promise((res, rej) => ctx.decodeAudioData(data, res, rej));
+  })();
+  E.cache[url] = p;
+  p.catch(() => delete E.cache[url]);
+  return p;
+}
+function peaksOf(buf, n) {
+  const ch = buf.getChannelData(0), step = Math.max(1, Math.floor(ch.length / n)), p = new Float32Array(n);
+  for (let i = 0; i < n; i++) { let mx = 0; for (let j = i * step, e = Math.min(ch.length, (i + 1) * step); j < e; j += 16) { const a = Math.abs(ch[j]); if (a > mx) mx = a; } p[i] = mx; }
+  return p;
+}
+
+// ================================================================ load a beat into the arrangement
+function bpmOf(b) { return b.bpm || (b.heard && b.heard.bpm) || 90; }
 async function select(i, autoplay) {
   const b = S.beats[i]; if (!b) return;
-  S.cur = i; S.sim = null;
+  const token = ++S.token;
+  pause(); stopSources();
+  S.cur = i; E.offset = 0; E.bufs = {}; E.peaks = {}; E.dur = 0;
   document.querySelectorAll(".item").forEach((c) => c.classList.toggle("on", +c.dataset.i === i));
   $("now-brief").textContent = b.brief;
   $("spec-bpm").textContent = b.bpm ? `${+(+b.bpm).toFixed(1)} BPM` : "—";
@@ -382,11 +352,177 @@ async function select(i, autoplay) {
   $("built").textContent = b.seconds ? `${Math.round(b.seconds)} s` : "—";
   $("src").textContent = b.source || "";
   renderChecks(b);
-  audio.src = b.url; audio.load();
-  await new Promise((r) => { audio.onloadedmetadata = r; setTimeout(r, 1500); });
-  buildArrangement(b);
-  if (autoplay) start(); else frame();
+  const urls = { mix: b.url, ...(b.stems || {}) };
+  E.stems = ["drums", "bass", "sample"].some((k) => b.stems && b.stems[k]);
+  buildLanes(b, 20);
+  const got = await Promise.all(Object.entries(urls).map(([k, u]) => decode(u).then((buf) => [k, buf]).catch(() => [k, null])));
+  if (token !== S.token) return;                          // the user clicked another beat meanwhile
+  for (const [k, buf] of got) if (buf) { E.bufs[k] = buf; E.peaks[k] = { draw: peaksOf(buf, 900), lvl: peaksOf(buf, 400) }; }
+  if (!E.bufs.mix && !E.stems) { toast("couldn't load this beat"); return; }
+  if (!E.stems && E.bufs.mix) { /* no stems: play the mix */ }
+  E.dur = E.bufs.mix ? E.bufs.mix.duration : Math.max(...Object.values(E.bufs).map((x) => x.duration));
+  if (E.ctx) {
+    E.gains = {};
+    for (const k of Object.keys(E.bufs)) { const g = E.ctx.createGain(); g.connect(E.master); E.gains[k] = g; }
+  }
+  buildLanes(b, E.dur);
+  applyGains();
+  frame(true);
+  if (autoplay) play();
 }
+function buildLanes(b, dur) {
+  const bpm = bpmOf(b), bar = 240 / bpm, bars = Math.max(1, Math.ceil(dur / bar));
+  let r = "";
+  for (let i = 0; i <= bars; i++) {
+    r += `<span style="left:${(i * bar / dur) * 100}%">${i + 1}</span>`;
+    for (let q = 1; q < 4; q++) r += `<span class="beat" style="left:${((i * bar + q * bar / 4) / dur) * 100}%"></span>`;
+  }
+  $("ruler").innerHTML = r;
+  const grid = Array.from({ length: bars + 1 }, (_, i) => `<i style="position:absolute;top:0;bottom:0;left:${(i * bar / dur) * 100}%;border-left:1px solid #262626"></i>`).join("");
+  $("lanes").innerHTML = LANES.map(([k, name, c]) => {
+    const has = !!E.peaks[k] || (k === "mix") || (b.stems && b.stems[k]);
+    const dis = k !== "mix" && !E.stems;
+    return `<div class="lane ${k === "mix" ? "master" : ""}" style="--c:var(${c})" data-lane="${k}">
+      <div class="lh"><span class="sw"></span><div class="in"><div><div class="name">${name}</div><div class="sub">${k === "mix" ? (E.stems ? "sum of stems · self-checked" : "mix · self-checked") : has ? "Miles · stem" : "no stem"}</div></div>
+        <div class="ctl"><span class="ms ${dis ? "dis" : ""} ${E.mute[k] ? "m-on" : ""}" data-ms="m" data-k="${k}" title="Mute">M</span>${k === "mix" ? "" : `<span class="ms ${dis ? "dis" : ""} ${E.solo[k] ? "s-on" : ""}" data-ms="s" data-k="${k}" title="Solo">S</span>`}<span class="vu"><i></i></span></div></div></div>
+      <div class="track"><div class="grid-lines">${grid}</div>${has ? `<div class="clip" style="width:100%"><div class="cn">${k === "mix" ? b.title : name.toUpperCase() + " · " + b.title}</div><canvas></canvas></div>` : ""}</div></div>`;
+  }).join("");
+  drawLanes();
+}
+function drawLanes() {
+  LANES.forEach(([k, , c]) => {
+    const cv = document.querySelector(`.lane[data-lane="${k}"] canvas`), p = E.peaks[k];
+    if (!cv || !p) return;
+    const dpr = window.devicePixelRatio || 1, w = cv.clientWidth, h = cv.clientHeight;
+    if (!w || !h) return;
+    cv.width = w * dpr; cv.height = h * dpr;
+    const g = cv.getContext("2d"); g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    let top = 0; for (const x of p.draw) if (x > top) top = x; top = top || 1;
+    const buf = E.bufs[k], reps = buf && E.dur ? Math.max(1, E.dur / buf.duration) : 1, cw = w / reps;
+    const mid = h / 2, n = p.draw.length; g.fillStyle = css(c); g.beginPath();
+    for (let r = 0; r < Math.ceil(reps - 0.01); r++)
+      for (let i = 0; i < n; i++) { const x = r * cw + (i / n) * cw; if (x > w) break; const a = Math.min(1, p.draw[i] / top) * (mid - 2); g.rect(x, mid - a, Math.max(1, cw / n), a * 2 || 1); }
+    g.fill();
+    g.fillStyle = "rgba(0,0,0,.55)";
+    for (let r = 1; r < reps - 0.01; r++) g.fillRect(Math.round(r * cw), 0, 1, h);
+  });
+}
+// mute / solo
+$("lanes").addEventListener("click", (e) => {
+  const b = e.target.closest(".ms"); if (!b || b.classList.contains("dis")) return;
+  e.stopPropagation();
+  const k = b.dataset.k;
+  if (b.dataset.ms === "m") { E.mute[k] = !E.mute[k]; b.classList.toggle("m-on", E.mute[k]); }
+  else { E.solo[k] = !E.solo[k]; b.classList.toggle("s-on", E.solo[k]); }
+  if (E.ctx && Object.keys(E.gains).length) applyGains();
+});
+
+// ================================================================ timeline: click / drag to seek and scrub
+const LH = 168;
+function timeAt(clientX) { const r = $("arr").getBoundingClientRect(); return ((clientX - r.left - LH) / Math.max(1, r.width - LH)) * (E.dur || 0); }
+let scrub = null;
+$("arr").addEventListener("pointerdown", (e) => {
+  if (e.button !== 0 || e.target.closest(".lh, .ms, #video-wrap")) return;
+  const r = $("arr").getBoundingClientRect(); if (e.clientX - r.left < LH || !E.dur) return;
+  scrub = { was: E.playing }; if (E.playing) { E.offset = E.time(); E.playing = false; stopSources(); }
+  $("arr").setPointerCapture(e.pointerId); E.offset = Math.max(0, Math.min(E.dur, timeAt(e.clientX))); frame(true);
+  e.preventDefault();
+});
+$("arr").addEventListener("pointermove", (e) => { if (!scrub) return; E.offset = Math.max(0, Math.min(E.dur, timeAt(e.clientX))); syncVideo(false); frame(true); });
+const endScrub = () => { if (!scrub) return; const was = scrub.was; scrub = null; if (was) play(); else { syncVideo(false); frame(true); } };
+$("arr").addEventListener("pointerup", endScrub); $("arr").addEventListener("pointercancel", endScrub);
+
+// ================================================================ transport
+function setPlayUI() { $("play").classList.toggle("on", E.playing); $("play-ico").innerHTML = E.playing ? '<path d="M7 5h4v14H7zM13 5h4v14h-4z"/>' : '<path d="M7 5v14l12-7z"/>'; }
+function userTook() { if (S.auto) { S.auto = false; $("auto").classList.remove("on"); } }
+$("play").onclick = () => (E.playing ? pause() : play());
+$("stop").onclick = () => { userTook(); toStart(); };
+$("loop").onclick = () => { S.loop = !S.loop; $("loop").classList.toggle("on", S.loop); toast(S.loop ? "loop on" : "loop off"); };
+$("auto").onclick = () => { S.auto = !S.auto; $("auto").classList.toggle("on", S.auto); toast(S.auto ? "auto-advance on" : "auto-advance off"); if (S.auto && !E.playing) play(); };
+document.addEventListener("keydown", (e) => {
+  if (e.target.closest("input, textarea, [contenteditable]")) return;
+  if (e.code === "Space") { e.preventDefault(); E.playing ? pause() : play(); }
+  else if (e.code === "Enter" || e.code === "Home") { e.preventDefault(); seek(0); }
+  else if (e.code === "ArrowRight") seek(E.time() + 2); else if (e.code === "ArrowLeft") seek(E.time() - 2);
+});
+// master fader: drag up/down, dB readout
+function setVol(f) {
+  f = Math.max(0, Math.min(1, f)); E.vol = f * f * 1.4;      // ~+3 dB at the top
+  $("fader-k").style.top = ((1 - f) * 100) + "%";
+  $("vol-v").textContent = E.vol > 0.001 ? `${(20 * Math.log10(E.vol)).toFixed(1)} dB` : "-∞";
+  if (E.ctx && E.master) E.master.gain.setTargetAtTime(E.mute.mix ? 0 : E.vol, E.ctx.currentTime, 0.01);
+}
+let fdrag = false;
+const fAt = (e) => { const r = $("fader").getBoundingClientRect(); return 1 - (e.clientY - r.top) / r.height; };
+$("fader").addEventListener("pointerdown", (e) => { fdrag = true; $("fader").setPointerCapture(e.pointerId); setVol(fAt(e)); e.preventDefault(); });
+$("fader").addEventListener("pointermove", (e) => fdrag && setVol(fAt(e)));
+$("fader").addEventListener("pointerup", () => (fdrag = false));
+$("fader").addEventListener("dblclick", () => setVol(Math.sqrt(1 / 1.4)));
+$("fader").addEventListener("wheel", (e) => { e.preventDefault(); setVol(Math.sqrt(E.vol / 1.4) - e.deltaY * 0.001); }, { passive: false });
+setVol(Math.sqrt(1 / 1.4));
+
+// ================================================================ animation frame
+const SP = new Float32Array(48);
+function lvl(k, frac) {
+  const p = E.peaks[k], buf = E.bufs[k]; if (!p || !E.playing || !buf) return 0;
+  const f = ((frac * E.dur) % buf.duration) / buf.duration;
+  return Math.min(1, p.lvl[Math.min(p.lvl.length - 1, Math.floor(f * p.lvl.length))] * 1.15);
+}
+function frame(once) {
+  const b = S.beats[S.cur];
+  if (b) {
+    const t = E.time(), d = E.dur || 1, frac = Math.min(1, t / d);
+    const r = $("arr").clientWidth - LH;
+    $("playhead").style.left = (LH + frac * r) + "px";
+    const bpm = bpmOf(b), beats = t * bpm / 60;
+    $("lcd-pos").textContent = `${Math.floor(beats / 4) + 1}.${Math.floor(beats % 4) + 1}.${Math.floor((beats % 1) * 4) + 1}`;
+    $("lcd-time").textContent = fmt(t);
+    const anySolo = Object.values(E.solo).some(Boolean);
+    LANES.forEach(([k]) => {
+      const i = document.querySelector(`.lane[data-lane="${k}"] .vu i`);
+      const on = k === "mix" ? !E.mute.mix : !E.mute[k] && (!anySolo || E.solo[k]);
+      if (i) i.style.width = (on ? lvl(k, frac) * 100 : 0).toFixed(0) + "%";
+    });
+    const m = E.mute.mix ? 0 : lvl("mix", frac) * Math.min(1.2, E.vol), jit = () => (Math.random() - 0.5) * 0.04 * (m > 0);
+    $("vu-l").style.height = Math.max(0, Math.min(100, (m + jit()) * 100)) + "%";
+    $("vu-r").style.height = Math.max(0, Math.min(100, (m * 0.96 + jit()) * 100)) + "%";
+    $("db").textContent = m > 0.001 ? `${(20 * Math.log10(m)).toFixed(1)} dB` : "-∞ dB";
+    const cpu = E.playing ? 16 + 10 * m + 3 * Math.sin(t * 2) : 3, disk = E.playing ? 5 + 4 * Math.abs(Math.sin(t * 0.7)) : 0;
+    $("m-cpu").style.width = cpu + "%"; $("m-cpu-v").textContent = Math.round(cpu) + "%";
+    $("m-disk").style.width = disk + "%"; $("m-disk-v").textContent = Math.round(disk) + "%";
+    spectrum(t, frac);
+    syncVideo(true);
+    if (E.playing && E.dur && t >= E.dur - 0.01) onEnded();
+  }
+  if (!once) S.raf = requestAnimationFrame(() => frame(false));
+}
+function onEnded() {
+  if (S.loop) { E.offset = 0; E.t0 = now(); startSources(); return; }
+  E.playing = false; stopSources(); E.offset = E.dur; setPlayUI();
+  if (S.auto && S.beats.length) { const next = (S.cur + 1) % S.beats.length, tok = S.token; setTimeout(() => { if (S.auto && tok === S.token && !E.playing) select(next, true); }, 700); }
+}
+function spectrum(t, frac) {
+  const cv = $("spectrum"), dpr = window.devicePixelRatio || 1, w = cv.clientWidth, h = cv.clientHeight;
+  if (!w) return;
+  if (cv.width !== w * dpr) { cv.width = w * dpr; cv.height = h * dpr; }
+  const g = cv.getContext("2d"); g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, w, h);
+  const anySolo = Object.values(E.solo).some(Boolean), on = (k) => !E.mute.mix && !E.mute[k] && (!anySolo || E.solo[k]);
+  const at = (k) => (E.stems ? (on(k) ? lvl(k, frac) : 0) : lvl("mix", frac)) * Math.min(1.2, E.vol);
+  const eD = at("drums"), eB = at("bass"), eS = at("sample"), n = SP.length, bw = w / n;
+  for (let k = 0; k < n; k++) {
+    const x = k / n;
+    const band = x < 0.2 ? eB * 1.2 + eD * 0.5 : x < 0.55 ? eS * 0.9 + eD * 0.35 : eD * 0.7 + eS * 0.3 * (1 - x);
+    const tex = 0.6 + 0.4 * Math.sin(t * (2.5 + k * 0.41) + k * 1.3);
+    const target = E.playing ? Math.min(1, 1.7 * band * tex * (1 - x * 0.35)) : 0;
+    SP[k] += (target - SP[k]) * (target > SP[k] ? 0.55 : 0.1);
+    const bh = Math.max(1, SP[k] * (h - 4));
+    g.fillStyle = x < 0.2 ? css("--c-bass") : x < 0.55 ? css("--c-sample") : css("--c-drums");
+    g.globalAlpha = 0.5 + 0.5 * SP[k]; g.fillRect(k * bw + 1, h - bh, bw - 2, bh);
+  }
+  g.globalAlpha = 1;
+}
+
+// ================================================================ checks, browser, history
 function renderChecks(b) {
   const c = b.checks || {}, h = b.heard || {};
   let hb = h.bpm, note = "";
@@ -409,78 +545,94 @@ function renderChecks(b) {
     : `<b class="bad">CAUGHT</b> — ${(b.why || []).join("; ")} · failures like this feed the coach's next round`;
 }
 function renderBrowser() {
-  $("gallery").innerHTML = S.beats.map((b, i) => `<button class="item" data-i="${i}"><span class="n">${String(i + 1).padStart(2, "0")}</span>
+  $("gallery").innerHTML = S.beats.map((b, i) => `<button class="item ${i === S.cur ? "on" : ""}" data-i="${i}"><span class="n">${String(i + 1).padStart(2, "0")}</span>
     <div style="min-width:0"><div class="t">${b.title}</div><div class="b">${b.bpm ? +(+b.bpm).toFixed(0) : "—"} BPM · ${b.key || "—"} · ${Math.round(b.seconds || 0)} s</div></div>
     <span class="leds">${["delivered", "tempo", "key", "clean"].map((k) => `<span class="led ${(b.checks || {})[k] === true ? "ok" : (b.checks || {})[k] === false ? "bad" : ""}" title="${k}"></span>`).join("")}</span></button>`).join("");
-  document.querySelectorAll(".item").forEach((c) => (c.onclick = () => { S.autoplay = true; $("loop").classList.add("on"); select(+c.dataset.i, true); }));
   $("count").textContent = `${S.beats.filter((b) => b.pass).length}/${S.beats.length} pass`;
 }
-
-// ---------------------------------------------------------------- history
+$("gallery").addEventListener("click", (e) => { const it = e.target.closest(".item"); if (!it) return; userTook(); select(+it.dataset.i, true); });
+$("ledger").addEventListener("click", (e) => { const r = e.target.closest(".hist"); if (r) r.classList.toggle("open"); });
 async function loadLedger() {
-  const { loop, rows } = await (await fetch("/api/ledger")).json();
-  $("loop-name").textContent = loop.replace("loop-", "");
-  const total = rows.length ? rows[0].total : 16, base = rows.length ? rows[0].before : null;
-  const kept = rows.filter((r) => r.kept), best = kept.length ? kept[kept.length - 1].after : base;
-  $("ba-before").textContent = base == null ? "—" : `${base}/${total}`;
-  $("ba-after").textContent = best == null ? "—" : `${best}/${total}`;
-  const blocked = rows.filter((r) => !r.kept && r.delta < 0).length;
-  $("gate").innerHTML = `<div><b>${rows.length}</b>tried</div><div><b style="color:var(--ok)">${kept.length}</b>kept</div><div><b style="color:var(--bad)">${blocked}</b>regressions blocked</div>`;
-  $("ledger").innerHTML = rows.slice().reverse().map((r, i) => {
-    const d = r.delta, worse = d < 0;
-    return `<div class="hist ${r.kept ? "kept" : "rej"} ${worse ? "worse" : ""}" style="animation-delay:${i * 70}ms" data-gen="${r.gen}" data-kept="${r.kept}">
-      <span class="g">R${r.gen}</span><div><div class="h">${r.hypothesis}</div><div class="p">${r.patch} · ${r.before}→${r.after}/${r.total}</div></div>
-      <div class="v ${d > 0 ? "pos" : d < 0 ? "neg" : "zero"}">${d > 0 ? "+" : ""}${d}<br/><span class="tag">${r.kept ? "KEPT" : worse ? "UNDO" : "NO GAIN"}</span></div></div>`;
-  }).join("");
+  try {
+    const { loop, rows } = await (await fetch("/api/ledger")).json();
+    $("loop-name").textContent = loop.replace("loop-", "");
+    const total = rows.length ? rows[0].total : 16, base = rows.length ? rows[0].before : null;
+    const kept = rows.filter((r) => r.kept), best = kept.length ? kept[kept.length - 1].after : base;
+    $("ba-before").textContent = base == null ? "—" : `${base}/${total}`;
+    $("ba-after").textContent = best == null ? "—" : `${best}/${total}`;
+    const blocked = rows.filter((r) => !r.kept && r.delta < 0).length;
+    $("gate").innerHTML = `<div><b>${rows.length}</b>tried</div><div><b style="color:var(--ok)">${kept.length}</b>kept</div><div><b style="color:var(--bad)">${blocked}</b>regressions blocked</div>`;
+    const open = new Set([...document.querySelectorAll(".hist.open")].map((x) => x.dataset.gen));
+    $("ledger").innerHTML = rows.slice().reverse().map((r, i) => {
+      const d = r.delta, worse = d < 0;
+      return `<div class="hist ${r.kept ? "kept" : "rej"} ${worse ? "worse" : ""} ${open.has(r.gen) ? "open" : ""}" style="animation-delay:${i * 70}ms" data-gen="${r.gen}" data-kept="${r.kept}" title="click to expand">
+        <span class="g">R${r.gen}</span><div><div class="h">${r.hypothesis}</div><div class="p">${r.patch} · ${r.before}→${r.after}/${r.total}</div></div>
+        <div class="v ${d > 0 ? "pos" : d < 0 ? "neg" : "zero"}">${d > 0 ? "+" : ""}${d}<br/><span class="tag">${r.kept ? "KEPT" : worse ? "UNDO" : "NO GAIN"}</span></div></div>`;
+    }).join("");
+  } catch (e) {}
 }
 loadLedger(); setInterval(loadLedger, 30000);
 
-// ---------------------------------------------------------------- new brief
+// ================================================================ new brief
 const STEPS = [[0, "reading brief"], [0.1, "planning"], [0.25, "picking kit + samples"], [0.45, "building + mixing"], [0.7, "self-check"], [0.88, "repairing"]];
+let busy = false;
+$("script").addEventListener("keydown", (e) => { if (e.key === "Enter") $("make").click(); });
 $("make").addEventListener("click", async () => {
-  const text = $("script").value.trim(); if (!text) return;
-  $("make").disabled = true; $("progress").classList.add("on"); $("bar").style.width = "2%";
-  S.autoplay = false; S.sim = null; audio.pause();
-  const { id } = await (await fetch("/api/make", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ text, live: $("live").checked }) })).json();
-  poll(id);
+  const text = $("script").value.trim(); if (!text || busy) return;
+  busy = true; $("make").disabled = true; $("progress").classList.add("on"); $("bar").style.width = "2%";
+  $("prog-text").textContent = "starting…"; $("prog-time").textContent = "";
+  userTook(); pause();
+  try {
+    const r = await fetch("/api/make", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ text, live: $("live").checked }) });
+    if (!r.ok) throw new Error(await r.text());
+    const { id, replay } = await r.json();
+    poll(id, replay, Date.now());
+  } catch (e) { done("couldn't start: " + String(e.message || e).slice(0, 80)); }
 });
-async function poll(id) {
-  const j = await (await fetch("/api/jobs/" + id)).json();
+function done(msg) { busy = false; $("make").disabled = false; if (msg) $("prog-text").textContent = msg; }
+async function poll(id, replay, t0) {
+  let j;
+  try { j = await (await fetch("/api/jobs/" + id)).json(); } catch (e) { return setTimeout(() => poll(id, replay, t0), 1000); }
   const frac = Math.min(0.97, j.elapsed / (j.eta || 180));
   $("bar").style.width = (frac * 100).toFixed(1) + "%";
-  $("prog-text").textContent = STEPS.filter(([f]) => frac >= f).pop()[1] + "…"; $("prog-time").textContent = j.elapsed.toFixed(1) + " s";
-  if (j.state === "running") return setTimeout(() => poll(id), 400);
-  $("make").disabled = false;
-  if (j.state === "error") { $("prog-text").textContent = "error: " + j.error; return; }
-  $("bar").style.width = "100%"; $("prog-text").textContent = "done · self-checked";
+  $("prog-text").textContent = STEPS.filter(([f]) => frac >= f).pop()[1] + "…" + (replay ? " (replaying a real earlier run)" : "");
+  $("prog-time").textContent = j.elapsed.toFixed(1) + " s";
+  if (j.state === "running") {
+    if (Date.now() - t0 > 480000) return done("live render timed out — try again, or untick live render");
+    return setTimeout(() => poll(id, replay, t0), 400);
+  }
+  if (j.state === "error" || !j.result || !j.result.url) return done("render failed — " + String(j.error || (j.result && j.result.error) || "no track").slice(0, 80));
+  $("bar").style.width = "100%"; done("done · self-checked");
   const r = j.result, s = r.song || {}, br = r.brief || {};
-  const stems = {};
   const beat = { brief: br.text || $("script").value, mood: (br.mood || []).filter((m) => m !== "—"), length: br.length, bpm: br.bpm, key: br.key,
     title: s.title || "New track", style: s.style, url: r.url, checks: r.checks, pass: r.pass, why: r.why || [], seconds: r.seconds,
     heard: { bpm: (r.measured || {}).bpm, key: (r.measured || {}).key }, verify_calls: (r.verify || []).length,
-    source: r.cached ? `replay of a real run · ${r.made_at || ""}` : `live render · ${r.made_at || ""}`, stems: r.stems || {} };
-  const g = S.beats.find((x) => x.brief === beat.brief && x.pass === beat.pass && x.seconds === beat.seconds);
+    source: r.cached ? `replay of a real run · ${r.made_at || ""}` : `live render · ${r.made_at || ""}`, stems: {} };
+  const g = S.beats.find((x) => x.stems && x.brief === beat.brief && x.seconds === beat.seconds);
   if (g) beat.stems = g.stems;
-  S.beats.unshift(beat); renderBrowser(); S.autoplay = true; $("loop").classList.add("on"); select(0, true);
+  S.beats.unshift(beat); S.cur = -1; renderBrowser(); select(0, true);
 }
+
+// ================================================================ video (optional, synced to the playhead)
 function syncVideo(soft) {
-  const v = $("video"); if (!S.videoUrl) return;
-  const t = curTime();
-  if (!soft || Math.abs(v.currentTime - t) > 0.3) v.currentTime = Math.min(t, v.duration || 1e9);
-  if (!playing() && !v.paused) v.pause();
-  if (playing() && v.paused && t < (v.duration || 1e9)) v.play().catch(() => {});
+  const v = $("video"); if (!S.videoUrl || !v.duration) return;
+  const t = E.time();
+  if (!soft || Math.abs(v.currentTime - t) > 0.3) v.currentTime = Math.min(t, v.duration);
+  if (!E.playing && !v.paused) v.pause();
+  if (E.playing && v.paused && t < v.duration) v.play().catch(() => {});
 }
-function setVideo(f) { if (!f) return; S.videoUrl = URL.createObjectURL(f); $("video").src = S.videoUrl; $("arr").classList.add("has-video"); }
+function setVideo(f) { if (!f || !f.type.startsWith("video")) return; S.videoUrl = URL.createObjectURL(f); $("video").src = S.videoUrl; $("arr").classList.add("has-video"); toast("video synced to the playhead"); }
 $("file").addEventListener("change", (e) => setVideo(e.target.files[0]));
 document.addEventListener("dragover", (e) => e.preventDefault());
-document.addEventListener("drop", (e) => { e.preventDefault(); setVideo([...e.dataTransfer.files].find((x) => x.type.startsWith("video"))); });
-window.addEventListener("resize", () => { const b = S.beats[S.cur]; if (b) buildArrangement(b); });
+document.addEventListener("drop", (e) => { e.preventDefault(); setVideo([...(e.dataTransfer.files || [])].find((x) => x.type.startsWith("video"))); });
+let rz; window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { drawLanes(); frame(true); }, 100); });
 
 (async () => {
-  S.beats = await (await fetch("/api/gallery")).json();
+  try { S.beats = await (await fetch("/api/gallery")).json(); } catch (e) { S.beats = []; }
   renderBrowser();
+  frame(false);
   await select(0, false);
-  setTimeout(() => { if (S.autoplay && !playing()) start(); }, 1000);
+  setTimeout(() => { if (S.auto && !E.playing) play(); }, 900);
 })();
 </script>
 </body>
