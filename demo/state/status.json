@@ -1,275 +1,110 @@
 {
- "stamp": "loop-20261017-141624-heldout-v0",
- "version": "v0",
+ "stamp": "loop-20261017-141624-heldout-best",
+ "version": "g1",
  "total": 16,
- "done": 16,
+ "done": 1,
  "workers": {
   "w1": {
-   "state": "idle",
-   "at": 1792277754.504319,
-   "brief": null,
+   "state": "building",
+   "at": 1792277758.507665,
+   "brief": "4PoCA4taNyg",
    "seed": 1,
-   "title": "Gunna Type Beat - \"Rare Form\"",
-   "passed": false,
-   "best": {
-    "song": null,
-    "tempo": null,
-    "key": null,
-    "clean": null,
-    "delivered": false,
-    "pass": false,
-    "why": [
-     "not delivered: no song came back (timeout)"
-    ],
-    "contract": {
-     "bpm": 128.0,
-     "key": "Dm",
-     "style": "gunna",
-     "refs": [
-      "/Users/shuhanzhang/miles-studio/bench/refs/IE9i4HwbGpU.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/Qyf2QXxq1KI.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/60vMf8Z61Qg.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/aNXItVNHEW8.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/blGl1h0zZSE.m4a"
-     ]
-    }
-   }
+   "title": "MF DOOM Type Beat - \"Food\""
   },
   "w2": {
-   "state": "idle",
-   "at": 1792277474.826956,
-   "brief": null,
+   "state": "building",
+   "at": 1792277758.508194,
+   "brief": "q_U0Ih0jrrM",
    "seed": 1,
-   "title": "Daniel Caesar x Giveon Type Beat - \"It's Nice Loving You\"",
-   "passed": false,
-   "best": {
-    "song": null,
-    "tempo": null,
-    "key": null,
-    "clean": null,
-    "delivered": false,
-    "pass": false,
-    "why": [
-     "not delivered: no song came back (timeout)"
-    ],
-    "contract": {
-     "bpm": 157.0,
-     "key": "G#",
-     "style": "daniel caesar",
-     "refs": [
-      "/Users/shuhanzhang/miles-studio/bench/refs/iWXJBLcfgGE.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/NHstEi3ChTc.m4a",
-      "/Users/shuhanzhang/miles-hackathon/bench/refs/5ihsl_dbRFo.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/SK4h63w7R8s.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/pTiJ0BMwzGU.m4a"
-     ]
-    }
-   }
+   "title": "Freestyle Rap Beat - Dolla"
   },
   "w3": {
-   "state": "idle",
-   "at": 1792277603.342394,
-   "brief": null,
+   "state": "building",
+   "at": 1792277828.2948391,
+   "brief": "B-NiHdc4YaA",
    "seed": 1,
-   "title": "playboi carti type beat - \"MADE OF HATE\"",
+   "title": "SMINO TYPE BEAT \"HOME LATE\"",
    "passed": false,
    "best": {
-    "song": "s_e9a9ef",
+    "song": "s_a618fd",
     "tempo": true,
-    "key": true,
+    "key": false,
     "clean": true,
-    "delivered": false,
+    "delivered": true,
     "pass": false,
     "why": [
-     "not delivered in time: 219 s > 180 s"
+     "key: heard D#, brief says D#m"
     ],
     "skipped": [],
     "measured": {
-     "claimed_bpm": 152.0,
-     "claimed_key": "A",
+     "claimed_bpm": 118.0,
+     "claimed_key": null,
      "status": "ready",
-     "bpm": 152.0,
-     "bpm_support": 1.13,
-     "key": "A",
-     "key_r": 0.816,
-     "key_margin": 0.022,
-     "key_runner_up": "Am",
+     "bpm": 117.5,
+     "bpm_support": 1.03,
+     "key": "D#",
+     "key_r": 0.65,
+     "key_margin": 0.045,
+     "key_runner_up": "D#m",
      "stems": [
       "bass",
-      "drums",
-      "sample",
-      "sample2"
+      "drums"
      ],
      "ear": {
-      "bass": {
-       "notes": 4,
-       "fit": 1.0,
-       "clash": 0.0,
-       "absent": 0.0,
-       "tune": 6.0,
-       "sample_tuning": -1.0,
-       "bass_pcs": [
-        9
-       ]
-      },
-      "sample": {
-       "lock": 1.1,
-       "late_ms": 8.0,
-       "off": 0.06
-      },
+      "bass": null,
+      "sample": null,
       "drums": {
-       "lock": 1.69,
-       "late_ms": 3.0,
+       "lock": 1.59,
+       "late_ms": 5.0,
        "off": 0.0
       },
       "balance": {
-       "bass": -6.9,
-       "sample": -6.7,
-       "sample2": -11.1
+       "bass": -2.8
       },
       "missing": []
      }
     },
     "contract": {
-     "bpm": 152.0,
-     "key": "F#m",
-     "style": "playboi carti",
+     "bpm": 118.0,
+     "key": "D#m",
+     "style": "kaytranada",
      "refs": [
-      "/Users/shuhanzhang/miles-studio/bench/refs/aNXItVNHEW8.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/Qyf2QXxq1KI.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/60vMf8Z61Qg.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/blGl1h0zZSE.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/IE9i4HwbGpU.m4a"
+      "/Users/shuhanzhang/miles-studio/bench/refs/qS_lZHSj6kQ.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/KnS9s9Pb97A.m4a"
      ]
     },
     "ref": {
-     "score": 0.458,
-     "nearest": "blGl1h0zZSE",
-     "mean": 0.384,
-     "n_refs": 5,
+     "score": 0.533,
+     "nearest": "qS_lZHSj6kQ",
+     "mean": 0.524,
+     "n_refs": 2,
      "dims": {
-      "tempo": 0.02,
-      "timbre": 0.9,
-      "brightness": 0.31,
-      "low_end": 0.2,
-      "busyness": 0.49
+      "tempo": 0.84,
+      "timbre": 0.89,
+      "brightness": 0.05,
+      "low_end": 0.55,
+      "busyness": 0.28
      },
      "gaps": [
-      "tempo feel 76 vs the refs' 101.3",
-      "less low end than the refs (63 % vs 86 % under 120 Hz)"
+      "brighter than the refs (centroid 3182 vs 950 Hz)",
+      "busier than the refs (6.88 vs 3.565 hits/s)"
      ],
      "ours": {
-      "bpm": 76.0,
-      "centroid": 1747,
-      "low": 0.634,
-      "onsets": 6.02
+      "bpm": 117.5,
+      "centroid": 3182,
+      "low": 0.755,
+      "onsets": 6.88
      },
      "pass": true
     }
    }
   },
   "w4": {
-   "state": "idle",
-   "at": 1792277578.597162,
-   "brief": null,
+   "state": "building",
+   "at": 1792277758.5093849,
+   "brief": "KnS9s9Pb97A",
    "seed": 1,
-   "title": "Ken Carson Type Beat - \"Yale\"",
-   "passed": false,
-   "best": {
-    "song": "s_38716f",
-    "tempo": true,
-    "key": false,
-    "clean": true,
-    "delivered": false,
-    "pass": false,
-    "why": [
-     "not delivered in time: 194 s > 180 s",
-     "key: heard A#, brief says F# (song claims Dm)"
-    ],
-    "skipped": [],
-    "measured": {
-     "claimed_bpm": 137.0,
-     "claimed_key": "Dm",
-     "status": "ready",
-     "bpm": 136.0,
-     "bpm_support": 1.01,
-     "key": "A#",
-     "key_r": 0.74,
-     "key_margin": 0.048,
-     "key_runner_up": "Dm",
-     "stems": [
-      "bass",
-      "drums",
-      "sample"
-     ],
-     "ear": {
-      "bass": {
-       "notes": 4,
-       "fit": 0.47,
-       "clash": 0.0,
-       "absent": 0.25,
-       "tune": 9.0,
-       "sample_tuning": -2.0,
-       "bass_pcs": [
-        7,
-        10,
-        11
-       ]
-      },
-      "sample": {
-       "lock": 1.12,
-       "late_ms": 5.0,
-       "off": 0.07
-      },
-      "drums": {
-       "lock": 2.09,
-       "late_ms": 5.0,
-       "off": 0.0
-      },
-      "balance": {
-       "bass": -2.2,
-       "sample": -6.7
-      },
-      "missing": []
-     }
-    },
-    "contract": {
-     "bpm": 137.0,
-     "key": "F#",
-     "style": "ken carson",
-     "refs": [
-      "/Users/shuhanzhang/miles-studio/bench/refs/blGl1h0zZSE.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/Qyf2QXxq1KI.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/60vMf8Z61Qg.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/aNXItVNHEW8.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/IE9i4HwbGpU.m4a"
-     ]
-    },
-    "ref": {
-     "score": 0.461,
-     "nearest": "aNXItVNHEW8",
-     "mean": 0.432,
-     "n_refs": 5,
-     "dims": {
-      "tempo": 0.22,
-      "timbre": 0.89,
-      "brightness": 0.27,
-      "low_end": 0.19,
-      "busyness": 0.6
-     },
-     "gaps": [
-      "less low end than the refs (62 % vs 86 % under 120 Hz)",
-      "tempo feel 136 vs the refs' 101.3"
-     ],
-     "ours": {
-      "bpm": 136.0,
-      "centroid": 1966,
-      "low": 0.62,
-      "onsets": 5.42
-     },
-     "pass": true
-    }
-   }
+   "title": "JAZZ RAP TYPE BEAT \"CHEMISTRY\""
   }
  }
 }
