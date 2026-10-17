@@ -1,18 +1,18 @@
 {
- "stamp": "loop-20261017-141624-g3",
- "version": "g3",
+ "stamp": "loop-20261017-141624-g4",
+ "version": "g4",
  "total": 16,
- "done": 16,
+ "done": 15,
  "workers": {
   "w1": {
    "state": "idle",
-   "at": 1792274938.857295,
+   "at": 1792275466.059576,
    "brief": null,
    "seed": 1,
    "title": "Lil Baby Type Beat - \"No Joke\"",
    "passed": true,
    "best": {
-    "song": "s_68be3a",
+    "song": "s_4e5a20",
     "tempo": true,
     "key": true,
     "clean": true,
@@ -24,12 +24,12 @@
      "claimed_bpm": 126.0,
      "claimed_key": "D",
      "status": "ready",
-     "bpm": 126.0,
-     "bpm_support": 1.2,
+     "bpm": 101.3,
+     "bpm_support": 1.11,
      "key": "D",
-     "key_r": 0.528,
-     "key_margin": 0.148,
-     "key_runner_up": "Dm",
+     "key_r": 0.948,
+     "key_margin": 0.203,
+     "key_runner_up": "A",
      "stems": [
       "bass",
       "drums",
@@ -37,31 +37,30 @@
      ],
      "ear": {
       "bass": {
-       "notes": 9,
-       "fit": 0.49,
+       "notes": 6,
+       "fit": 0.59,
        "clash": 0.0,
-       "absent": 0.22,
-       "tune": -2.0,
-       "sample_tuning": 3.0,
+       "absent": 0.0,
+       "tune": 8.0,
+       "sample_tuning": 5.0,
        "bass_pcs": [
         2,
-        9,
         11
        ]
       },
       "sample": {
-       "lock": 1.28,
-       "late_ms": 9.0,
-       "off": 0.05
+       "lock": 0.95,
+       "late_ms": 13.0,
+       "off": 0.17
       },
       "drums": {
-       "lock": 2.06,
-       "late_ms": 7.0,
-       "off": 0.06
+       "lock": 2.08,
+       "late_ms": 8.0,
+       "off": 0.0
       },
       "balance": {
-       "sample": -9.5,
-       "bass": -2.4
+       "bass": -2.3,
+       "sample": -10.0
       },
       "missing": []
      }
@@ -78,26 +77,26 @@
      ]
     },
     "ref": {
-     "score": 0.641,
-     "nearest": "3-0fAuCjKsc",
-     "mean": 0.595,
+     "score": 0.6,
+     "nearest": "IKg3NrH6YmU",
+     "mean": 0.538,
      "n_refs": 4,
      "dims": {
       "tempo": 0.63,
-      "timbre": 0.82,
-      "brightness": 0.38,
-      "low_end": 0.47,
-      "busyness": 0.67
+      "timbre": 0.91,
+      "brightness": 0.28,
+      "low_end": 0.54,
+      "busyness": 0.32
      },
      "gaps": [
-      "brighter than the refs (centroid 2092 vs 1414 Hz)",
-      "less low end than the refs (69 % vs 79 % under 120 Hz)"
+      "brighter than the refs (centroid 3025 vs 1414 Hz)",
+      "busier than the refs (7.88 vs 4.34 hits/s)"
      ],
      "ours": {
       "bpm": 126.0,
-      "centroid": 2092,
-      "low": 0.689,
-      "onsets": 5.38
+      "centroid": 3025,
+      "low": 0.711,
+      "onsets": 7.88
      },
      "pass": true
     }
@@ -105,30 +104,32 @@
   },
   "w2": {
    "state": "idle",
-   "at": 1792274893.516238,
+   "at": 1792275456.2126038,
    "brief": null,
    "seed": 1,
    "title": "METRO BOOMIN x 21 SAVAGE TYPE BEAT - \"GOLD TETH\"",
-   "passed": true,
+   "passed": false,
    "best": {
-    "song": "s_9e9c77",
+    "song": "s_72b276",
     "tempo": true,
-    "key": true,
+    "key": false,
     "clean": true,
     "delivered": true,
-    "pass": true,
-    "why": [],
+    "pass": false,
+    "why": [
+     "key: heard Bm, brief says Am (song claims F#)"
+    ],
     "skipped": [],
     "measured": {
      "claimed_bpm": 164.0,
-     "claimed_key": "Am",
+     "claimed_key": "F#",
      "status": "ready",
      "bpm": 82.0,
-     "bpm_support": 1.19,
-     "key": "Am",
-     "key_r": 0.764,
-     "key_margin": 0.132,
-     "key_runner_up": "F",
+     "bpm_support": 1.13,
+     "key": "Bm",
+     "key_r": 0.411,
+     "key_margin": 0.035,
+     "key_runner_up": "F#",
      "stems": [
       "bass",
       "drums",
@@ -136,30 +137,30 @@
      ],
      "ear": {
       "bass": {
-       "notes": 3,
-       "fit": 0.59,
-       "clash": 0.0,
-       "absent": 0.0,
-       "tune": -2.0,
-       "sample_tuning": 2.0,
+       "notes": 4,
+       "fit": 0.57,
+       "clash": 0.25,
+       "absent": 0.25,
+       "tune": 3.0,
+       "sample_tuning": -1.0,
        "bass_pcs": [
-        5,
-        9
+        0,
+        11
        ]
       },
       "sample": {
-       "lock": 1.08,
-       "late_ms": 7.0,
-       "off": 0.0
+       "lock": 0.96,
+       "late_ms": 32.0,
+       "off": 0.27
       },
       "drums": {
-       "lock": 1.77,
-       "late_ms": 8.0,
+       "lock": 1.67,
+       "late_ms": 6.0,
        "off": 0.0
       },
       "balance": {
-       "bass": -2.6,
-       "sample": -8.2
+       "bass": -6.4,
+       "sample": -6.1
       },
       "missing": []
      }
@@ -176,99 +177,186 @@
      ]
     },
     "ref": {
-     "score": 0.649,
+     "score": 0.761,
      "nearest": "GP-dvf2r6Z0",
-     "mean": 0.432,
+     "mean": 0.511,
      "n_refs": 4,
      "dims": {
       "tempo": 0.31,
-      "timbre": 0.86,
-      "brightness": 0.36,
-      "low_end": 0.13,
-      "busyness": 0.49
+      "timbre": 0.85,
+      "brightness": 0.37,
+      "low_end": 0.58,
+      "busyness": 0.44
      },
      "gaps": [
-      "less low end than the refs (50 % vs 79 % under 120 Hz)",
-      "tempo feel 110 vs the refs' 126"
+      "tempo feel 110 vs the refs' 126",
+      "brighter than the refs (centroid 2492 vs 1414 Hz)"
      ],
      "ours": {
       "bpm": 110.0,
-      "centroid": 2321,
-      "low": 0.498,
-      "onsets": 6.32
+      "centroid": 2492,
+      "low": 0.721,
+      "onsets": 6.66
      },
      "pass": true
     }
    }
   },
   "w3": {
+   "state": "building",
+   "at": 1792275380.0411441,
+   "brief": "BD5u-zlbb8w",
+   "seed": 1,
+   "title": "FREE DON TOLIVER x TRAVIS SCOTT Type Beat - \"HALLWAY\"",
+   "passed": false,
+   "best": {
+    "song": "s_cde7c5",
+    "tempo": true,
+    "key": false,
+    "clean": true,
+    "delivered": true,
+    "pass": false,
+    "why": [
+     "key: heard A#, brief says Dm (song claims Dm)"
+    ],
+    "skipped": [],
+    "measured": {
+     "claimed_bpm": 125.0,
+     "claimed_key": "Dm",
+     "status": "ready",
+     "bpm": 126.0,
+     "bpm_support": 1.16,
+     "key": "A#",
+     "key_r": 0.674,
+     "key_margin": 0.068,
+     "key_runner_up": "Dm",
+     "stems": [
+      "bass",
+      "drums",
+      "sample"
+     ],
+     "ear": {
+      "bass": {
+       "notes": 7,
+       "fit": 1.0,
+       "clash": 0.0,
+       "absent": 0.0,
+       "tune": 21.0,
+       "sample_tuning": -20.0,
+       "bass_pcs": [
+        2
+       ]
+      },
+      "sample": {
+       "lock": 1.16,
+       "late_ms": 9.0,
+       "off": 0.03
+      },
+      "drums": {
+       "lock": 2.22,
+       "late_ms": 6.0,
+       "off": 0.03
+      },
+      "balance": {
+       "bass": -2.4,
+       "sample": -6.3
+      },
+      "missing": []
+     }
+    },
+    "contract": {
+     "bpm": 125.0,
+     "key": "Dm",
+     "style": "don toliver",
+     "refs": [
+      "~/miles-studio/bench/refs/IKg3NrH6YmU.m4a",
+      "~/miles-studio/bench/refs/3-0fAuCjKsc.m4a",
+      "~/miles-studio/bench/refs/GP-dvf2r6Z0.webm",
+      "~/miles-studio/bench/refs/ESj67i9gYLY.m4a"
+     ]
+    },
+    "ref": {
+     "score": 0.665,
+     "nearest": "3-0fAuCjKsc",
+     "mean": 0.602,
+     "n_refs": 4,
+     "dims": {
+      "tempo": 0.63,
+      "timbre": 0.88,
+      "brightness": 0.41,
+      "low_end": 0.38,
+      "busyness": 0.7
+     },
+     "gaps": [
+      "less low end than the refs (66 % vs 79 % under 120 Hz)",
+      "brighter than the refs (centroid 1942 vs 1414 Hz)"
+     ],
+     "ours": {
+      "bpm": 126.0,
+      "centroid": 1942,
+      "low": 0.657,
+      "onsets": 5.27
+     },
+     "pass": true
+    }
+   }
+  },
+  "w4": {
    "state": "idle",
-   "at": 1792275014.27268,
+   "at": 1792275395.093801,
    "brief": null,
    "seed": 1,
    "title": "R&B Acoustic Guitar X SZA Type Beat - \"YOU' RE MINE\"",
    "passed": false,
    "best": {
-    "song": "s_1c5e4e",
+    "song": "s_4c77e1",
     "tempo": true,
     "key": true,
-    "clean": true,
-    "delivered": false,
+    "clean": false,
+    "delivered": true,
     "pass": false,
     "why": [
-     "not delivered in time: 282 s > 180 s"
+     "clean: no drums in the render (asked for)"
     ],
     "skipped": [],
     "measured": {
      "claimed_bpm": 120.0,
-     "claimed_key": "Cm",
+     "claimed_key": "Eb",
      "status": "ready",
-     "bpm": 120.2,
-     "bpm_support": 1.0,
-     "key": "Cm",
-     "key_r": 0.877,
-     "key_margin": 0.164,
-     "key_runner_up": "G#",
+     "bpm": 114.8,
+     "bpm_support": 1.14,
+     "key": "D#",
+     "key_r": 0.706,
+     "key_margin": 0.059,
+     "key_runner_up": "Gm",
      "stems": [
       "bass",
-      "drums",
-      "sample",
-      "sample2",
-      "sample3"
+      "sample"
      ],
      "ear": {
       "bass": {
-       "notes": 26,
-       "fit": 0.6,
+       "notes": 5,
+       "fit": 0.87,
        "clash": 0.0,
-       "absent": 0.08,
-       "tune": -6.0,
-       "sample_tuning": 3.0,
+       "absent": 0.0,
+       "tune": -0.0,
+       "sample_tuning": 1.0,
        "bass_pcs": [
-        0,
         3,
         5,
-        7,
-        8
+        7
        ]
       },
       "sample": {
-       "lock": 1.08,
-       "late_ms": 13.0,
-       "off": 0.05
+       "lock": 1.26,
+       "late_ms": 18.0,
+       "off": 0.07
       },
-      "drums": {
-       "lock": 2.03,
-       "late_ms": 5.0,
-       "off": 0.0
-      },
-      "balance": {
-       "sample": 0.8,
-       "sample2": -3.6,
-       "bass": 0.9,
-       "sample3": -4.8
-      },
-      "missing": []
+      "drums": null,
+      "balance": null,
+      "missing": [
+       "drums"
+      ]
      }
     },
     "contract": {
@@ -284,124 +372,26 @@
      ]
     },
     "ref": {
-     "score": 0.525,
-     "nearest": "aP5b3hmTsLw",
-     "mean": 0.408,
+     "score": 0.513,
+     "nearest": "sV4rANCXUG8",
+     "mean": 0.455,
      "n_refs": 5,
      "dims": {
-      "tempo": 0.25,
-      "timbre": 0.94,
-      "brightness": 0.31,
-      "low_end": 0.27,
-      "busyness": 0.26
+      "tempo": 0.23,
+      "timbre": 0.93,
+      "brightness": 0.47,
+      "low_end": 0.17,
+      "busyness": 0.46
      },
      "gaps": [
-      "tempo feel 120.2 vs the refs' 105.5",
-      "busier than the refs (5.88 vs 3.05 hits/s)"
+      "less low end than the refs (40 % vs 63 % under 120 Hz)",
+      "tempo feel 114.8 vs the refs' 105.5"
      ],
      "ours": {
-      "bpm": 120.2,
-      "centroid": 1658,
-      "low": 0.486,
-      "onsets": 5.88
-     },
-     "pass": true
-    }
-   }
-  },
-  "w4": {
-   "state": "idle",
-   "at": 1792274922.148267,
-   "brief": null,
-   "seed": 1,
-   "title": "FREE DON TOLIVER x TRAVIS SCOTT Type Beat - \"HALLWAY\"",
-   "passed": true,
-   "best": {
-    "song": "s_396d78",
-    "tempo": true,
-    "key": true,
-    "clean": true,
-    "delivered": true,
-    "pass": true,
-    "why": [],
-    "skipped": [],
-    "measured": {
-     "claimed_bpm": 130.0,
-     "claimed_key": "C#m",
-     "status": "ready",
-     "bpm": 129.2,
-     "bpm_support": 1.17,
-     "key": "C#m",
-     "key_r": 0.871,
-     "key_margin": 0.137,
-     "key_runner_up": "A",
-     "stems": [
-      "bass",
-      "drums",
-      "sample"
-     ],
-     "ear": {
-      "bass": {
-       "notes": 7,
-       "fit": 0.46,
-       "clash": 0.29,
-       "absent": 0.57,
-       "tune": -14.0,
-       "sample_tuning": -1.0,
-       "bass_pcs": [
-        1,
-        2
-       ]
-      },
-      "sample": {
-       "lock": 1.17,
-       "late_ms": 9.0,
-       "off": 0.09
-      },
-      "drums": {
-       "lock": 2.14,
-       "late_ms": 5.0,
-       "off": 0.08
-      },
-      "balance": {
-       "bass": -2.3,
-       "sample": -7.5
-      },
-      "missing": []
-     }
-    },
-    "contract": {
-     "bpm": 130.0,
-     "key": "E",
-     "style": "travis scott",
-     "refs": [
-      "~/miles-studio/bench/refs/3-0fAuCjKsc.m4a",
-      "~/miles-studio/bench/refs/GP-dvf2r6Z0.webm",
-      "~/miles-studio/bench/refs/IKg3NrH6YmU.m4a",
-      "~/miles-studio/bench/refs/ESj67i9gYLY.m4a"
-     ]
-    },
-    "ref": {
-     "score": 0.635,
-     "nearest": "3-0fAuCjKsc",
-     "mean": 0.521,
-     "n_refs": 4,
-     "dims": {
-      "tempo": 0.51,
-      "timbre": 0.84,
-      "brightness": 0.4,
-      "low_end": 0.25,
-      "busyness": 0.6
-     },
-     "gaps": [
-      "less low end than the refs (60 % vs 79 % under 120 Hz)",
-      "brighter than the refs (centroid 1963 vs 1414 Hz)"
-     ],
-     "ours": {
-      "bpm": 129.2,
-      "centroid": 1963,
-      "low": 0.595,
-      "onsets": 5.69
+      "bpm": 114.8,
+      "centroid": 811,
+      "low": 0.405,
+      "onsets": 4.38
      },
      "pass": true
     }

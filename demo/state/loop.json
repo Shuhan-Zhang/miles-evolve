@@ -101,17 +101,25 @@
  ],
  "current": {
   "gen": 4,
-  "phase": "coach",
-  "version": "g4"
+  "phase": "scoring",
+  "stamp": "loop-20261017-141624-g4",
+  "version": "g4",
+  "hypothesis": "Miles often starts loops on the V chord, causing key detectors to hear the dominant as the tonic.",
+  "patch": {
+   "hypothesis": "Miles often starts loops on the V chord, causing key detectors to hear the dominant as the tonic.",
+   "kind": "addendum",
+   "text": "When generating the chord progression, ensure the first chord is the tonic (I) chord of the claimed key; if not, transpose the whole loop so that the first chord becomes tonic."
+  },
+  "patch_desc": "addendum +1 rule"
  },
  "baseline_runs": [
   "~/miles-hackathon/evolve/runs/loop-20261017-141624-g0/v0"
  ],
  "spent": {
-  "llm_usd": 0.0237,
-  "llm_calls": 5
+  "llm_usd": 0.0328,
+  "llm_calls": 6
  },
- "at": 1792275018.541288,
+ "at": 1792275109.16464,
  "best_checks": {
   "delivered": 15,
   "tempo": 13,

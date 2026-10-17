@@ -43,3 +43,24 @@ gen 3/6: coach reading 8 failures of v0
   train 8/16 → 6/16 (noise 1) ✗ rejected
 
 gen 4/6: coach reading 8 failures of v0
+  hypothesis: Miles often starts loops on the V chord, causing key detectors to hear the dominant as the tonic.
+  patch: addendum +1 rule
+   w1 wNmiL6TJEBo-s1 PASS
+   w4 ym1N_7dqEVE-s1 fail
+   w2 sMH5ryP6IhQ-s1 fail
+   w1 vLp4WP_-tfk-s1 PASS
+   w4 2G4CL1STU2o-s1 PASS
+   w2 aP5b3hmTsLw-s1 PASS
+   w4 EkgIoePtE4s-s1 PASS
+   w1 zDy7zYJ1ZE8-s1 fail
+   w2 JGcwgSWBx0Y-s1 PASS
+   w3 w298TXv-KJk-s1 fail
+   w3 IKg3NrH6YmU-s1 fail
+   w1 3-0fAuCjKsc-s1 fail
+   w4 sV4rANCXUG8-s1 fail
+   w2 GP-dvf2r6Z0-s1 fail
+   w1 ESj67i9gYLY-s1 PASS
+   w3 BD5u-zlbb8w-s1 PASS
+  train 8/16 → 8/16 (noise 1) ✗ rejected
+
+gen 5/6: coach reading 8 failures of v0
