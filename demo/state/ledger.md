@@ -5,3 +5,4 @@ One row per generation. Train split only; the coach never sees held-out. A patch
 | loop | gen | hypothesis (coach) | patch | train before → after | noise | kept | ear |
 |---|---|---|---|---|---|---|---|
 | loop-20261017-141624 | 1 | Miles often ignores accidentals (#/b) and mode when parsing the key from the brief, causing the written key to be off by a semitone or to default to the relative major/minor. | addendum +1 rule | 8/16 → 8/16 | 1 | ✗ |  |
+| loop-20261017-141624 | 2 | Miles does not self-check its output, so key and tempo errors go uncorrected. | flag MILES_SELF_CHECK=1 | 8/16 → 8/16 | 1 | ✗ |  |

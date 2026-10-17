@@ -2,138 +2,66 @@
  "stamp": "loop-20261017-141624-g2",
  "version": "g2",
  "total": 16,
- "done": 5,
+ "done": 15,
  "workers": {
   "w1": {
-   "state": "building",
-   "at": 1792273117.259358,
-   "brief": "2G4CL1STU2o",
+   "state": "idle",
+   "at": 1792274302.440556,
+   "brief": null,
    "seed": 1,
-   "title": "( FREE ) Giveon x R&B Soul Type beat \"Deep In My Soul\"",
+   "title": "METRO BOOMIN x 21 SAVAGE TYPE BEAT - \"GOLD TETH\"",
    "passed": false,
    "best": {
-    "song": "s_520e33",
-    "tempo": true,
-    "key": false,
-    "clean": true,
-    "delivered": true,
+    "song": null,
+    "tempo": null,
+    "key": null,
+    "clean": null,
+    "delivered": false,
     "pass": false,
     "why": [
-     "key: heard Fm, brief says Am (song claims Bbm)"
+     "not delivered: no song came back (timeout)"
     ],
-    "skipped": [],
-    "measured": {
-     "claimed_bpm": 80.0,
-     "claimed_key": "Bbm",
-     "status": "ready",
-     "bpm": 79.5,
-     "bpm_support": 1.0,
-     "key": "Fm",
-     "key_r": 0.863,
-     "key_margin": 0.151,
-     "key_runner_up": "C#",
-     "stems": [
-      "bass",
-      "drums",
-      "sample"
-     ],
-     "ear": {
-      "bass": {
-       "notes": 8,
-       "fit": 0.66,
-       "clash": 0.0,
-       "absent": 0.12,
-       "tune": 2.0,
-       "sample_tuning": 1.0,
-       "bass_pcs": [
-        1,
-        5,
-        6,
-        8,
-        10
-       ]
-      },
-      "sample": {
-       "lock": 1.13,
-       "late_ms": 29.0,
-       "off": 0.42
-      },
-      "drums": {
-       "lock": 2.8,
-       "late_ms": 6.0,
-       "off": 0.0
-      },
-      "balance": {
-       "bass": -3.0,
-       "sample": -9.2
-      },
-      "missing": []
-     }
-    },
     "contract": {
-     "bpm": 80.0,
+     "bpm": 164.0,
      "key": "Am",
-     "style": "joey badass",
+     "style": "metro boomin",
      "refs": [
-      "/Users/shuhanzhang/miles-studio/bench/refs/wNmiL6TJEBo.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/sMH5ryP6IhQ.m4a",
-      "/Users/shuhanzhang/miles-hackathon/bench/refs/w298TXv-KJk.m4a"
+      "/Users/shuhanzhang/miles-studio/bench/refs/GP-dvf2r6Z0.webm",
+      "/Users/shuhanzhang/miles-studio/bench/refs/3-0fAuCjKsc.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/IKg3NrH6YmU.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/ESj67i9gYLY.m4a"
      ]
-    },
-    "ref": {
-     "score": 0.593,
-     "nearest": "wNmiL6TJEBo",
-     "mean": 0.514,
-     "n_refs": 3,
-     "dims": {
-      "tempo": 0.3,
-      "timbre": 0.88,
-      "brightness": 0.37,
-      "low_end": 0.28,
-      "busyness": 0.74
-     },
-     "gaps": [
-      "less low end than the refs (59 % vs 80 % under 120 Hz)",
-      "tempo feel 80.7 vs the refs' 92.3"
-     ],
-     "ours": {
-      "bpm": 80.7,
-      "centroid": 2022,
-      "low": 0.592,
-      "onsets": 3.75
-     },
-     "pass": true
     }
    }
   },
   "w2": {
-   "state": "building",
-   "at": 1792273235.555149,
-   "brief": "EkgIoePtE4s",
+   "state": "idle",
+   "at": 1792274159.790709,
+   "brief": null,
    "seed": 1,
-   "title": "frank ocean type beat - california",
+   "title": "FREE DON TOLIVER x TRAVIS SCOTT Type Beat - \"HALLWAY\"",
    "passed": false,
    "best": {
-    "song": "s_40da8e",
+    "song": "s_f9cf3e",
     "tempo": true,
     "key": false,
     "clean": true,
     "delivered": true,
     "pass": false,
     "why": [
-     "key: heard G#, brief says Cm (song claims Cm)"
+     "key: heard Em, brief says E (song claims Em)"
     ],
     "skipped": [],
     "measured": {
-     "claimed_bpm": 93.0,
-     "claimed_key": "Cm",
+     "claimed_bpm": 130.0,
+     "claimed_key": "Em",
      "status": "ready",
-     "bpm": 184.6,
-     "bpm_support": 1.0,
-     "key": "G#",
-     "key_r": 0.919,
-     "key_margin": 0.155,
-     "key_runner_up": "Fm",
+     "bpm": 132.5,
+     "bpm_support": 1.25,
+     "key": "Em",
+     "key_r": 0.836,
+     "key_margin": 0.232,
+     "key_runner_up": "E",
      "stems": [
       "bass",
       "drums",
@@ -141,91 +69,111 @@
      ],
      "ear": {
       "bass": {
-       "notes": 25,
-       "fit": 0.57,
+       "notes": 16,
+       "fit": 0.94,
        "clash": 0.0,
-       "absent": 0.28,
-       "tune": -1.0,
-       "sample_tuning": 1.0,
+       "absent": 0.0,
+       "tune": 3.0,
+       "sample_tuning": -3.0,
        "bass_pcs": [
         0,
-        1,
-        5,
-        8,
-        10
+        4,
+        7,
+        9
        ]
       },
       "sample": {
-       "lock": 1.32,
-       "late_ms": 5.0,
-       "off": 0.11
+       "lock": 1.46,
+       "late_ms": 7.0,
+       "off": 0.04
       },
       "drums": {
-       "lock": 2.65,
-       "late_ms": 8.0,
-       "off": 0.09
+       "lock": 1.9,
+       "late_ms": 6.0,
+       "off": 0.0
       },
       "balance": {
-       "sample": -6.0,
-       "bass": -2.3
+       "sample": -12.7,
+       "bass": -2.8
       },
       "missing": []
      }
     },
     "contract": {
-     "bpm": 93.0,
-     "key": "Cm",
-     "style": "6lack",
+     "bpm": 130.0,
+     "key": "E",
+     "style": "travis scott",
      "refs": [
-      "/Users/shuhanzhang/miles-studio/bench/refs/zDy7zYJ1ZE8.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/2G4CL1STU2o.m4a",
-      "/Users/shuhanzhang/miles-hackathon/bench/refs/aP5b3hmTsLw.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/EkgIoePtE4s.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/JGcwgSWBx0Y.m4a"
+      "/Users/shuhanzhang/miles-studio/bench/refs/3-0fAuCjKsc.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/GP-dvf2r6Z0.webm",
+      "/Users/shuhanzhang/miles-studio/bench/refs/IKg3NrH6YmU.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/ESj67i9gYLY.m4a"
      ]
     },
     "ref": {
-     "score": 0.615,
-     "nearest": "JGcwgSWBx0Y",
-     "mean": 0.54,
-     "n_refs": 5,
+     "score": 0.713,
+     "nearest": "3-0fAuCjKsc",
+     "mean": 0.605,
+     "n_refs": 4,
      "dims": {
-      "tempo": 0.49,
-      "timbre": 0.9,
-      "brightness": 0.36,
-      "low_end": 0.43,
-      "busyness": 0.53
+      "tempo": 0.51,
+      "timbre": 0.87,
+      "brightness": 0.38,
+      "low_end": 0.73,
+      "busyness": 0.54
      },
      "gaps": [
-      "brighter than the refs (centroid 1087 vs 842 Hz)",
-      "less low end than the refs (52 % vs 64 % under 120 Hz)"
+      "brighter than the refs (centroid 1485 vs 1414 Hz)"
      ],
      "ours": {
-      "bpm": 92.3,
-      "centroid": 1087,
-      "low": 0.523,
-      "onsets": 4.17
+      "bpm": 129.2,
+      "centroid": 1485,
+      "low": 0.755,
+      "onsets": 6.03
      },
      "pass": true
     }
    }
   },
   "w3": {
-   "state": "building",
-   "at": 1792273046.468105,
-   "brief": "w298TXv-KJk",
+   "state": "idle",
+   "at": 1792274265.939144,
+   "brief": null,
    "seed": 1,
-   "title": "KENDRICK LAMAR TYPE BEAT \"TURF\""
+   "title": "\"NO TRESPASSING\"",
+   "passed": false,
+   "best": {
+    "song": null,
+    "tempo": null,
+    "key": null,
+    "clean": null,
+    "delivered": false,
+    "pass": false,
+    "why": [
+     "not delivered: no song came back (timeout)"
+    ],
+    "contract": {
+     "bpm": 134.0,
+     "key": "C#m",
+     "style": "trap",
+     "refs": [
+      "/Users/shuhanzhang/miles-studio/bench/refs/3-0fAuCjKsc.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/GP-dvf2r6Z0.webm",
+      "/Users/shuhanzhang/miles-studio/bench/refs/IKg3NrH6YmU.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/ESj67i9gYLY.m4a"
+     ]
+    }
+   }
   },
   "w4": {
-   "state": "building",
-   "at": 1792273146.876659,
-   "brief": "aP5b3hmTsLw",
+   "state": "verifying",
+   "at": 1792274370.717769,
+   "brief": "ESj67i9gYLY",
    "seed": 1,
-   "title": "Kehlani x Aaliyah R&B Type Beat - \"Falling For You\"",
+   "title": "Lil Baby Type Beat - \"No Joke\"",
    "passed": true,
    "best": {
-    "song": "s_4a6eaa",
+    "song": "s_3f925b",
     "tempo": true,
     "key": true,
     "clean": true,
@@ -234,14 +182,14 @@
     "why": [],
     "skipped": [],
     "measured": {
-     "claimed_bpm": 87.0,
-     "claimed_key": "Bbm",
+     "claimed_bpm": 125.0,
+     "claimed_key": "F",
      "status": "ready",
-     "bpm": 87.6,
-     "bpm_support": 1.0,
-     "key": "A#m",
-     "key_r": 0.807,
-     "key_margin": 0.202,
+     "bpm": 126.0,
+     "bpm_support": 1.13,
+     "key": "F",
+     "key_r": 0.744,
+     "key_margin": 0.108,
      "key_runner_up": "A#",
      "stems": [
       "bass",
@@ -250,64 +198,66 @@
      ],
      "ear": {
       "bass": {
-       "notes": 14,
-       "fit": 0.62,
-       "clash": 0.0,
-       "absent": 0.07,
-       "tune": -4.0,
-       "sample_tuning": 1.0,
+       "notes": 5,
+       "fit": 0.51,
+       "clash": 0.2,
+       "absent": 0.2,
+       "tune": 22.0,
+       "sample_tuning": 2.0,
        "bass_pcs": [
-        5,
-        6
+        6,
+        10
        ]
       },
       "sample": {
-       "lock": 1.13,
-       "late_ms": 9.0,
-       "off": 0.13
+       "lock": 1.12,
+       "late_ms": 8.0,
+       "off": 0.28
       },
       "drums": {
-       "lock": 2.81,
-       "late_ms": 6.0,
-       "off": 0.0
+       "lock": 2.02,
+       "late_ms": 7.0,
+       "off": 0.04
       },
       "balance": {
-       "sample": -7.7,
-       "bass": -2.7
+       "bass": -2.3,
+       "sample": -7.6
       },
       "missing": []
      }
     },
     "contract": {
-     "bpm": 87.0,
-     "key": "C#",
-     "style": "lofi",
+     "bpm": 125.0,
+     "key": "Dm",
+     "style": "don toliver",
      "refs": [
-      "/Users/shuhanzhang/miles-studio/bench/refs/ym1N_7dqEVE.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/vLp4WP_-tfk.m4a"
+      "/Users/shuhanzhang/miles-studio/bench/refs/IKg3NrH6YmU.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/3-0fAuCjKsc.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/GP-dvf2r6Z0.webm",
+      "/Users/shuhanzhang/miles-studio/bench/refs/ESj67i9gYLY.m4a"
      ]
     },
     "ref": {
-     "score": 0.606,
-     "nearest": "ym1N_7dqEVE",
-     "mean": 0.537,
-     "n_refs": 2,
+     "score": 0.639,
+     "nearest": "3-0fAuCjKsc",
+     "mean": 0.574,
+     "n_refs": 4,
      "dims": {
-      "tempo": 0.87,
-      "timbre": 0.96,
-      "brightness": 0.27,
-      "low_end": 0.04,
-      "busyness": 0.55
+      "tempo": 0.63,
+      "timbre": 0.89,
+      "brightness": 0.42,
+      "low_end": 0.23,
+      "busyness": 0.68
      },
      "gaps": [
-      "less low end than the refs (14 % vs 64 % under 120 Hz)",
-      "brighter than the refs (centroid 1616 vs 880 Hz)"
+      "less low end than the refs (58 % vs 79 % under 120 Hz)",
+      "brighter than the refs (centroid 1890 vs 1414 Hz)"
      ],
      "ours": {
-      "bpm": 87.6,
-      "centroid": 1616,
-      "low": 0.139,
-      "onsets": 4.44
+      "bpm": 126.0,
+      "centroid": 1890,
+      "low": 0.584,
+      "onsets": 5.34
      },
      "pass": true
     }

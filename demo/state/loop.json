@@ -1,6 +1,6 @@
 {
  "loop": "loop-20261017-141624",
- "gen": 1,
+ "gen": 2,
  "gens": 6,
  "base": "/Users/shuhanzhang/miles-hackathon/evolve/versions/v0",
  "best": "/Users/shuhanzhang/miles-hackathon/evolve/versions/v0",
@@ -50,29 +50,45 @@
     "clean": 16
    },
    "kept": false
+  },
+  {
+   "gen": 2,
+   "hypothesis": "Miles does not self-check its output, so key and tempo errors go uncorrected.",
+   "kind": "flag",
+   "patch": {
+    "hypothesis": "Miles does not self-check its output, so key and tempo errors go uncorrected.",
+    "kind": "flag",
+    "flag": "MILES_SELF_CHECK",
+    "value": "1"
+   },
+   "patch_desc": "flag MILES_SELF_CHECK=1",
+   "version": "/Users/shuhanzhang/miles-hackathon/evolve/versions/loop-20261017-141624/g2",
+   "run": "/Users/shuhanzhang/miles-hackathon/evolve/runs/loop-20261017-141624-g2/g2",
+   "before": 8,
+   "after": 8,
+   "n": 16,
+   "checks": {
+    "delivered": 11,
+    "tempo": 12,
+    "key": 10,
+    "clean": 13
+   },
+   "kept": false
   }
  ],
  "current": {
-  "gen": 2,
-  "phase": "scoring",
-  "stamp": "loop-20261017-141624-g2",
-  "version": "g2",
-  "hypothesis": "Miles frequently drops accidentals (#/b) and mode (major/minor) information from the brief when determining the target key, causing the written key to be off by a semitone or to default to the relative major/minor.",
-  "patch": {
-   "hypothesis": "Miles frequently drops accidentals (#/b) and mode (major/minor) information from the brief when determining the target key, causing the written key to be off by a semitone or to default to the relative major/minor.",
-   "kind": "addendum",
-   "text": "When parsing the key from the brief, retain the exact key token as written\u2014including any sharp (#) or flat (b) symbol and the mode word (major/minor)\u2014and use it verbatim as the target key. Do not convert to enharmonic equivalents, relative keys, or alter accidentals/mode unless the brief explicitly requests a change."
-  },
-  "patch_desc": "addendum +1 rule"
+  "gen": 3,
+  "phase": "coach",
+  "version": "g3"
  },
  "baseline_runs": [
   "/Users/shuhanzhang/miles-hackathon/evolve/runs/loop-20261017-141624-g0/v0"
  ],
  "spent": {
-  "llm_usd": 0.0087,
-  "llm_calls": 2
+  "llm_usd": 0.0188,
+  "llm_calls": 4
  },
- "at": 1792273045.520658,
+ "at": 1792274378.9805791,
  "best_checks": {
   "delivered": 15,
   "tempo": 13,
@@ -80,5 +96,7 @@
   "clean": 16
  },
  "best_run": "/Users/shuhanzhang/miles-hackathon/evolve/runs/loop-20261017-141624-g0/v0",
- "v0_pass": 8
+ "v0_pass": 8,
+ "llm_usd0": 0.0137,
+ "llm_calls0": 3
 }
