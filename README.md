@@ -63,13 +63,16 @@ with about 0 flips once a checker bug on revised beats was fixed). Six generatio
 No patch beat v0 by more than the noise floor, so the gate shipped nothing, and three patches (gens 3, 5, 6) would
 have made Miles worse. That is the gate working: a change that doesn't measurably help never reaches the producer.
 
-Held-out (running): v0 vs the gen-1 patch on the 16 held-out briefs, 1 seed. g1 was rejected on train; it is tested
-on held-out for transparency, not as a shipped version.
+Held-out: v0 vs the gen-1 patch on the 16 held-out briefs, 1 seed. g1 was rejected on train; it was tested on held-out
+for transparency, not as a shipped version. It did worse there too, so the gate was right to keep it out.
 
 | held-out (16 briefs × 1 seed) | pass |
 |---|---|
-| v0 | **TBD** /16 |
-| g1 (rejected on train) | **TBD** /16 |
+| v0 | **4** /16 (delivered 6, tempo 11, key 7, clean 12) |
+| g1 (rejected on train) | **2** /16 (delivered 10, tempo 13, key 3, clean 13) |
+
+Caveat: the Mac was heavily loaded during held-out (load average ~36), so many v0 jobs missed the 180 s delivery bar;
+compare the Tempo/Key/Clean columns, not the headline pass rate. g1's key rule hurt Key (7 → 3).
 
 ## Built today vs pre-existing Miles
 
