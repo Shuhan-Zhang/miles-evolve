@@ -2,14 +2,114 @@
  "stamp": "loop-20261017-141624-heldout-best",
  "version": "g1",
  "total": 16,
- "done": 1,
+ "done": 6,
  "workers": {
   "w1": {
    "state": "building",
-   "at": 1792277758.507665,
-   "brief": "4PoCA4taNyg",
+   "at": 1792277995.576406,
+   "brief": "pTiJ0BMwzGU",
    "seed": 1,
-   "title": "MF DOOM Type Beat - \"Food\""
+   "title": "Summer Walker x Kehlani Type Beat - \"Be Alone Tonight\"",
+   "passed": false,
+   "best": {
+    "song": "s_ea158a",
+    "tempo": true,
+    "key": false,
+    "clean": true,
+    "delivered": true,
+    "pass": false,
+    "why": [
+     "key: heard F#, brief says G#m (song claims F#)"
+    ],
+    "skipped": [],
+    "measured": {
+     "claimed_bpm": 110.0,
+     "claimed_key": "F#",
+     "status": "ready",
+     "bpm": 110.0,
+     "bpm_support": 1.0,
+     "key": "F#",
+     "key_r": 0.712,
+     "key_margin": 0.062,
+     "key_runner_up": "B",
+     "stems": [
+      "bass",
+      "drums",
+      "sample"
+     ],
+     "ear": {
+      "bass": {
+       "notes": 20,
+       "fit": 0.52,
+       "clash": 0.0,
+       "absent": 0.3,
+       "tune": -5.0,
+       "sample_tuning": 0.0,
+       "bass_pcs": [
+        0,
+        1,
+        4,
+        5,
+        6,
+        8,
+        10,
+        11
+       ]
+      },
+      "sample": {
+       "lock": 1.16,
+       "late_ms": 21.0,
+       "off": 0.28
+      },
+      "drums": {
+       "lock": 2.33,
+       "late_ms": 4.0,
+       "off": 0.0
+      },
+      "balance": {
+       "sample": 1.0,
+       "bass": -2.0
+      },
+      "missing": []
+     }
+    },
+    "contract": {
+     "bpm": 110.0,
+     "key": "G#m",
+     "style": "rnb",
+     "refs": [
+      "~/miles-studio/bench/refs/NHstEi3ChTc.m4a",
+      "~/miles-hackathon/bench/refs/5ihsl_dbRFo.m4a",
+      "~/miles-studio/bench/refs/SK4h63w7R8s.m4a",
+      "~/miles-studio/bench/refs/pTiJ0BMwzGU.m4a",
+      "~/miles-studio/bench/refs/iWXJBLcfgGE.m4a"
+     ]
+    },
+    "ref": {
+     "score": 0.469,
+     "nearest": "5ihsl_dbRFo",
+     "mean": 0.401,
+     "n_refs": 5,
+     "dims": {
+      "tempo": 0.27,
+      "timbre": 0.94,
+      "brightness": 0.41,
+      "low_end": 0.05,
+      "busyness": 0.34
+     },
+     "gaps": [
+      "less low end than the refs (32 % vs 75 % under 120 Hz)",
+      "tempo feel 110 vs the refs' 110"
+     ],
+     "ours": {
+      "bpm": 110.0,
+      "centroid": 1576,
+      "low": 0.318,
+      "onsets": 5.16
+     },
+     "pass": true
+    }
+   }
   },
   "w2": {
    "state": "building",
@@ -69,8 +169,8 @@
      "key": "D#m",
      "style": "kaytranada",
      "refs": [
-      "/Users/shuhanzhang/miles-studio/bench/refs/qS_lZHSj6kQ.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/KnS9s9Pb97A.m4a"
+      "~/miles-studio/bench/refs/qS_lZHSj6kQ.m4a",
+      "~/miles-studio/bench/refs/KnS9s9Pb97A.m4a"
      ]
     },
     "ref": {
@@ -101,10 +201,106 @@
   },
   "w4": {
    "state": "building",
-   "at": 1792277758.5093849,
-   "brief": "KnS9s9Pb97A",
+   "at": 1792278027.865655,
+   "brief": "iWXJBLcfgGE",
    "seed": 1,
-   "title": "JAZZ RAP TYPE BEAT \"CHEMISTRY\""
+   "title": "Daniel Caesar x Giveon Type Beat - \"It's Nice Loving You\"",
+   "passed": false,
+   "best": {
+    "song": "s_9c9ac7",
+    "tempo": true,
+    "key": false,
+    "clean": true,
+    "delivered": true,
+    "pass": false,
+    "why": [
+     "key: heard G, brief says Bm (song claims Bm)"
+    ],
+    "skipped": [],
+    "measured": {
+     "claimed_bpm": 125.0,
+     "claimed_key": "Bm",
+     "status": "ready",
+     "bpm": 126.0,
+     "bpm_support": 1.0,
+     "key": "G",
+     "key_r": 0.665,
+     "key_margin": 0.032,
+     "key_runner_up": "Em",
+     "stems": [
+      "bass",
+      "drums",
+      "sample"
+     ],
+     "ear": {
+      "bass": {
+       "notes": 5,
+       "fit": 0.6,
+       "clash": 0.0,
+       "absent": 0.0,
+       "tune": -4.0,
+       "sample_tuning": 7.0,
+       "bass_pcs": [
+        0,
+        4,
+        7,
+        11
+       ]
+      },
+      "sample": {
+       "lock": 1.04,
+       "late_ms": 14.0,
+       "off": 0.05
+      },
+      "drums": {
+       "lock": 1.49,
+       "late_ms": 10.0,
+       "off": 0.16
+      },
+      "balance": {
+       "bass": -2.4,
+       "sample": -5.9
+      },
+      "missing": []
+     }
+    },
+    "contract": {
+     "bpm": 125.0,
+     "key": "Bm",
+     "style": "brent faiyaz",
+     "refs": [
+      "~/miles-studio/bench/refs/SK4h63w7R8s.m4a",
+      "~/miles-studio/bench/refs/NHstEi3ChTc.m4a",
+      "~/miles-hackathon/bench/refs/5ihsl_dbRFo.m4a",
+      "~/miles-studio/bench/refs/pTiJ0BMwzGU.m4a",
+      "~/miles-studio/bench/refs/iWXJBLcfgGE.m4a"
+     ]
+    },
+    "ref": {
+     "score": 0.587,
+     "nearest": "5ihsl_dbRFo",
+     "mean": 0.429,
+     "n_refs": 5,
+     "dims": {
+      "tempo": 0.29,
+      "timbre": 0.92,
+      "brightness": 0.11,
+      "low_end": 0.53,
+      "busyness": 0.29
+     },
+     "gaps": [
+      "brighter than the refs (centroid 2653 vs 1070 Hz)",
+      "tempo feel 126 vs the refs' 110"
+     ],
+     "ours": {
+      "bpm": 126.0,
+      "centroid": 2653,
+      "low": 0.674,
+      "onsets": 5.6
+     },
+     "pass": true
+    }
+   }
   }
  }
 }
