@@ -1,335 +1,36 @@
 {
- "stamp": "loop-20261017-141624-g6",
- "version": "g6",
+ "stamp": "loop-20261017-141624-heldout-v0",
+ "version": "v0",
  "total": 16,
- "done": 15,
+ "done": 0,
  "workers": {
   "w1": {
-   "state": "idle",
-   "at": 1792276662.409877,
-   "brief": null,
+   "state": "building",
+   "at": 1792276847.886623,
+   "brief": "4PoCA4taNyg",
    "seed": 1,
-   "title": "FREE DON TOLIVER x TRAVIS SCOTT Type Beat - \"HALLWAY\"",
-   "passed": false,
-   "best": {
-    "song": null,
-    "tempo": null,
-    "key": null,
-    "clean": null,
-    "delivered": false,
-    "pass": false,
-    "why": [
-     "not delivered: no song came back (no error)"
-    ],
-    "contract": {
-     "bpm": 130.0,
-     "key": "E",
-     "style": "travis scott",
-     "refs": [
-      "~/miles-studio/bench/refs/3-0fAuCjKsc.m4a",
-      "~/miles-studio/bench/refs/GP-dvf2r6Z0.webm",
-      "~/miles-studio/bench/refs/IKg3NrH6YmU.m4a",
-      "~/miles-studio/bench/refs/ESj67i9gYLY.m4a"
-     ]
-    }
-   }
+   "title": "MF DOOM Type Beat - \"Food\""
   },
   "w2": {
-   "state": "idle",
-   "at": 1792276742.100671,
-   "brief": null,
+   "state": "building",
+   "at": 1792276847.8871,
+   "brief": "q_U0Ih0jrrM",
    "seed": 1,
-   "title": "Don Toliver Type Beat \u201cPink\u201d",
-   "passed": false,
-   "best": {
-    "song": "s_09edb1",
-    "tempo": true,
-    "key": false,
-    "clean": true,
-    "delivered": true,
-    "pass": false,
-    "why": [
-     "key: heard A#, brief says Dm (song claims Dm)"
-    ],
-    "skipped": [],
-    "measured": {
-     "claimed_bpm": 125.0,
-     "claimed_key": "Dm",
-     "status": "ready",
-     "bpm": 126.0,
-     "bpm_support": 1.16,
-     "key": "A#",
-     "key_r": 0.652,
-     "key_margin": 0.026,
-     "key_runner_up": "Dm",
-     "stems": [
-      "bass",
-      "drums",
-      "sample"
-     ],
-     "ear": {
-      "bass": {
-       "notes": 7,
-       "fit": 1.0,
-       "clash": 0.0,
-       "absent": 0.0,
-       "tune": 19.0,
-       "sample_tuning": -14.0,
-       "bass_pcs": [
-        2
-       ]
-      },
-      "sample": {
-       "lock": 0.97,
-       "late_ms": 13.0,
-       "off": 0.05
-      },
-      "drums": {
-       "lock": 2.27,
-       "late_ms": 7.0,
-       "off": 0.04
-      },
-      "balance": {
-       "bass": -6.8,
-       "sample": -6.2
-      },
-      "missing": []
-     }
-    },
-    "contract": {
-     "bpm": 125.0,
-     "key": "Dm",
-     "style": "don toliver",
-     "refs": [
-      "~/miles-studio/bench/refs/IKg3NrH6YmU.m4a",
-      "~/miles-studio/bench/refs/3-0fAuCjKsc.m4a",
-      "~/miles-studio/bench/refs/GP-dvf2r6Z0.webm",
-      "~/miles-studio/bench/refs/ESj67i9gYLY.m4a"
-     ]
-    },
-    "ref": {
-     "score": 0.615,
-     "nearest": "3-0fAuCjKsc",
-     "mean": 0.568,
-     "n_refs": 4,
-     "dims": {
-      "tempo": 0.63,
-      "timbre": 0.9,
-      "brightness": 0.39,
-      "low_end": 0.21,
-      "busyness": 0.7
-     },
-     "gaps": [
-      "less low end than the refs (57 % vs 79 % under 120 Hz)",
-      "brighter than the refs (centroid 2012 vs 1414 Hz)"
-     ],
-     "ours": {
-      "bpm": 126.0,
-      "centroid": 2012,
-      "low": 0.569,
-      "onsets": 5.27
-     },
-     "pass": true
-    }
-   }
+   "title": "Freestyle Rap Beat - Dolla"
   },
   "w3": {
    "state": "building",
-   "at": 1792276644.163501,
-   "brief": "ESj67i9gYLY",
+   "at": 1792276847.887521,
+   "brief": "qS_lZHSj6kQ",
    "seed": 1,
-   "title": "Lil Baby Type Beat - \"No Joke\"",
-   "passed": false,
-   "best": {
-    "song": "s_fa34a6",
-    "tempo": true,
-    "key": false,
-    "clean": true,
-    "delivered": false,
-    "pass": false,
-    "why": [
-     "not delivered in time: 204 s > 180 s",
-     "key: heard G#, brief says C#m (song claims Cm)"
-    ],
-    "skipped": [],
-    "measured": {
-     "claimed_bpm": 134.0,
-     "claimed_key": "Cm",
-     "status": "ready",
-     "bpm": 136.0,
-     "bpm_support": 1.21,
-     "key": "G#",
-     "key_r": 0.875,
-     "key_margin": 0.193,
-     "key_runner_up": "Cm",
-     "stems": [
-      "bass",
-      "drums",
-      "sample"
-     ],
-     "ear": {
-      "bass": {
-       "notes": 4,
-       "fit": 0.45,
-       "clash": 0.0,
-       "absent": 0.25,
-       "tune": 7.0,
-       "sample_tuning": 0.0,
-       "bass_pcs": [
-        5,
-        8
-       ]
-      },
-      "sample": {
-       "lock": 1.02,
-       "late_ms": 11.0,
-       "off": 0.09
-      },
-      "drums": {
-       "lock": 2.16,
-       "late_ms": 5.0,
-       "off": 0.04
-      },
-      "balance": {
-       "bass": -2.2,
-       "sample": -6.0
-      },
-      "missing": []
-     }
-    },
-    "contract": {
-     "bpm": 134.0,
-     "key": "C#m",
-     "style": "trap",
-     "refs": [
-      "~/miles-studio/bench/refs/3-0fAuCjKsc.m4a",
-      "~/miles-studio/bench/refs/GP-dvf2r6Z0.webm",
-      "~/miles-studio/bench/refs/IKg3NrH6YmU.m4a",
-      "~/miles-studio/bench/refs/ESj67i9gYLY.m4a"
-     ]
-    },
-    "ref": {
-     "score": 0.653,
-     "nearest": "3-0fAuCjKsc",
-     "mean": 0.491,
-     "n_refs": 4,
-     "dims": {
-      "tempo": 0.48,
-      "timbre": 0.86,
-      "brightness": 0.37,
-      "low_end": 0.2,
-      "busyness": 0.54
-     },
-     "gaps": [
-      "less low end than the refs (56 % vs 79 % under 120 Hz)",
-      "brighter than the refs (centroid 2198 vs 1414 Hz)"
-     ],
-     "ours": {
-      "bpm": 132.5,
-      "centroid": 2198,
-      "low": 0.562,
-      "onsets": 6.0
-     },
-     "pass": true
-    }
-   }
+   "title": "Lofi House / Kaytranada / Goldlink Type Beat - All The Girls"
   },
   "w4": {
-   "state": "idle",
-   "at": 1792276662.027905,
-   "brief": null,
+   "state": "building",
+   "at": 1792276847.88797,
+   "brief": "KnS9s9Pb97A",
    "seed": 1,
-   "title": "METRO BOOMIN x 21 SAVAGE TYPE BEAT - \"GOLD TETH\"",
-   "passed": true,
-   "best": {
-    "song": "s_02d79f",
-    "tempo": true,
-    "key": true,
-    "clean": true,
-    "delivered": true,
-    "pass": true,
-    "why": [],
-    "skipped": [],
-    "measured": {
-     "claimed_bpm": 164.0,
-     "claimed_key": "Am",
-     "status": "ready",
-     "bpm": 110.0,
-     "bpm_support": 1.28,
-     "key": "Am",
-     "key_r": 0.584,
-     "key_margin": 0.071,
-     "key_runner_up": "C",
-     "stems": [
-      "bass",
-      "drums",
-      "sample"
-     ],
-     "ear": {
-      "bass": {
-       "notes": 7,
-       "fit": 0.72,
-       "clash": 0.0,
-       "absent": 0.0,
-       "tune": 9.0,
-       "sample_tuning": -5.0,
-       "bass_pcs": [
-        9
-       ]
-      },
-      "sample": {
-       "lock": 1.15,
-       "late_ms": 4.0,
-       "off": 0.13
-      },
-      "drums": {
-       "lock": 1.73,
-       "late_ms": 4.0,
-       "off": 0.0
-      },
-      "balance": {
-       "sample": -5.0,
-       "bass": -1.9
-      },
-      "missing": []
-     }
-    },
-    "contract": {
-     "bpm": 164.0,
-     "key": "Am",
-     "style": "metro boomin",
-     "refs": [
-      "~/miles-studio/bench/refs/GP-dvf2r6Z0.webm",
-      "~/miles-studio/bench/refs/3-0fAuCjKsc.m4a",
-      "~/miles-studio/bench/refs/IKg3NrH6YmU.m4a",
-      "~/miles-studio/bench/refs/ESj67i9gYLY.m4a"
-     ]
-    },
-    "ref": {
-     "score": 0.678,
-     "nearest": "GP-dvf2r6Z0",
-     "mean": 0.442,
-     "n_refs": 4,
-     "dims": {
-      "tempo": 0.31,
-      "timbre": 0.8,
-      "brightness": 0.36,
-      "low_end": 0.27,
-      "busyness": 0.47
-     },
-     "gaps": [
-      "less low end than the refs (60 % vs 79 % under 120 Hz)",
-      "tempo feel 110 vs the refs' 126"
-     ],
-     "ours": {
-      "bpm": 110.0,
-      "centroid": 2400,
-      "low": 0.604,
-      "onsets": 6.49
-     },
-     "pass": true
-    }
-   }
+   "title": "JAZZ RAP TYPE BEAT \"CHEMISTRY\""
   }
  }
 }

@@ -238,11 +238,13 @@ def heldout_panel(state: dict | None) -> Panel:
     ho = (state or {}).get("heldout") or {}
     cur = (state or {}).get("current") or {}
     noise = (state or {}).get("noise")
+    note = ho.get("note") if isinstance(ho.get("note"), str) else ""
     lines = []
-    for label, name in (("v0", "v0   "), ("best", "vBest")):
-        h = ho.get(label)
+    for label in ("v0", "best"):
+        h = ho.get(label) if isinstance(ho.get(label), dict) else None
+        name = "v0   " if label == "v0" else ("vBest" if not note else note.split()[0][:5].ljust(5))
         if h:
-            n = h.get("n") or 32
+            n = h.get("n") or 1
             t = Text(f"{name} ")
             t.append_text(bar(h["pass"], n, style="cyan" if label == "v0" else "green"))
             t.append(f" {h['pass']}/{n}", style="bold")
@@ -250,17 +252,22 @@ def heldout_panel(state: dict | None) -> Panel:
             lines.append(t)
         elif cur.get("gen") == "held-out" and cur.get("phase") == label:
             res = results(RUNS / cur["stamp"] / cur["version"])
+            total = (jload(RUNS / cur["stamp"] / "status.json", {}) or {}).get("total") or len(res) or 1
+            k = sum(strict_pass(r) for r in res)
             t = Text(f"{name} ")
-            t.append_text(bar(sum(strict_pass(r) for r in res), 32, style="yellow"))
-            t.append(f" running… {sum(strict_pass(r) for r in res)} pass of {len(res)} done", style="yellow")
+            t.append_text(bar(k, total, style="yellow"))
+            t.append(f" running… {k} pass of {len(res)}/{total} done", style="yellow")
             lines.append(t)
         else:
             lines.append(Text(f"{name} " + "░" * 32 + " pending", style="dim"))
     foot = Text(f"noise floor: a train patch must beat the best by > {noise} pass" + ("" if noise == 1 else "es"),
                 style="dim") if noise is not None else Text("noise floor: pending", style="dim")
-    if ho.get("v0") and ho.get("best"):
-        d = ho["best"]["pass"] - ho["v0"]["pass"]
+    v0h, bh = ho.get("v0"), ho.get("best")
+    if isinstance(v0h, dict) and isinstance(bh, dict):
+        d = bh["pass"] - v0h["pass"]
         foot.append(f"   Δ held-out {d:+d}", style="bold green" if d > (noise or 0) else "bold yellow")
+    if note:
+        lines.append(Text(note, style="italic yellow"))
     return Panel(Group(*lines, foot), title="HELD-OUT  (never shown to the coach)", title_align="left")
 
 
