@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='6' fill='%23FF5A1F'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<title>Miles</title>
+<style>
+/* Miles Studio "crate" finish: warm paper, black ink, one orange; mono for numbers and silkscreen labels. */
+:root {
+  --paper: #f1f0ec; --panel: #fafaf8; --well: #f4f3ef; --ink: #111111; --ink-2: #6b6a64; --ink-3: #a3a29b;
+  --hair: #dcdbd5; --hair-strong: #c9c8c1; --accent: #ff5a1f; --accent-soft: rgba(255, 90, 31, 0.12);
+  --ok: #1c9e5b; --ok-soft: rgba(28, 158, 91, 0.12); --bad: #d93a2b; --bad-soft: rgba(217, 58, 43, 0.1);
+  --wave: #d6d5ce; --wave-on: #111111;
+  --shadow-card: 0 1px 0 rgba(17, 17, 15, 0.03), 0 16px 36px -22px rgba(17, 17, 15, 0.22);
+  --shadow-device: 0 1px 0 rgba(17, 17, 15, 0.04), 0 30px 60px -36px rgba(17, 17, 15, 0.28);
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", system-ui, sans-serif;
+  --mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1); --spring: cubic-bezier(0.25, 1.25, 0.4, 1);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #161615; --panel: #1e1e1c; --well: #191918; --ink: #edece7; --ink-2: #9b9a93; --ink-3: #64635d;
+    --hair: #2f2e2b; --hair-strong: #403f3b; --wave: #42413d; --wave-on: #edece7; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #161615; --panel: #1e1e1c; --well: #191918; --ink: #edece7; --ink-2: #9b9a93; --ink-3: #64635d;
+  --hair: #2f2e2b; --hair-strong: #403f3b; --wave: #42413d; --wave-on: #edece7; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--paper); color: var(--ink); font: 400 14px/1.5 var(--sans); -webkit-font-smoothing: antialiased; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; padding: 0; }
+.label { font: 500 10px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-2); }
+@keyframes rise { from { opacity: 0; transform: translateY(10px) scale(0.995); } }
+@keyframes pulse { 50% { opacity: 0.35; } }
+@keyframes eq { 0%, 100% { height: 3px; } 50% { height: 14px; } }
+@keyframes glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 90, 31, .0), var(--shadow-card); } 50% { box-shadow: 0 0 0 4px rgba(255, 90, 31, .14), var(--shadow-card); } }
+@keyframes stamp { from { opacity: 0; transform: scale(1.35); } 60% { opacity: 1; transform: scale(.96); } }
+
+.top { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 18px; height: 56px;
+  padding: 0 max(28px, calc((100vw - 1680px) / 2 + 28px));
+  background: color-mix(in srgb, var(--paper) 86%, transparent); backdrop-filter: saturate(1.4) blur(14px); }
+.wordmark { display: inline-flex; align-items: center; gap: 8px; font: 600 16px/1 var(--mono); letter-spacing: -0.03em; }
+.wordmark::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+.top-gap { flex: 1; }
+.conn { display: inline-flex; align-items: center; gap: 8px; }
+.led { width: 6px; height: 6px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 3px var(--ok-soft); animation: pulse 2s infinite; }
+
+.main { max-width: 1680px; margin: 0 auto; padding: 0 28px 48px; }
+.hero { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; padding: 14px 0 20px; }
+.hero h1 { margin: 0; font: 600 40px/1.06 var(--sans); letter-spacing: -0.035em; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero p { margin: 8px 0 0; color: var(--ink-2); font-size: 14.5px; max-width: 780px; }
+.stats { display: flex; gap: 26px; flex: none; }
+.stat .n { font: 600 26px/1 var(--mono); letter-spacing: -0.04em; }
+.stat .l { margin-top: 6px; }
+
+.grid { display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: 22px; align-items: start; }
+.col { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.panel { background: var(--panel); border: 1px solid var(--hair); border-radius: 18px; padding: 18px 20px; box-shadow: var(--shadow-card); }
+.panel-h { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.h { display: inline-flex; align-items: center; gap: 8px; font: 600 15px/1 var(--sans); letter-spacing: -0.01em; }
+
+/* now playing */
+#now { padding: 22px 24px; }
+.now-top { display: flex; align-items: center; gap: 16px; }
+#play { flex: none; display: grid; place-items: center; width: 54px; height: 54px; border-radius: 50%; background: var(--accent); color: #fff;
+  box-shadow: 0 10px 24px -12px rgba(255, 90, 31, .9); transition: transform .3s var(--spring); }
+#play:hover { transform: scale(1.05); }
+#play svg { width: 20px; height: 20px; }
+.now-title { font: 600 24px/1.15 var(--sans); letter-spacing: -0.025em; }
+.now-brief { margin-top: 4px; color: var(--ink-2); font-size: 14px; }
+.eq { display: inline-flex; gap: 3px; align-items: flex-end; height: 16px; opacity: 0; transition: opacity .2s; }
+.eq i { width: 3px; background: var(--accent); border-radius: 1px; animation: eq .9s ease-in-out infinite; }
+.eq i:nth-child(2) { animation-delay: -.3s; } .eq i:nth-child(3) { animation-delay: -.6s; } .eq i:nth-child(4) { animation-delay: -.15s; }
+.playing .eq { opacity: 1; }
+.src { font: 500 10.5px/1.4 var(--mono); color: var(--ink-3); text-align: right; }
+.now-body { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 18px; margin-top: 18px; }
+.spec { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--hair); border-radius: 14px; overflow: hidden; align-content: stretch; }
+.spec > div { padding: 12px 14px; background: var(--well); }
+.spec > div:nth-child(even) { border-left: 1px solid var(--hair); }
+.spec > div:nth-child(n+3) { border-top: 1px solid var(--hair); }
+.spec .v { margin-top: 8px; font: 600 22px/1 var(--mono); letter-spacing: -0.03em; white-space: nowrap; }
+.spec .v small { font-size: 12px; color: var(--ink-2); font-weight: 500; margin-left: 3px; letter-spacing: 0; }
+.spec .v.word { font: 600 15px/1.2 var(--sans); letter-spacing: -0.01em; white-space: normal; }
+.wavebox { display: flex; flex-direction: column; gap: 8px; padding: 12px 14px; border-radius: 14px; background: var(--well); border: 1px solid var(--hair); min-width: 0; }
+#wave { display: block; width: 100%; height: 112px; cursor: pointer; }
+.time { display: flex; justify-content: space-between; font: 500 11px/1 var(--mono); color: var(--ink-3); }
+#checks { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 16px; }
+.check { padding: 12px 14px; border-radius: 14px; border: 1px solid var(--hair); background: var(--panel); animation: stamp .45s var(--spring) both; }
+.check:nth-child(2) { animation-delay: .08s; } .check:nth-child(3) { animation-delay: .16s; } .check:nth-child(4) { animation-delay: .24s; }
+.check .top-row { display: flex; align-items: center; justify-content: space-between; }
+.badge { display: inline-flex; align-items: center; gap: 5px; height: 22px; padding: 0 9px; border-radius: 999px; font: 600 10.5px/1 var(--mono); letter-spacing: .04em; }
+.pass .badge { background: var(--ok-soft); color: var(--ok); }
+.fail .badge { background: var(--bad-soft); color: var(--bad); }
+.skip .badge { background: var(--well); color: var(--ink-3); }
+.check.pass { border-color: color-mix(in srgb, var(--ok) 35%, var(--hair)); }
+.check.fail { border-color: color-mix(in srgb, var(--bad) 40%, var(--hair)); background: color-mix(in srgb, var(--bad) 3%, var(--panel)); }
+.check .v { margin-top: 10px; font: 600 19px/1.1 var(--mono); letter-spacing: -0.02em; }
+.check .s { margin-top: 5px; font: 400 12px/1.35 var(--sans); color: var(--ink-2); }
+.verdict { margin-top: 12px; font: 500 13px/1.4 var(--sans); color: var(--ink-2); }
+.verdict b { color: var(--ink); }
+
+/* gallery */
+#gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.beat { position: relative; display: flex; flex-direction: column; gap: 8px; padding: 12px 13px; border-radius: 14px; background: var(--panel); border: 1px solid var(--hair);
+  cursor: pointer; text-align: left; transition: transform .35s var(--spring), border-color .2s, box-shadow .3s; animation: rise .4s var(--ease) both; }
+.beat:hover { transform: translateY(-2px); border-color: var(--hair-strong); }
+.beat.on { border-color: var(--accent); animation: glow 1.6s ease-in-out infinite; }
+.beat .bt { font: 600 13px/1.25 var(--sans); letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.beat .bb { font: 400 11.5px/1.35 var(--sans); color: var(--ink-2); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 31px; }
+.beat canvas { width: 100%; height: 34px; display: block; }
+.minis { display: flex; gap: 4px; flex-wrap: wrap; }
+.mini { font: 600 9.5px/1 var(--mono); letter-spacing: .04em; padding: 4px 6px; border-radius: 999px; }
+.mini.p { background: var(--ok-soft); color: var(--ok); } .mini.f { background: var(--bad-soft); color: var(--bad); } .mini.n { background: var(--well); color: var(--ink-3); }
+.beat .num { position: absolute; top: 12px; right: 12px; font: 600 10px/1 var(--mono); color: var(--ink-3); }
+.beat.on .num { color: var(--accent); }
+.beat .prog { position: absolute; left: 0; bottom: 0; height: 3px; background: var(--accent); border-radius: 0 0 0 14px; width: 0; }
+
+/* side */
+.side { position: sticky; top: 70px; display: flex; flex-direction: column; gap: 16px; }
+.ba { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px; padding: 12px 14px; border-radius: 14px; background: var(--well); border: 1px solid var(--hair); margin-bottom: 12px; }
+.ba .n { font: 600 30px/1 var(--mono); letter-spacing: -0.04em; }
+.ba .arrow { font: 600 18px/1 var(--mono); color: var(--ink-3); }
+.ba .l { margin-top: 6px; }
+.ba .r { text-align: right; }
+.gate { display: flex; gap: 8px; margin-bottom: 12px; }
+.gate span { flex: 1; text-align: center; padding: 6px 4px; border-radius: 10px; border: 1px solid var(--hair); font: 500 11px/1.25 var(--mono); color: var(--ink-2); }
+.gate b { display: block; font: 600 18px/1.1 var(--mono); color: var(--ink); }
+#ledger { display: flex; flex-direction: column; gap: 7px; }
+.round { display: grid; grid-template-columns: 26px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 8px 12px; border-radius: 12px; background: var(--well); border: 1px solid var(--hair); animation: rise .4s var(--ease) both; }
+.round .g { font: 600 11px/1 var(--mono); color: var(--ink-2); padding-top: 3px; }
+.round .hyp { font: 400 12px/1.38 var(--sans); color: var(--ink); display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+.round .patch { margin-top: 4px; font: 500 10px/1.3 var(--mono); color: var(--ink-3); }
+.round .r { text-align: right; }
+.round .delta { font: 600 13px/1 var(--mono); }
+.round .tag { display: inline-block; margin-top: 4px; font: 600 9px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; padding: 4px 7px; border-radius: 999px; }
+.kept .tag { background: var(--ok-soft); color: var(--ok); }
+.rej .tag { background: var(--panel); color: var(--ink-2); border: 1px solid var(--hair-strong); }
+.d-pos { color: var(--ok); } .d-neg { color: var(--bad); } .d-zero { color: var(--ink-2); }
+.note { margin-top: 10px; font: 400 11.5px/1.45 var(--sans); color: var(--ink-2); }
+.mcp pre { margin: 0; padding: 10px 12px; border-radius: 10px; background: #151514; color: #edece7; font: 500 11px/1.55 var(--mono); white-space: pre-wrap; word-break: break-all; }
+.mcp pre .c { color: #ff8a5c; }
+.copy { height: 24px; padding: 0 10px; border-radius: 999px; border: 1px solid var(--hair); font: 500 10.5px/1 var(--mono); color: var(--ink-2); }
+.mcp .tool { margin-top: 8px; font: 500 11px/1.5 var(--mono); color: var(--ink-2); }
+.mcp .tool b { color: var(--ink); }
+.try .row { display: flex; gap: 8px; align-items: center; }
+#script { flex: 1; min-width: 0; height: 38px; border: 1px solid var(--hair); border-radius: 999px; background: var(--well); color: var(--ink); font: 400 12.5px/1 var(--sans); padding: 0 14px; outline: none; }
+#make { flex: none; display: inline-flex; align-items: center; gap: 6px; height: 38px; padding: 0 16px; border-radius: 999px; background: var(--ink); color: var(--paper); font: 600 13px/1 var(--sans); transition: transform .3s var(--spring), opacity .2s; }
+#make:disabled { opacity: .55; cursor: default; }
+.try .opts { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+.toggle { display: inline-flex; align-items: center; gap: 6px; color: var(--ink-2); font-size: 11.5px; cursor: pointer; }
+.toggle input { accent-color: var(--accent); }
+#progress { display: none; margin-top: 10px; }
+#progress.on { display: block; }
+.bar { height: 4px; border-radius: 999px; background: var(--well); overflow: hidden; }
+.bar > i { display: block; height: 100%; width: 0; background: var(--accent); transition: width .4s linear; }
+.prog-row { display: flex; justify-content: space-between; margin-top: 6px; font: 500 11px/1.3 var(--mono); color: var(--ink-2); }
+#drop-video-wrap { display: none; margin-top: 14px; }
+#video { width: 100%; border-radius: 12px; background: #000; aspect-ratio: 16/9; }
+.has-video #drop-video-wrap { display: block; }
+@media (max-width: 1200px) { .grid { grid-template-columns: 1fr; } .side { position: static; } #gallery { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 720px) {
+  .main { padding: 0 16px 40px; } .top { padding: 0 16px; } .hero { flex-direction: column; align-items: flex-start; } .hero h1 { font-size: 28px; }
+  .now-body { grid-template-columns: 1fr; } #checks { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <span class="wordmark">miles</span>
+  <span class="label">self-improving music agent</span>
+  <span class="top-gap"></span>
+  <span class="conn label"><span class="led"></span><span>auto-review · every beat checked from the audio</span></span>
+</header>
+
+<main class="main">
+  <section class="hero">
+    <div>
+      <h1>Self-improving music agent for anything. <em>One MCP away.</em></h1>
+      <p>Give Miles a brief: a trailer, a commercial, a vibe. It produces an original track, then checks its own work from the audio — on time, on tempo, in key, clean — and a coach loop keeps only the changes that make it better.</p>
+    </div>
+    <div class="stats" id="stats"></div>
+  </section>
+
+  <div class="grid">
+    <div class="col">
+      <section class="panel" id="now">
+        <div class="now-top">
+          <button id="play" aria-label="Play"><svg id="play-ico" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
+          <div style="min-width:0;flex:1">
+            <div class="label" style="display:flex;gap:10px;align-items:center">Now reviewing <span class="eq"><i></i><i></i><i></i><i></i></span></div>
+            <div class="now-title" id="now-title">—</div>
+            <div class="now-brief" id="now-brief"></div>
+          </div>
+          <div class="src" id="src"></div>
+        </div>
+        <div class="now-body">
+          <div class="spec">
+            <div><div class="label">Asked tempo</div><div class="v" id="spec-bpm">—</div></div>
+            <div><div class="label">Asked key</div><div class="v" id="spec-key">—</div></div>
+            <div><div class="label">Mood</div><div class="v word" id="spec-mood">—</div></div>
+            <div><div class="label">Length</div><div class="v" id="spec-len">—</div></div>
+          </div>
+          <div class="wavebox">
+            <canvas id="wave"></canvas>
+            <div class="time"><span id="t-cur">0:00</span><span id="t-style"></span><span id="t-dur">0:00</span></div>
+          </div>
+        </div>
+        <div id="checks"></div>
+        <div class="verdict" id="verdict"></div>
+        <div id="drop-video-wrap"><video id="video" muted playsinline></video></div>
+        <audio id="audio" preload="auto"></audio>
+      </section>
+
+      <section>
+        <div class="panel-h" style="padding:0 4px"><span class="h">Review gallery</span><span class="label">real renders · each one self-checked</span></div>
+        <div id="gallery"></div>
+      </section>
+    </div>
+
+    <aside class="side">
+      <section class="panel">
+        <div class="panel-h"><span class="h">How Miles improved itself</span><span class="label" id="loop-name">loop</span></div>
+        <div class="ba">
+          <div><div class="n" id="ba-before">—</div><div class="label l">baseline</div></div>
+          <div class="arrow">→</div>
+          <div class="r"><div class="n" id="ba-after">—</div><div class="label l">best kept</div></div>
+        </div>
+        <div class="gate" id="gate"></div>
+        <div id="ledger"></div>
+        <p class="note">Each round a coach reads the failures, proposes one fix, and Miles re-runs 16 briefs. The gate keeps a fix only if it beats the best by more than the noise floor — so regressions never ship.</p>
+      </section>
+
+      <section class="panel try" id="try">
+        <div class="panel-h"><span class="h">Try a brief</span><span class="label">drop a clip to sync</span></div>
+        <div class="row">
+          <input id="script" spellcheck="false" value="Movie trailer cue, tense cinematic build, 90 BPM, C minor" />
+          <button id="make"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>Make</button>
+        </div>
+        <div class="opts">
+          <label class="toggle" title="Off: a matching brief replays a real earlier run. On: render now on Miles."><input type="checkbox" id="live" /> live render</label>
+          <label class="toggle"><input type="file" id="file" accept="video/*" hidden />＋ add video clip</label>
+        </div>
+        <div id="progress"><div class="bar"><i id="bar"></i></div>
+          <div class="prog-row"><span id="prog-text">Reading the brief…</span><span id="prog-time">0.0 s</span></div></div>
+      </section>
+
+      <section class="panel mcp" id="mcp">
+        <div class="panel-h"><span class="h">Use it from any agent via MCP</span><button class="copy" id="copy">copy</button></div>
+        <pre id="mcp-cmd"><span class="c">$</span> claude mcp add miles -- ~/logicagent/.venv/bin/python ~/miles-hackathon/demo/mcp_server.py</pre>
+        <div class="tool">tool <b>make_music</b>(brief) → track + self-check</div>
+      </section>
+    </aside>
+  </div>
+</main>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const audio = $("audio");
+const S = { beats: [], cur: -1, peaks: {}, raf: 0, sim: null, autoplay: true, videoUrl: null };
+const fmt = (s) => !isFinite(s) ? "0:00" : `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
+const NAMES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+const keyLong = (k) => !k ? "—" : k.endsWith("m") ? `${k.slice(0, -1)} minor` : `${k} major`;
+function relNote(heard, want) {
+  if (!heard || !want || heard === want) return "";
+  const pc = (k) => NAMES.indexOf(k.replace(/m$/, ""));
+  const hm = heard.endsWith("m"), wm = want.endsWith("m");
+  if (hm !== wm && (pc(heard) - pc(want) + 12) % 12 === (wm ? 3 : 9)) return " (relative " + (hm ? "minor" : "major") + ")";
+  return "";
+}
+function tempoText(heard, want) {
+  if (!heard) return "—";
+  let f = heard, note = "";
+  if (want && Math.abs(heard / want - 2) < 0.08) { f = heard / 2; note = "double-time"; }
+  if (want && Math.abs(heard / want - 0.5) < 0.04) { f = heard * 2; note = "half-time"; }
+  return { v: `${f.toFixed(1)} BPM`, note };
+}
+
+// ---------------------------------------------------------------- waveform peaks
+async function peaksFor(url, n) {
+  const key = url + n;
+  if (S.peaks[key]) return S.peaks[key];
+  try {
+    const buf = await (await fetch(url)).arrayBuffer();
+    const ctx = new OfflineAudioContext(1, 44100, 44100);
+    const a = await ctx.decodeAudioData(buf);
+    const ch = a.getChannelData(0), step = Math.floor(ch.length / n), p = [];
+    for (let i = 0; i < n; i++) { let mx = 0; for (let j = i * step; j < (i + 1) * step; j += 24) mx = Math.max(mx, Math.abs(ch[j])); p.push(mx); }
+    const top = Math.max(...p) || 1;
+    return (S.peaks[key] = p.map((x) => Math.pow(x / top, 0.8)));
+  } catch (e) { return (S.peaks[key] = Array.from({ length: n }, (_, i) => 0.3 + 0.5 * Math.abs(Math.sin(i * 0.37)))); }
+}
+function draw(cv, peaks, frac, live) {
+  const dpr = window.devicePixelRatio || 1, w = cv.clientWidth, h = cv.clientHeight;
+  if (!w) return;
+  if (cv.width !== w * dpr) { cv.width = w * dpr; cv.height = h * dpr; }
+  const g = cv.getContext("2d"); g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, w, h);
+  const css = getComputedStyle(document.documentElement), acc = css.getPropertyValue("--accent"), wav = css.getPropertyValue("--wave");
+  const bw = w / peaks.length, t = performance.now() / 1000;
+  peaks.forEach((p, i) => {
+    const x = i / peaks.length, near = live ? Math.max(0, 1 - Math.abs(x - frac) * 40) : 0;
+    const bh = Math.max(2, p * (h - 6) * (1 + near * 0.18 * (1 + Math.sin(t * 18 + i))));
+    g.fillStyle = x < frac ? acc : wav;
+    g.fillRect(i * bw + 0.5, (h - bh) / 2, Math.max(1, bw - (peaks.length > 120 ? 1.2 : 2)), bh);
+  });
+  if (frac > 0) { g.fillStyle = css.getPropertyValue("--ink"); g.fillRect(frac * w - 1, 0, 2, h); }
+}
+
+// ---------------------------------------------------------------- now playing
+function curTime() { return S.sim ? (performance.now() - S.sim.t0) / 1000 : audio.currentTime; }
+function curDur() { return S.sim ? S.sim.dur : audio.duration; }
+function frame() {
+  const b = S.beats[S.cur];
+  if (!b) return;
+  const d = curDur(), t = curTime(), frac = d ? Math.min(1, t / d) : 0, live = playing();
+  if (S.peaks[b.url + 260]) draw($("wave"), S.peaks[b.url + 260], frac, live);
+  const card = document.querySelector(`.beat[data-i="${S.cur}"]`);
+  if (card) {
+    card.querySelector(".prog").style.width = (frac * 100).toFixed(2) + "%";
+    if (S.peaks[b.url + 60]) draw(card.querySelector("canvas"), S.peaks[b.url + 60], frac, false);
+  }
+  $("t-cur").textContent = fmt(t); $("t-dur").textContent = fmt(d);
+  syncVideo(true);
+  if (S.sim && t >= S.sim.dur) { S.sim = null; onEnded(); return; }
+  S.raf = requestAnimationFrame(frame);
+}
+const playing = () => !!S.sim || !audio.paused;
+function setPlayUI() {
+  const on = playing();
+  $("play-ico").innerHTML = on ? '<path d="M7 5h4v14H7zM13 5h4v14h-4z"/>' : '<path d="M8 5v14l11-7z"/>';
+  $("now").classList.toggle("playing", on);
+}
+async function start() {
+  S.sim = null;
+  try { await audio.play(); }
+  catch (e) {
+    audio.muted = true;
+    try { await audio.play(); } catch (e2) { S.sim = { t0: performance.now(), dur: audio.duration || 20 }; }
+  }
+  setPlayUI(); cancelAnimationFrame(S.raf); frame();
+}
+function stop() { S.sim = null; audio.pause(); setPlayUI(); }
+function onEnded() {
+  setPlayUI();
+  if (S.autoplay && S.beats.length) setTimeout(() => select((S.cur + 1) % S.beats.length, true), 900);
+}
+audio.addEventListener("ended", onEnded);
+audio.addEventListener("pause", setPlayUI);
+audio.addEventListener("play", setPlayUI);
+$("play").onclick = () => { if (playing()) { S.autoplay = false; stop(); } else { S.autoplay = true; start(); } };
+$("wave").onclick = (e) => { const r = e.target.getBoundingClientRect(); if (audio.duration && !S.sim) audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration; };
+
+async function select(i, autoplay) {
+  const b = S.beats[i];
+  if (!b) return;
+  S.cur = i;
+  document.querySelectorAll(".beat").forEach((c) => { c.classList.toggle("on", +c.dataset.i === i); c.querySelector(".prog").style.width = "0"; });
+  $("now-title").textContent = b.title;
+  $("now-brief").textContent = "“" + b.brief + "”";
+  $("src").innerHTML = `${b.source}<br/>built in ${Math.round(b.seconds || 0)} s`;
+  $("spec-bpm").innerHTML = b.bpm ? `${+(+b.bpm).toFixed(1)}<small>BPM</small>` : "—";
+  $("spec-key").innerHTML = b.key ? (b.key.endsWith("m") ? `${b.key.slice(0, -1)}<small>minor</small>` : `${b.key}<small>major</small>`) : "—";
+  $("spec-mood").textContent = (b.mood || []).join(" · ") || "—";
+  $("spec-len").innerHTML = b.length ? `${b.length}<small>sec</small>` : "—";
+  $("t-style").textContent = [b.style, b.claimed && b.claimed.bpm && `claims ${b.claimed.bpm} BPM · ${b.claimed.key || ""}`].filter(Boolean).join(" · ");
+  renderChecks(b);
+  S.sim = null;
+  audio.src = b.url; audio.load();
+  draw($("wave"), Array(260).fill(0.03), 0, false);
+  peaksFor(b.url, 260).then(() => frame());
+  if (autoplay) await new Promise((r) => { audio.onloadedmetadata = r; setTimeout(r, 1500); }).then(start);
+  else frame();
+}
+function renderChecks(b) {
+  const c = b.checks || {}, h = b.heard || {};
+  const why = (k) => (b.why || []).find((w) => w.startsWith(k)) || "";
+  const tt = tempoText(h.bpm, b.bpm);
+  const cards = [
+    ["delivered", "Delivered", b.seconds ? `${Math.round(b.seconds)} s` : "—", c.delivered ? "finished under the 180 s bar" : why("not delivered") || "no track"],
+    ["tempo", "Tempo", tt.v || "—", `asked ${+(+b.bpm).toFixed(1)} BPM` + (tt.note ? ` · heard ${(+h.bpm).toFixed(1)}, ${tt.note}` : "")],
+    ["key", "Key", keyLong(h.key), `asked ${keyLong(b.key)}${relNote(h.key, b.key)}`],
+    ["clean", "Clean", c.clean ? "no clashes" : c.clean === false ? "issues" : "—", c.clean === false ? why("clean").replace(/^clean: /, "") : "Miles's ear on the stems"],
+  ];
+  $("checks").innerHTML = cards.map(([k, name, v, sub]) => {
+    const ok = c[k], cls = ok === true ? "pass" : ok === false ? "fail" : "skip";
+    return `<div class="check ${cls}" data-check="${k}" data-pass="${ok}"><div class="top-row"><span class="label">${name}</span><span class="badge">${ok === true ? "✓ PASS" : ok === false ? "✗ FAIL" : "· N/A"}</span></div>
+      <div class="v">${v} ${ok === true ? "✓" : ok === false ? "✗" : ""}</div><div class="s">${sub}</div></div>`;
+  }).join("");
+  $("verdict").innerHTML = b.pass
+    ? `<b style="color:var(--ok)">All four checks pass.</b> Measured from the delivered audio, not from what Miles says it made.` + (b.verify_calls ? ` Miles ran <b>verify_songs</b> on itself ${b.verify_calls}× before delivering.` : "")
+    : `<b style="color:var(--bad)">Self-check caught it:</b> ${(b.why || []).join("; ")}. That's the point — failures like this feed the coach's next round.`;
+}
+
+// ---------------------------------------------------------------- gallery
+function miniBadges(b) {
+  return ["delivered", "tempo", "key", "clean"].map((k) => {
+    const ok = (b.checks || {})[k];
+    return `<span class="mini ${ok === true ? "p" : ok === false ? "f" : "n"}">${ok === true ? "✓" : ok === false ? "✗" : "·"} ${k}</span>`;
+  }).join("");
+}
+function renderGallery() {
+  $("gallery").innerHTML = S.beats.map((b, i) => `<button class="beat" data-i="${i}" style="animation-delay:${i * 50}ms">
+      <span class="num">${String(i + 1).padStart(2, "0")}</span>
+      <div class="bt">${b.title}</div><div class="bb">${b.brief}</div>
+      <canvas></canvas><div class="minis">${miniBadges(b)}</div><span class="prog"></span></button>`).join("");
+  document.querySelectorAll(".beat").forEach((c) => (c.onclick = () => { S.autoplay = true; select(+c.dataset.i, true); }));
+  S.beats.forEach((b, i) => peaksFor(b.url, 60).then((p) => draw(document.querySelector(`.beat[data-i="${i}"] canvas`), p, 0, false)));
+  const n = S.beats.length, p = S.beats.filter((b) => b.pass).length;
+  const checks = S.beats.reduce((a, b) => a + Object.values(b.checks || {}).filter((x) => x !== null).length, 0);
+  $("stats").innerHTML = `<div class="stat"><div class="n">${n}</div><div class="label l">beats reviewed</div></div>
+    <div class="stat"><div class="n">${checks}</div><div class="label l">checks run</div></div>
+    <div class="stat"><div class="n" style="color:var(--ok)">${p}/${n}</div><div class="label l">fully passing</div></div>`;
+}
+
+// ---------------------------------------------------------------- try a brief
+const STEPS = [[0, "Reading the brief…"], [0.1, "Planning the arrangement…"], [0.25, "Picking drums, bass, samples…"], [0.45, "Building and mixing…"], [0.7, "Self-check: tempo, key, clean…"], [0.88, "Repairing what failed…"]];
+$("make").addEventListener("click", async () => {
+  const text = $("script").value.trim();
+  if (!text) return;
+  $("make").disabled = true; $("progress").classList.add("on"); $("bar").style.width = "2%";
+  S.autoplay = false; stop();
+  const { id } = await (await fetch("/api/make", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ text, live: $("live").checked }) })).json();
+  poll(id);
+});
+async function poll(id) {
+  const j = await (await fetch("/api/jobs/" + id)).json();
+  const frac = Math.min(0.97, j.elapsed / (j.eta || 180));
+  $("bar").style.width = (frac * 100).toFixed(1) + "%";
+  $("prog-text").textContent = STEPS.filter(([f]) => frac >= f).pop()[1];
+  $("prog-time").textContent = j.elapsed.toFixed(1) + " s";
+  if (j.state === "running") return setTimeout(() => poll(id), 400);
+  $("make").disabled = false;
+  if (j.state === "error") { $("prog-text").textContent = "Error: " + j.error; return; }
+  $("bar").style.width = "100%"; $("prog-text").textContent = "Done · checked";
+  setTimeout(() => $("progress").classList.remove("on"), 1200);
+  const r = j.result, s = r.song || {}, br = r.brief || {};
+  const beat = { brief: br.text || $("script").value, mood: (br.mood || []).filter((m) => m !== "—").map((m) => m[0].toUpperCase() + m.slice(1)), length: br.length,
+    bpm: br.bpm, key: br.key, title: s.title || "New track", style: s.style, url: r.url, checks: r.checks, pass: r.pass, why: r.why || [],
+    seconds: r.seconds, heard: { bpm: (r.measured || {}).bpm, key: (r.measured || {}).key }, claimed: { bpm: s.bpm, key: s.key },
+    verify_calls: (r.verify || []).length, source: r.cached ? `replay of a real run · ${r.made_at || ""}` : `live render · ${r.made_at || ""}` };
+  S.beats.unshift(beat); renderGallery(); S.autoplay = true; select(0, true);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+function syncVideo(soft) {
+  const v = $("video");
+  if (!S.videoUrl) return;
+  const t = curTime();
+  if (!soft || Math.abs(v.currentTime - t) > 0.3) v.currentTime = Math.min(t, v.duration || 1e9);
+  if (!playing() && !v.paused) v.pause();
+  if (playing() && v.paused && t < (v.duration || 1e9)) v.play().catch(() => {});
+}
+$("file").addEventListener("change", (e) => {
+  const f = e.target.files[0]; if (!f) return;
+  S.videoUrl = URL.createObjectURL(f); $("video").src = S.videoUrl; $("now").classList.add("has-video");
+});
+document.addEventListener("dragover", (e) => e.preventDefault());
+document.addEventListener("drop", (e) => {
+  e.preventDefault();
+  const f = [...e.dataTransfer.files].find((x) => x.type.startsWith("video"));
+  if (f) { S.videoUrl = URL.createObjectURL(f); $("video").src = S.videoUrl; $("now").classList.add("has-video"); }
+});
+
+// ---------------------------------------------------------------- ledger
+async function loadLedger() {
+  const { loop, rows } = await (await fetch("/api/ledger")).json();
+  $("loop-name").textContent = loop;
+  const total = rows.length ? rows[0].total : 16, base = rows.length ? rows[0].before : null;
+  const kept = rows.filter((r) => r.kept), best = kept.length ? kept[kept.length - 1].after : base;
+  const blocked = rows.filter((r) => !r.kept && r.delta < 0).length;
+  $("ba-before").textContent = base == null ? "—" : `${base}/${total}`;
+  $("ba-after").textContent = best == null ? "—" : `${best}/${total}`;
+  $("ba-after").style.color = best > base ? "var(--ok)" : "";
+  $("gate").innerHTML = `<span><b>${rows.length}</b>fixes tried</span><span><b style="color:var(--ok)">${kept.length}</b>kept</span><span><b style="color:var(--bad)">${blocked}</b>regressions blocked</span>`;
+  $("ledger").innerHTML = rows.map((r, i) => {
+    const d = r.delta, dc = d > 0 ? "d-pos" : d < 0 ? "d-neg" : "d-zero";
+    const verdict = r.kept ? "kept" : d < 0 ? "rejected · worse" : "rejected · no gain";
+    return `<div class="round ${r.kept ? "kept" : "rej"}" style="animation-delay:${i * 60}ms" data-gen="${r.gen}" data-kept="${r.kept}">
+      <span class="g">R${r.gen}</span>
+      <div><div class="hyp">${r.hypothesis}</div><div class="patch">${r.patch} · ${r.before}/${r.total} → ${r.after}/${r.total}</div></div>
+      <div class="r"><div class="delta ${dc}">${d > 0 ? "+" : ""}${d}</div><span class="tag">${verdict}</span></div></div>`;
+  }).join("") || `<div class="note">No rounds yet.</div>`;
+}
+loadLedger(); setInterval(loadLedger, 30000);
+$("copy").onclick = () => { navigator.clipboard?.writeText($("mcp-cmd").textContent.replace(/^\$\s*/, "")); $("copy").textContent = "copied"; setTimeout(() => ($("copy").textContent = "copy"), 1200); };
+window.addEventListener("resize", () => { frame(); });
+
+(async () => {
+  S.beats = await (await fetch("/api/gallery")).json();
+  renderGallery();
+  await select(0, false);
+  setTimeout(() => { if (S.autoplay && !playing()) start(); }, 1200);
+})();
+</script>
+</body>
+</html>

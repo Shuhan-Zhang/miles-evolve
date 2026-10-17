@@ -95,3 +95,13 @@ EVOLVE_FAKE_POOL=1 EVOLVE_FAKE_LLM=1 python evolve/run.py --gens 3   # offline d
 ```
 
 `evolve/samples/` has the loop state and three per-brief result files from the gen-0 run, to show the formats.
+
+## Judge UI + MCP (`app/`)
+
+A one-page showcase (auto-playing review gallery of real renders, each with its four self-check badges measured from
+the audio, plus the coach rounds from `evolve/ledger.md`) and a stdio MCP server with one tool, `make_music(brief)`,
+over the same backend. See [app/README.md](app/README.md).
+
+```bash
+claude mcp add miles -- ~/logicagent/.venv/bin/python <repo>/app/mcp_server.py
+```
