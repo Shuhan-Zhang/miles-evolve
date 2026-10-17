@@ -164,8 +164,8 @@ def workers_panel(state: dict | None) -> Panel:
     tb = Table(box=box.SIMPLE_HEAD, expand=True, pad_edge=False)
     tb.add_column("w", style="dim", width=3)
     tb.add_column("brief", ratio=3, no_wrap=True)
-    tb.add_column("tempo", ratio=1, no_wrap=True)
-    tb.add_column("key", ratio=1, no_wrap=True)
+    tb.add_column("tempo", min_width=13, no_wrap=True)
+    tb.add_column("key", min_width=10, no_wrap=True)
     tb.add_column("clean", ratio=3, no_wrap=True)
     tb.add_column("", width=5)
     for r in res:
