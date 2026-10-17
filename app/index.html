@@ -193,7 +193,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
       <button class="tbtn" id="stop" title="Stop"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12"/></svg></button>
       <button class="tbtn" id="play" title="Play"><svg id="play-ico" viewBox="0 0 24 24" fill="currentColor"><path d="M7 5v14l12-7z"/></svg></button>
       <button class="tbtn" id="loop" title="Loop this beat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12a6 6 0 0 1 6-6h9m0 0-3-3m3 3-3 3M20 12a6 6 0 0 1-6 6H5m0 0 3 3m-3-3 3-3"/></svg></button>
-      <button class="tbtn on txt" id="auto" title="Auto-advance through the browser">AUTO</button>
+      <button class="tbtn txt" id="auto" title="Auto-advance through the browser">AUTO</button>
     </div>
     <div class="tp"><div class="lcd"><span class="cap">Tempo</span><span class="v" id="lcd-bpm">—</span></div>
       <div class="lcd"><span class="cap">Key</span><span class="v" id="lcd-key">—</span></div>
@@ -270,7 +270,8 @@ const LANES = [["drums", "Drums", "--c-drums"], ["bass", "Bass", "--c-bass"], ["
 const fmt = (s) => !isFinite(s) ? "0:00.0" : `${Math.floor(s / 60)}:${(s % 60).toFixed(1).padStart(4, "0")}`;
 const keyShort = (k) => !k ? "—" : k.endsWith("m") ? `${k.slice(0, -1)} min` : `${k} maj`;
 const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
-const S = { beats: [], cur: -1, auto: true, loop: false, videoUrl: null, token: 0, raf: 0 };
+const AUTOPLAY = new URLSearchParams(location.search).get("autoplay") === "1";   // ?autoplay=1: old behavior, for recordings
+const S = { beats: [], cur: -1, auto: AUTOPLAY, loop: false, videoUrl: null, token: 0, raf: 0 };
 function toast(t) { const el = $("toast"); el.textContent = t; el.classList.add("on"); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove("on"), 1400); }
 
 // ================================================================ audio engine: real stems, one gain per lane
@@ -283,7 +284,7 @@ E.time = () => Math.max(0, Math.min(E.dur || 0, E.playing ? E.offset + (now() - 
 function stopSources() { E.srcs.forEach((s) => { try { s.onended = null; s.stop(); } catch (e) {} }); E.srcs = []; }
 function startSources() {
   stopSources();
-  if (!E.ctx || E.ctx.state !== "running") return;
+  if (!E.ctx || E.ctx.state !== "running" || !E.unlocked) return;   // silent until a real click or key: autoplay is visual only
   const off = E.time();
   for (const [k, buf] of Object.entries(E.bufs)) {
     if (k === "mix" && E.stems) continue;                 // with stems, the master lane is the sum of them
@@ -316,7 +317,10 @@ function pause() { if (!E.playing) return; E.offset = E.time(); E.playing = fals
 function seek(t) { E.offset = Math.max(0, Math.min(E.dur || 0, t)); if (E.playing) { E.t0 = now(); startSources(); } syncVideo(false); frame(true); }
 function toStart() { pause(); seek(0); }
 // a click anywhere unlocks audio (autoplay policy): if we were "playing" silently, bring the sound in at the right spot
+const unlock = () => { if (E.unlocked) return; E.unlocked = true; if (E.playing) { E.offset = E.time(); E.t0 = now(); startSources(); } };
+document.addEventListener("keydown", (e) => { if (e.code === "Space" || e.target.closest("button")) unlock(); }, true);
 document.addEventListener("pointerdown", () => {
+  unlock();
   if (E.ctx && E.ctx.state !== "running") E.ctx.resume().then(() => { if (E.playing) { E.offset = E.time(); E.t0 = now(); startSources(); } }).catch(() => {});
 }, true);
 
@@ -640,7 +644,8 @@ fit(); window.addEventListener("resize", fit);
   renderBrowser();
   frame(false);
   await select(0, false);
-  if (S.auto && !E.playing) play();
+  $("auto").classList.toggle("on", S.auto);
+  if (AUTOPLAY && !E.playing) play();
   setTimeout(() => S.beats.forEach((b) => [b.url, ...Object.values(b.stems || {})].forEach((u) => decode(u).catch(() => {}))), 500);
 })();
 </script>
