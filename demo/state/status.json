@@ -2,105 +2,36 @@
  "stamp": "loop-20261017-141624-heldout-v0",
  "version": "v0",
  "total": 16,
- "done": 14,
+ "done": 16,
  "workers": {
   "w1": {
-   "state": "building",
-   "at": 1792277452.870377,
-   "brief": "IE9i4HwbGpU",
+   "state": "idle",
+   "at": 1792277754.504319,
+   "brief": null,
    "seed": 1,
    "title": "Gunna Type Beat - \"Rare Form\"",
-   "passed": true,
+   "passed": false,
    "best": {
-    "song": "s_322c06",
-    "tempo": true,
-    "key": true,
-    "clean": true,
-    "delivered": true,
-    "pass": true,
-    "why": [],
-    "skipped": [],
-    "measured": {
-     "claimed_bpm": 144.0,
-     "claimed_key": "Ebm",
-     "status": "ready",
-     "bpm": 147.7,
-     "bpm_support": 1.17,
-     "key": "D#m",
-     "key_r": 0.87,
-     "key_margin": 0.201,
-     "key_runner_up": "D#",
-     "stems": [
-      "bass",
-      "drums",
-      "sample"
-     ],
-     "ear": {
-      "bass": {
-       "notes": 4,
-       "fit": 0.77,
-       "clash": 0.0,
-       "absent": 0.25,
-       "tune": 9.0,
-       "sample_tuning": 1.0,
-       "bass_pcs": [
-        3,
-        4,
-        8
-       ]
-      },
-      "sample": {
-       "lock": 0.97,
-       "late_ms": 19.0,
-       "off": 0.22
-      },
-      "drums": {
-       "lock": 1.71,
-       "late_ms": 5.0,
-       "off": 0.0
-      },
-      "balance": {
-       "bass": -1.9,
-       "sample": -7.6
-      },
-      "missing": []
-     }
-    },
+    "song": null,
+    "tempo": null,
+    "key": null,
+    "clean": null,
+    "delivered": false,
+    "pass": false,
+    "why": [
+     "not delivered: no song came back (timeout)"
+    ],
     "contract": {
-     "bpm": 144.0,
-     "key": "D#m",
-     "style": "21 savage",
+     "bpm": 128.0,
+     "key": "Dm",
+     "style": "gunna",
      "refs": [
-      "~/miles-studio/bench/refs/60vMf8Z61Qg.m4a",
-      "~/miles-studio/bench/refs/Qyf2QXxq1KI.m4a",
-      "~/miles-studio/bench/refs/aNXItVNHEW8.m4a",
-      "~/miles-studio/bench/refs/blGl1h0zZSE.m4a",
-      "~/miles-studio/bench/refs/IE9i4HwbGpU.m4a"
+      "/Users/shuhanzhang/miles-studio/bench/refs/IE9i4HwbGpU.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/Qyf2QXxq1KI.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/60vMf8Z61Qg.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/aNXItVNHEW8.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/blGl1h0zZSE.m4a"
      ]
-    },
-    "ref": {
-     "score": 0.47,
-     "nearest": "aNXItVNHEW8",
-     "mean": 0.357,
-     "n_refs": 5,
-     "dims": {
-      "tempo": 0.01,
-      "timbre": 0.94,
-      "brightness": 0.25,
-      "low_end": 0.16,
-      "busyness": 0.43
-     },
-     "gaps": [
-      "tempo feel 71.8 vs the refs' 101.3",
-      "less low end than the refs (60 % vs 86 % under 120 Hz)"
-     ],
-     "ours": {
-      "bpm": 71.8,
-      "centroid": 2385,
-      "low": 0.597,
-      "onsets": 6.38
-     },
-     "pass": true
     }
    }
   },
@@ -126,41 +57,43 @@
      "key": "G#",
      "style": "daniel caesar",
      "refs": [
-      "~/miles-studio/bench/refs/iWXJBLcfgGE.m4a",
-      "~/miles-studio/bench/refs/NHstEi3ChTc.m4a",
-      "~/miles-hackathon/bench/refs/5ihsl_dbRFo.m4a",
-      "~/miles-studio/bench/refs/SK4h63w7R8s.m4a",
-      "~/miles-studio/bench/refs/pTiJ0BMwzGU.m4a"
+      "/Users/shuhanzhang/miles-studio/bench/refs/iWXJBLcfgGE.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/NHstEi3ChTc.m4a",
+      "/Users/shuhanzhang/miles-hackathon/bench/refs/5ihsl_dbRFo.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/SK4h63w7R8s.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/pTiJ0BMwzGU.m4a"
      ]
     }
    }
   },
   "w3": {
-   "state": "building",
-   "at": 1792277383.926802,
-   "brief": "aNXItVNHEW8",
+   "state": "idle",
+   "at": 1792277603.342394,
+   "brief": null,
    "seed": 1,
    "title": "playboi carti type beat - \"MADE OF HATE\"",
-   "passed": true,
+   "passed": false,
    "best": {
-    "song": "s_c5fbc4",
+    "song": "s_e9a9ef",
     "tempo": true,
     "key": true,
     "clean": true,
-    "delivered": true,
-    "pass": true,
-    "why": [],
+    "delivered": false,
+    "pass": false,
+    "why": [
+     "not delivered in time: 219 s > 180 s"
+    ],
     "skipped": [],
     "measured": {
-     "claimed_bpm": 133.0,
-     "claimed_key": "Em",
+     "claimed_bpm": 152.0,
+     "claimed_key": "A",
      "status": "ready",
-     "bpm": 132.5,
-     "bpm_support": 1.17,
-     "key": "Em",
-     "key_r": 0.875,
-     "key_margin": 0.188,
-     "key_runner_up": "E",
+     "bpm": 152.0,
+     "bpm_support": 1.13,
+     "key": "A",
+     "key_r": 0.816,
+     "key_margin": 0.022,
+     "key_runner_up": "Am",
      "stems": [
       "bass",
       "drums",
@@ -170,67 +103,66 @@
      "ear": {
       "bass": {
        "notes": 4,
-       "fit": 0.85,
+       "fit": 1.0,
        "clash": 0.0,
        "absent": 0.0,
-       "tune": 16.0,
-       "sample_tuning": 1.0,
+       "tune": 6.0,
+       "sample_tuning": -1.0,
        "bass_pcs": [
-        0,
-        4
+        9
        ]
       },
       "sample": {
-       "lock": 1.08,
-       "late_ms": 12.0,
+       "lock": 1.1,
+       "late_ms": 8.0,
        "off": 0.06
       },
       "drums": {
-       "lock": 2.15,
+       "lock": 1.69,
        "late_ms": 3.0,
        "off": 0.0
       },
       "balance": {
-       "bass": -2.4,
-       "sample": -5.0,
-       "sample2": -10.8
+       "bass": -6.9,
+       "sample": -6.7,
+       "sample2": -11.1
       },
       "missing": []
      }
     },
     "contract": {
-     "bpm": 133.0,
-     "key": "Em",
-     "style": "drake",
+     "bpm": 152.0,
+     "key": "F#m",
+     "style": "playboi carti",
      "refs": [
-      "~/miles-studio/bench/refs/Qyf2QXxq1KI.m4a",
-      "~/miles-studio/bench/refs/60vMf8Z61Qg.m4a",
-      "~/miles-studio/bench/refs/aNXItVNHEW8.m4a",
-      "~/miles-studio/bench/refs/blGl1h0zZSE.m4a",
-      "~/miles-studio/bench/refs/IE9i4HwbGpU.m4a"
+      "/Users/shuhanzhang/miles-studio/bench/refs/aNXItVNHEW8.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/Qyf2QXxq1KI.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/60vMf8Z61Qg.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/blGl1h0zZSE.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/IE9i4HwbGpU.m4a"
      ]
     },
     "ref": {
-     "score": 0.44,
-     "nearest": "Qyf2QXxq1KI",
-     "mean": 0.352,
+     "score": 0.458,
+     "nearest": "blGl1h0zZSE",
+     "mean": 0.384,
      "n_refs": 5,
      "dims": {
-      "tempo": 0.33,
+      "tempo": 0.02,
       "timbre": 0.9,
-      "brightness": 0.16,
-      "low_end": 0.1,
-      "busyness": 0.25
+      "brightness": 0.31,
+      "low_end": 0.2,
+      "busyness": 0.49
      },
      "gaps": [
-      "less low end than the refs (53 % vs 86 % under 120 Hz)",
-      "brighter than the refs (centroid 3513 vs 1003 Hz)"
+      "tempo feel 76 vs the refs' 101.3",
+      "less low end than the refs (63 % vs 86 % under 120 Hz)"
      ],
      "ours": {
-      "bpm": 132.5,
-      "centroid": 3513,
-      "low": 0.533,
-      "onsets": 8.38
+      "bpm": 76.0,
+      "centroid": 1747,
+      "low": 0.634,
+      "onsets": 6.02
      },
      "pass": true
     }
@@ -306,11 +238,11 @@
      "key": "F#",
      "style": "ken carson",
      "refs": [
-      "~/miles-studio/bench/refs/blGl1h0zZSE.m4a",
-      "~/miles-studio/bench/refs/Qyf2QXxq1KI.m4a",
-      "~/miles-studio/bench/refs/60vMf8Z61Qg.m4a",
-      "~/miles-studio/bench/refs/aNXItVNHEW8.m4a",
-      "~/miles-studio/bench/refs/IE9i4HwbGpU.m4a"
+      "/Users/shuhanzhang/miles-studio/bench/refs/blGl1h0zZSE.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/Qyf2QXxq1KI.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/60vMf8Z61Qg.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/aNXItVNHEW8.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/IE9i4HwbGpU.m4a"
      ]
     },
     "ref": {
