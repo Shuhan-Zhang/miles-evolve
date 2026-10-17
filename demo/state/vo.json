@@ -58,10 +58,10 @@
    "seconds": 1.84
   },
   "v13": {
-   "text": "Miles N plus one. On-spec music, checked before anyone listens.",
-   "seconds": 3.17,
-   "rate_wpm": 265
+   "text": "Miles N plus one. Music that checks itself.",
+   "seconds": 3.09,
+   "rate_wpm": 185
   }
  },
- "total_seconds": 31.33
+ "total_seconds": 31.25
 }
