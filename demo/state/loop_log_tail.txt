@@ -77,3 +77,6 @@ gen 5/6: coach reading 8 failures of v0
    w3 JGcwgSWBx0Y-s1 fail
    w2 sV4rANCXUG8-s1 PASS
    w1 2G4CL1STU2o-s1 fail
+   w4 3-0fAuCjKsc-s1 fail
+   w4 ESj67i9gYLY-s1 PASS
+   w1 BD5u-zlbb8w-s1 fail

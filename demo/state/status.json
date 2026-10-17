@@ -2,105 +2,35 @@
  "stamp": "loop-20261017-141624-g5",
  "version": "g5",
  "total": 16,
- "done": 10,
+ "done": 14,
  "workers": {
   "w1": {
-   "state": "building",
-   "at": 1792275675.96132,
-   "brief": "2G4CL1STU2o",
+   "state": "idle",
+   "at": 1792275954.900178,
+   "brief": null,
    "seed": 1,
-   "title": "( FREE ) Giveon x R&B Soul Type beat \"Deep In My Soul\"",
-   "passed": true,
+   "title": "FREE DON TOLIVER x TRAVIS SCOTT Type Beat - \"HALLWAY\"",
+   "passed": false,
    "best": {
-    "song": "s_53ba2e",
-    "tempo": true,
-    "key": true,
-    "clean": true,
-    "delivered": true,
-    "pass": true,
-    "why": [],
-    "skipped": [],
-    "measured": {
-     "claimed_bpm": 80.0,
-     "claimed_key": "C",
-     "status": "ready",
-     "bpm": 79.5,
-     "bpm_support": 1.0,
-     "key": "C",
-     "key_r": 0.846,
-     "key_margin": 0.001,
-     "key_runner_up": "Am",
-     "stems": [
-      "bass",
-      "drums",
-      "sample"
-     ],
-     "ear": {
-      "bass": {
-       "notes": 8,
-       "fit": 0.77,
-       "clash": 0.0,
-       "absent": 0.0,
-       "tune": -3.0,
-       "sample_tuning": 4.0,
-       "bass_pcs": [
-        0,
-        4,
-        5,
-        9,
-        11
-       ]
-      },
-      "sample": {
-       "lock": 0.97,
-       "late_ms": 25.0,
-       "off": 0.44
-      },
-      "drums": {
-       "lock": 2.62,
-       "late_ms": 6.0,
-       "off": 0.0
-      },
-      "balance": {
-       "bass": -2.9,
-       "sample": -9.4
-      },
-      "missing": []
-     }
-    },
+    "song": null,
+    "tempo": null,
+    "key": null,
+    "clean": null,
+    "delivered": false,
+    "pass": false,
+    "why": [
+     "not delivered: no song came back (no error)"
+    ],
     "contract": {
-     "bpm": 80.0,
-     "key": "Am",
-     "style": "joey badass",
+     "bpm": 130.0,
+     "key": "E",
+     "style": "travis scott",
      "refs": [
-      "~/miles-studio/bench/refs/wNmiL6TJEBo.m4a",
-      "~/miles-studio/bench/refs/sMH5ryP6IhQ.m4a",
-      "~/miles-hackathon/bench/refs/w298TXv-KJk.m4a"
+      "~/miles-studio/bench/refs/3-0fAuCjKsc.m4a",
+      "~/miles-studio/bench/refs/GP-dvf2r6Z0.webm",
+      "~/miles-studio/bench/refs/IKg3NrH6YmU.m4a",
+      "~/miles-studio/bench/refs/ESj67i9gYLY.m4a"
      ]
-    },
-    "ref": {
-     "score": 0.703,
-     "nearest": "wNmiL6TJEBo",
-     "mean": 0.552,
-     "n_refs": 3,
-     "dims": {
-      "tempo": 0.36,
-      "timbre": 0.86,
-      "brightness": 0.48,
-      "low_end": 0.42,
-      "busyness": 0.64
-     },
-     "gaps": [
-      "tempo feel 79.5 vs the refs' 92.3",
-      "less low end than the refs (65 % vs 80 % under 120 Hz)"
-     ],
-     "ours": {
-      "bpm": 79.5,
-      "centroid": 1085,
-      "low": 0.653,
-      "onsets": 4.54
-     },
-     "pass": true
     }
    }
   },
@@ -237,33 +167,101 @@
    }
   },
   "w4": {
-   "state": "building",
-   "at": 1792275788.685133,
-   "brief": "3-0fAuCjKsc",
+   "state": "idle",
+   "at": 1792275947.86674,
+   "brief": null,
    "seed": 1,
-   "title": "\"NO TRESPASSING\"",
-   "passed": false,
+   "title": "Lil Baby Type Beat - \"No Joke\"",
+   "passed": true,
    "best": {
-    "song": null,
-    "tempo": null,
-    "key": null,
-    "clean": null,
-    "delivered": false,
-    "pass": false,
-    "why": [
-     "not delivered: no song came back (no error)"
-    ],
-    "contract": {
-     "bpm": 105.0,
+    "song": "s_9a0119",
+    "tempo": true,
+    "key": true,
+    "clean": true,
+    "delivered": true,
+    "pass": true,
+    "why": [],
+    "skipped": [],
+    "measured": {
+     "claimed_bpm": 126.0,
+     "claimed_key": "D",
+     "status": "ready",
+     "bpm": 126.0,
+     "bpm_support": 1.13,
      "key": "D",
-     "style": "frank ocean",
+     "key_r": 0.538,
+     "key_margin": 0.155,
+     "key_runner_up": "Dm",
+     "stems": [
+      "bass",
+      "drums",
+      "sample"
+     ],
+     "ear": {
+      "bass": {
+       "notes": 9,
+       "fit": 0.49,
+       "clash": 0.0,
+       "absent": 0.22,
+       "tune": -2.0,
+       "sample_tuning": 3.0,
+       "bass_pcs": [
+        2,
+        9,
+        11
+       ]
+      },
+      "sample": {
+       "lock": 1.24,
+       "late_ms": 10.0,
+       "off": 0.05
+      },
+      "drums": {
+       "lock": 2.07,
+       "late_ms": 7.0,
+       "off": 0.0
+      },
+      "balance": {
+       "sample": -8.5,
+       "bass": -1.7
+      },
+      "missing": []
+     }
+    },
+    "contract": {
+     "bpm": 126.0,
+     "key": "D",
+     "style": "lil baby",
      "refs": [
-      "~/miles-studio/bench/refs/EkgIoePtE4s.m4a",
-      "~/miles-studio/bench/refs/2G4CL1STU2o.m4a",
-      "~/miles-hackathon/bench/refs/aP5b3hmTsLw.m4a",
-      "~/miles-studio/bench/refs/zDy7zYJ1ZE8.m4a",
-      "~/miles-studio/bench/refs/JGcwgSWBx0Y.m4a"
+      "~/miles-studio/bench/refs/ESj67i9gYLY.m4a",
+      "~/miles-studio/bench/refs/3-0fAuCjKsc.m4a",
+      "~/miles-studio/bench/refs/GP-dvf2r6Z0.webm",
+      "~/miles-studio/bench/refs/IKg3NrH6YmU.m4a"
      ]
+    },
+    "ref": {
+     "score": 0.652,
+     "nearest": "3-0fAuCjKsc",
+     "mean": 0.593,
+     "n_refs": 4,
+     "dims": {
+      "tempo": 0.63,
+      "timbre": 0.8,
+      "brightness": 0.41,
+      "low_end": 0.48,
+      "busyness": 0.64
+     },
+     "gaps": [
+      "brighter than the refs (centroid 1948 vs 1414 Hz)",
+      "less low end than the refs (69 % vs 79 % under 120 Hz)"
+     ],
+     "ours": {
+      "bpm": 126.0,
+      "centroid": 1948,
+      "low": 0.693,
+      "onsets": 5.51
+     },
+     "pass": true
     }
    }
   }
