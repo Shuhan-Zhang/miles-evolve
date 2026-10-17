@@ -1,0 +1,21 @@
+{
+ "gen": 4,
+ "hypothesis": "Miles often starts loops on the V chord, causing key detectors to hear the dominant as the tonic.",
+ "kind": "addendum",
+ "patch": {
+  "hypothesis": "Miles often starts loops on the V chord, causing key detectors to hear the dominant as the tonic.",
+  "kind": "addendum",
+  "text": "When generating the chord progression, ensure the first chord is the tonic (I) chord of the claimed key; if not, transpose the whole loop so that the first chord becomes tonic."
+ },
+ "patch_desc": "addendum +1 rule",
+ "before": 8,
+ "after": 8,
+ "n": 16,
+ "checks": {
+  "delivered": 15,
+  "tempo": 16,
+  "key": 9,
+  "clean": 14
+ },
+ "kept": false
+}
