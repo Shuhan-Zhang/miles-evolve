@@ -1,0 +1,56 @@
+{
+ "voice": "Warm, Grounded Storyteller (Narration / Commercial Voice)",
+ "voice_id": "MFZUKuGQUsGJPQjTS4wC",
+ "model": "eleven_v4_turbo",
+ "lines": {
+  "n01": {
+   "text": "Need a score for your trailer? Ask Claude.",
+   "seconds": 2.96
+  },
+  "n03": {
+   "text": "A self-improving music agent for anything. One MCP away.",
+   "seconds": 4.56
+  },
+  "n04": {
+   "text": "And it checks its own work, from the audio, before anyone listens.",
+   "seconds": 4.4
+  },
+  "n06": {
+   "text": "It said 127 BPM. The audio said 172.",
+   "seconds": 5.84
+  },
+  "n07": {
+   "text": "So we built it a self-check.",
+   "seconds": 2.08
+  },
+  "v05": {
+   "text": "Four studios at once. Every beat tested against the brief.",
+   "seconds": 4.72
+  },
+  "v06": {
+   "text": "Then a Nemotron coach on Crusoe rewrites Miles's own playbook.",
+   "seconds": 4.8
+  },
+  "n08": {
+   "text": "Every change has to win. Or it's gone.",
+   "seconds": 3.36
+  },
+  "n09": {
+   "text": "Six ideas. Three would have made it worse. The gate caught all three.",
+   "seconds": 5.28
+  },
+  "v11": {
+   "text": "Same brief. Before, and after.",
+   "seconds": 3.04
+  },
+  "v12": {
+   "text": "Built today, on Crusoe.",
+   "seconds": 2.08
+  },
+  "v13": {
+   "text": "Miles N plus one. Music that checks itself.",
+   "seconds": 3.92
+  }
+ },
+ "total_seconds": 47.04
+}

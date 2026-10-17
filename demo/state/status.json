@@ -2,223 +2,114 @@
  "stamp": "loop-20261017-141624-heldout-v0",
  "version": "v0",
  "total": 16,
- "done": 9,
+ "done": 14,
  "workers": {
   "w1": {
    "state": "building",
-   "at": 1792277324.432786,
-   "brief": "60vMf8Z61Qg",
+   "at": 1792277452.870377,
+   "brief": "IE9i4HwbGpU",
    "seed": 1,
-   "title": "21 Savage Type Beat - \"No Alibi\"",
-   "passed": false,
+   "title": "Gunna Type Beat - \"Rare Form\"",
+   "passed": true,
    "best": {
-    "song": "s_2ea019",
+    "song": "s_322c06",
     "tempo": true,
     "key": true,
     "clean": true,
-    "delivered": false,
-    "pass": false,
-    "why": [
-     "not delivered in time: 300 s > 180 s"
-    ],
+    "delivered": true,
+    "pass": true,
+    "why": [],
     "skipped": [],
     "measured": {
-     "claimed_bpm": 127.0,
-     "claimed_key": "F#m",
+     "claimed_bpm": 144.0,
+     "claimed_key": "Ebm",
      "status": "ready",
-     "bpm": 126.0,
-     "bpm_support": 1.0,
-     "key": "F#m",
-     "key_r": 0.878,
-     "key_margin": 0.119,
-     "key_runner_up": "A",
+     "bpm": 147.7,
+     "bpm_support": 1.17,
+     "key": "D#m",
+     "key_r": 0.87,
+     "key_margin": 0.201,
+     "key_runner_up": "D#",
      "stems": [
       "bass",
       "drums",
-      "sample",
-      "sample2"
+      "sample"
      ],
      "ear": {
       "bass": {
-       "notes": 7,
-       "fit": 0.66,
+       "notes": 4,
+       "fit": 0.77,
        "clash": 0.0,
-       "absent": 0.0,
-       "tune": -3.0,
-       "sample_tuning": -1.0,
+       "absent": 0.25,
+       "tune": 9.0,
+       "sample_tuning": 1.0,
        "bass_pcs": [
-        1,
-        2,
+        3,
         4,
-        6,
-        11
+        8
        ]
       },
       "sample": {
-       "lock": 1.16,
-       "late_ms": 10.0,
-       "off": 0.19
+       "lock": 0.97,
+       "late_ms": 19.0,
+       "off": 0.22
       },
       "drums": {
-       "lock": 1.05,
-       "late_ms": 23.0,
-       "off": 0.07
+       "lock": 1.71,
+       "late_ms": 5.0,
+       "off": 0.0
       },
       "balance": {
-       "bass": -2.7,
-       "sample": -8.9,
-       "sample2": -12.2
+       "bass": -1.9,
+       "sample": -7.6
       },
       "missing": []
      }
     },
     "contract": {
-     "bpm": 127.0,
-     "key": "F#m",
-     "style": "summer walker",
+     "bpm": 144.0,
+     "key": "D#m",
+     "style": "21 savage",
      "refs": [
-      "~/miles-studio/bench/refs/pTiJ0BMwzGU.m4a",
-      "~/miles-studio/bench/refs/NHstEi3ChTc.m4a",
-      "~/miles-hackathon/bench/refs/5ihsl_dbRFo.m4a",
-      "~/miles-studio/bench/refs/SK4h63w7R8s.m4a",
-      "~/miles-studio/bench/refs/iWXJBLcfgGE.m4a"
+      "~/miles-studio/bench/refs/60vMf8Z61Qg.m4a",
+      "~/miles-studio/bench/refs/Qyf2QXxq1KI.m4a",
+      "~/miles-studio/bench/refs/aNXItVNHEW8.m4a",
+      "~/miles-studio/bench/refs/blGl1h0zZSE.m4a",
+      "~/miles-studio/bench/refs/IE9i4HwbGpU.m4a"
      ]
     },
     "ref": {
-     "score": 0.494,
-     "nearest": "5ihsl_dbRFo",
-     "mean": 0.355,
+     "score": 0.47,
+     "nearest": "aNXItVNHEW8",
+     "mean": 0.357,
      "n_refs": 5,
      "dims": {
-      "tempo": 0.29,
-      "timbre": 0.87,
-      "brightness": 0.21,
-      "low_end": 0.17,
-      "busyness": 0.24
+      "tempo": 0.01,
+      "timbre": 0.94,
+      "brightness": 0.25,
+      "low_end": 0.16,
+      "busyness": 0.43
      },
      "gaps": [
-      "less low end than the refs (50 % vs 75 % under 120 Hz)",
-      "brighter than the refs (centroid 2056 vs 1070 Hz)"
+      "tempo feel 71.8 vs the refs' 101.3",
+      "less low end than the refs (60 % vs 86 % under 120 Hz)"
      ],
      "ours": {
-      "bpm": 126.0,
-      "centroid": 2056,
-      "low": 0.503,
-      "onsets": 6.22
+      "bpm": 71.8,
+      "centroid": 2385,
+      "low": 0.597,
+      "onsets": 6.38
      },
      "pass": true
     }
    }
   },
   "w2": {
-   "state": "building",
-   "at": 1792277173.083977,
-   "brief": "iWXJBLcfgGE",
+   "state": "idle",
+   "at": 1792277474.826956,
+   "brief": null,
    "seed": 1,
    "title": "Daniel Caesar x Giveon Type Beat - \"It's Nice Loving You\"",
-   "passed": false,
-   "best": {
-    "song": "s_c83243",
-    "tempo": true,
-    "key": false,
-    "clean": true,
-    "delivered": false,
-    "pass": false,
-    "why": [
-     "not delivered in time: 253 s > 180 s",
-     "key: heard G#, brief says D#m (song claims Ebm)"
-    ],
-    "skipped": [],
-    "measured": {
-     "claimed_bpm": 132.0,
-     "claimed_key": "Ebm",
-     "status": "ready",
-     "bpm": 132.5,
-     "bpm_support": 1.08,
-     "key": "G#",
-     "key_r": 0.571,
-     "key_margin": 0.017,
-     "key_runner_up": "G#m",
-     "stems": [
-      "bass",
-      "drums",
-      "sample",
-      "sample2"
-     ],
-     "ear": {
-      "bass": {
-       "notes": 16,
-       "fit": 0.64,
-       "clash": 0.0,
-       "absent": 0.06,
-       "tune": 9.0,
-       "sample_tuning": 2.0,
-       "bass_pcs": [
-        1,
-        3,
-        4,
-        8,
-        11
-       ]
-      },
-      "sample": {
-       "lock": 1.06,
-       "late_ms": 8.0,
-       "off": 0.06
-      },
-      "drums": {
-       "lock": 1.76,
-       "late_ms": 6.0,
-       "off": 0.0
-      },
-      "balance": {
-       "sample": -4.0,
-       "bass": 1.8,
-       "sample2": -8.1
-      },
-      "missing": []
-     }
-    },
-    "contract": {
-     "bpm": 132.0,
-     "key": "D#m",
-     "style": "smino",
-     "refs": [
-      "~/miles-hackathon/bench/refs/B-NiHdc4YaA.m4a"
-     ]
-    },
-    "ref": {
-     "score": 0.457,
-     "nearest": "B-NiHdc4YaA",
-     "mean": 0.457,
-     "n_refs": 1,
-     "dims": {
-      "tempo": 0.66,
-      "timbre": 0.9,
-      "brightness": 0.06,
-      "low_end": 0.48,
-      "busyness": 0.2
-     },
-     "gaps": [
-      "brighter than the refs (centroid 2300 vs 724 Hz)",
-      "busier than the refs (8.46 vs 3.68 hits/s)"
-     ],
-     "ours": {
-      "bpm": 132.5,
-      "centroid": 2300,
-      "low": 0.655,
-      "onsets": 8.46
-     },
-     "pass": true
-    }
-   }
-  },
-  "w3": {
-   "state": "building",
-   "at": 1792277224.114193,
-   "brief": "Qyf2QXxq1KI",
-   "seed": 1,
-   "title": "Drake x Iceman Type Beat - ''Name''",
    "passed": false,
    "best": {
     "song": null,
@@ -231,47 +122,45 @@
      "not delivered: no song came back (timeout)"
     ],
     "contract": {
-     "bpm": 110.0,
-     "key": "G#m",
-     "style": "rnb",
+     "bpm": 157.0,
+     "key": "G#",
+     "style": "daniel caesar",
      "refs": [
+      "~/miles-studio/bench/refs/iWXJBLcfgGE.m4a",
       "~/miles-studio/bench/refs/NHstEi3ChTc.m4a",
       "~/miles-hackathon/bench/refs/5ihsl_dbRFo.m4a",
       "~/miles-studio/bench/refs/SK4h63w7R8s.m4a",
-      "~/miles-studio/bench/refs/pTiJ0BMwzGU.m4a",
-      "~/miles-studio/bench/refs/iWXJBLcfgGE.m4a"
+      "~/miles-studio/bench/refs/pTiJ0BMwzGU.m4a"
      ]
     }
    }
   },
-  "w4": {
+  "w3": {
    "state": "building",
-   "at": 1792277177.097014,
-   "brief": "alBapK3ToSc",
+   "at": 1792277383.926802,
+   "brief": "aNXItVNHEW8",
    "seed": 1,
-   "title": "Frank Ocean X Piano Ballad Type Beat - \"this is falling in love\"",
-   "passed": false,
+   "title": "playboi carti type beat - \"MADE OF HATE\"",
+   "passed": true,
    "best": {
-    "song": "s_409145",
+    "song": "s_c5fbc4",
     "tempo": true,
     "key": true,
     "clean": true,
-    "delivered": false,
-    "pass": false,
-    "why": [
-     "not delivered in time: 242 s > 180 s"
-    ],
+    "delivered": true,
+    "pass": true,
+    "why": [],
     "skipped": [],
     "measured": {
-     "claimed_bpm": 125.0,
-     "claimed_key": "Bm",
+     "claimed_bpm": 133.0,
+     "claimed_key": "Em",
      "status": "ready",
-     "bpm": 126.0,
-     "bpm_support": 1.09,
-     "key": "Bm",
-     "key_r": 0.853,
-     "key_margin": 0.113,
-     "key_runner_up": "G",
+     "bpm": 132.5,
+     "bpm_support": 1.17,
+     "key": "Em",
+     "key_r": 0.875,
+     "key_margin": 0.188,
+     "key_runner_up": "E",
      "stems": [
       "bass",
       "drums",
@@ -280,70 +169,171 @@
      ],
      "ear": {
       "bass": {
-       "notes": 7,
-       "fit": 0.58,
+       "notes": 4,
+       "fit": 0.85,
        "clash": 0.0,
-       "absent": 0.43,
-       "tune": -3.0,
-       "sample_tuning": 3.0,
+       "absent": 0.0,
+       "tune": 16.0,
+       "sample_tuning": 1.0,
        "bass_pcs": [
         0,
-        6,
-        7,
-        11
+        4
        ]
       },
       "sample": {
-       "lock": 1.12,
+       "lock": 1.08,
        "late_ms": 12.0,
-       "off": 0.16
+       "off": 0.06
       },
       "drums": {
-       "lock": 2.18,
+       "lock": 2.15,
        "late_ms": 3.0,
-       "off": 0.04
+       "off": 0.0
       },
       "balance": {
-       "bass": -2.3,
-       "sample": -5.6,
-       "sample2": -11.4
+       "bass": -2.4,
+       "sample": -5.0,
+       "sample2": -10.8
       },
       "missing": []
      }
     },
     "contract": {
-     "bpm": 125.0,
-     "key": "Bm",
-     "style": "brent faiyaz",
+     "bpm": 133.0,
+     "key": "Em",
+     "style": "drake",
      "refs": [
-      "~/miles-studio/bench/refs/SK4h63w7R8s.m4a",
-      "~/miles-studio/bench/refs/NHstEi3ChTc.m4a",
-      "~/miles-hackathon/bench/refs/5ihsl_dbRFo.m4a",
-      "~/miles-studio/bench/refs/pTiJ0BMwzGU.m4a",
-      "~/miles-studio/bench/refs/iWXJBLcfgGE.m4a"
+      "~/miles-studio/bench/refs/Qyf2QXxq1KI.m4a",
+      "~/miles-studio/bench/refs/60vMf8Z61Qg.m4a",
+      "~/miles-studio/bench/refs/aNXItVNHEW8.m4a",
+      "~/miles-studio/bench/refs/blGl1h0zZSE.m4a",
+      "~/miles-studio/bench/refs/IE9i4HwbGpU.m4a"
      ]
     },
     "ref": {
-     "score": 0.526,
-     "nearest": "5ihsl_dbRFo",
-     "mean": 0.382,
+     "score": 0.44,
+     "nearest": "Qyf2QXxq1KI",
+     "mean": 0.352,
      "n_refs": 5,
      "dims": {
-      "tempo": 0.29,
-      "timbre": 0.88,
-      "brightness": 0.14,
-      "low_end": 0.27,
-      "busyness": 0.33
+      "tempo": 0.33,
+      "timbre": 0.9,
+      "brightness": 0.16,
+      "low_end": 0.1,
+      "busyness": 0.25
      },
      "gaps": [
-      "brighter than the refs (centroid 2417 vs 1070 Hz)",
-      "less low end than the refs (57 % vs 75 % under 120 Hz)"
+      "less low end than the refs (53 % vs 86 % under 120 Hz)",
+      "brighter than the refs (centroid 3513 vs 1003 Hz)"
      ],
      "ours": {
-      "bpm": 126.0,
-      "centroid": 2417,
-      "low": 0.573,
-      "onsets": 5.27
+      "bpm": 132.5,
+      "centroid": 3513,
+      "low": 0.533,
+      "onsets": 8.38
+     },
+     "pass": true
+    }
+   }
+  },
+  "w4": {
+   "state": "idle",
+   "at": 1792277578.597162,
+   "brief": null,
+   "seed": 1,
+   "title": "Ken Carson Type Beat - \"Yale\"",
+   "passed": false,
+   "best": {
+    "song": "s_38716f",
+    "tempo": true,
+    "key": false,
+    "clean": true,
+    "delivered": false,
+    "pass": false,
+    "why": [
+     "not delivered in time: 194 s > 180 s",
+     "key: heard A#, brief says F# (song claims Dm)"
+    ],
+    "skipped": [],
+    "measured": {
+     "claimed_bpm": 137.0,
+     "claimed_key": "Dm",
+     "status": "ready",
+     "bpm": 136.0,
+     "bpm_support": 1.01,
+     "key": "A#",
+     "key_r": 0.74,
+     "key_margin": 0.048,
+     "key_runner_up": "Dm",
+     "stems": [
+      "bass",
+      "drums",
+      "sample"
+     ],
+     "ear": {
+      "bass": {
+       "notes": 4,
+       "fit": 0.47,
+       "clash": 0.0,
+       "absent": 0.25,
+       "tune": 9.0,
+       "sample_tuning": -2.0,
+       "bass_pcs": [
+        7,
+        10,
+        11
+       ]
+      },
+      "sample": {
+       "lock": 1.12,
+       "late_ms": 5.0,
+       "off": 0.07
+      },
+      "drums": {
+       "lock": 2.09,
+       "late_ms": 5.0,
+       "off": 0.0
+      },
+      "balance": {
+       "bass": -2.2,
+       "sample": -6.7
+      },
+      "missing": []
+     }
+    },
+    "contract": {
+     "bpm": 137.0,
+     "key": "F#",
+     "style": "ken carson",
+     "refs": [
+      "~/miles-studio/bench/refs/blGl1h0zZSE.m4a",
+      "~/miles-studio/bench/refs/Qyf2QXxq1KI.m4a",
+      "~/miles-studio/bench/refs/60vMf8Z61Qg.m4a",
+      "~/miles-studio/bench/refs/aNXItVNHEW8.m4a",
+      "~/miles-studio/bench/refs/IE9i4HwbGpU.m4a"
+     ]
+    },
+    "ref": {
+     "score": 0.461,
+     "nearest": "aNXItVNHEW8",
+     "mean": 0.432,
+     "n_refs": 5,
+     "dims": {
+      "tempo": 0.22,
+      "timbre": 0.89,
+      "brightness": 0.27,
+      "low_end": 0.19,
+      "busyness": 0.6
+     },
+     "gaps": [
+      "less low end than the refs (62 % vs 86 % under 120 Hz)",
+      "tempo feel 136 vs the refs' 101.3"
+     ],
+     "ours": {
+      "bpm": 136.0,
+      "centroid": 1966,
+      "low": 0.62,
+      "onsets": 5.42
      },
      "pass": true
     }
