@@ -27,7 +27,7 @@ PICKS = [
 ]
 
 
-TITLES = {1: "You Got It · trapsoul", 2: "Pink · melodic trap", 3: "Refresh · jazz lofi", 4: "Turf · west-coast trap",
+TITLES = {0: "Trailer cue · take 2 · dark piano", 5: "Trailer cue · take 1 · dark trap", 1: "You Got It · trapsoul", 2: "Pink · melodic trap", 3: "Refresh · jazz lofi", 4: "Turf · west-coast trap",
           6: "Trust Issues · minimal R&B"}
 
 
