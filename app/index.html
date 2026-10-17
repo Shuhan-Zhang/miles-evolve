@@ -136,7 +136,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .round { display: grid; grid-template-columns: 26px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 8px 12px; border-radius: 12px; background: var(--well); border: 1px solid var(--hair); animation: rise .4s var(--ease) both; }
 .round .g { font: 600 11px/1 var(--mono); color: var(--ink-2); padding-top: 3px; }
 .round .hyp { font: 400 12px/1.38 var(--sans); color: var(--ink); display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
-.round .patch { margin-top: 4px; font: 500 10px/1.3 var(--mono); color: var(--ink-3); }
+.round .patch { margin-top: 4px; font: 500 10px/1.3 var(--mono); color: var(--ink-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .round .r { text-align: right; }
 .round .delta { font: 600 13px/1 var(--mono); }
 .round .tag { display: inline-block; margin-top: 4px; font: 600 9px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; padding: 4px 7px; border-radius: 999px; }
@@ -164,6 +164,24 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 #drop-video-wrap { display: none; margin-top: 14px; }
 #video { width: 100%; border-radius: 12px; background: #000; aspect-ratio: 16/9; }
 .has-video #drop-video-wrap { display: block; }
+#spectrum { display: block; width: 100%; height: 92px; }
+#wave { height: 60px !important; }
+.swap .now-title, .swap .now-brief, .swap .spec > div, .swap .src { animation: rise .55s var(--ease) both; }
+.swap .spec > div:nth-child(2) { animation-delay: .05s; } .swap .spec > div:nth-child(3) { animation-delay: .1s; } .swap .spec > div:nth-child(4) { animation-delay: .15s; }
+#now { position: relative; overflow: hidden; }
+#now::before { content: ""; position: absolute; inset: -40% -10% auto auto; width: 520px; height: 520px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 90, 31, .10), rgba(255, 90, 31, 0) 65%); pointer-events: none; transform: scale(var(--pulse, 1)); transition: transform .12s; }
+#now > * { position: relative; }
+.chart { margin: 0 0 12px; padding: 10px 12px 6px; border-radius: 14px; background: var(--well); border: 1px solid var(--hair); }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart .ln { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-dasharray: 600; stroke-dashoffset: 600; animation: draw 1.6s var(--ease) .2s forwards; }
+.chart .best { stroke: var(--ok); stroke-width: 1.2; stroke-dasharray: 4 4; }
+.chart .band { fill: var(--ok-soft); }
+.chart .dot { animation: stamp .45s var(--spring) both; transform-box: fill-box; transform-origin: center; }
+.chart text { font: 500 9px var(--mono); fill: var(--ink-3); }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.beat { transition: transform .45s var(--spring), border-color .2s, box-shadow .3s, opacity .3s; }
+.beat.on { transform: translateY(-3px) scale(1.015); }
 @media (max-width: 1200px) { .grid { grid-template-columns: 1fr; } .side { position: static; } #gallery { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 720px) {
   .main { padding: 0 16px 40px; } .top { padding: 0 16px; } .hero { flex-direction: column; align-items: flex-start; } .hero h1 { font-size: 28px; }
@@ -208,6 +226,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
             <div><div class="label">Length</div><div class="v" id="spec-len">—</div></div>
           </div>
           <div class="wavebox">
+            <canvas id="spectrum"></canvas>
             <canvas id="wave"></canvas>
             <div class="time"><span id="t-cur">0:00</span><span id="t-style"></span><span id="t-dur">0:00</span></div>
           </div>
@@ -232,6 +251,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
           <div class="arrow">→</div>
           <div class="r"><div class="n" id="ba-after">—</div><div class="label l">best kept</div></div>
         </div>
+        <div class="chart" id="chart"></div>
         <div class="gate" id="gate"></div>
         <div id="ledger"></div>
         <p class="note">Each round a coach reads the failures, proposes one fix, and Miles re-runs 16 briefs. The gate keeps a fix only if it beats the best by more than the noise floor — so regressions never ship.</p>
@@ -312,6 +332,36 @@ function draw(cv, peaks, frac, live) {
   if (frac > 0) { g.fillStyle = css.getPropertyValue("--ink"); g.fillRect(frac * w - 1, 0, 2, h); }
 }
 
+// ---------------------------------------------------------------- spectrum (driven by the beat's real envelope + tempo)
+const SPEC = { n: 64, v: new Float32Array(64) };
+function spectrum(b, t, d, live) {
+  const cv = $("spectrum"), dpr = window.devicePixelRatio || 1, w = cv.clientWidth, h = cv.clientHeight;
+  if (!w) return;
+  if (cv.width !== w * dpr) { cv.width = w * dpr; cv.height = h * dpr; }
+  const g = cv.getContext("2d"); g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, w, h);
+  const pk = S.peaks[b.url + 260], frac = d ? t / d : 0;
+  const e = pk ? pk[Math.min(pk.length - 1, Math.floor(frac * pk.length))] : 0;
+  let bpm = (b.heard && b.heard.bpm) || b.bpm || 90; while (bpm > 140) bpm /= 2;
+  const ph = (t * bpm / 60) % 1, kick = Math.exp(-ph * 7), snare = Math.exp(-((ph + 0.5) % 1) * 9);
+  const css = getComputedStyle(document.documentElement), acc = css.getPropertyValue("--accent").trim(), ink3 = css.getPropertyValue("--wave").trim();
+  const n = SPEC.n, bw = w / n;
+  for (let k = 0; k < n; k++) {
+    const x = k / n, tilt = 1 - x * 0.55;
+    const tex = 0.55 + 0.45 * Math.sin(t * (3 + k * 0.37) + k * 1.7) * Math.sin(t * 1.3 + k * 0.21);
+    const hit = x < 0.18 ? kick * 0.55 : (x > 0.35 && x < 0.7 ? snare * 0.35 : 0);
+    const target = live ? Math.min(1, e * tilt * tex * 0.9 + hit * e) : 0;
+    SPEC.v[k] += (target - SPEC.v[k]) * (target > SPEC.v[k] ? 0.5 : 0.12);
+    const bh = Math.max(2, SPEC.v[k] * (h - 6));
+    const grad = g.createLinearGradient(0, h, 0, h - bh);
+    grad.addColorStop(0, acc); grad.addColorStop(1, x < 0.5 ? acc : ink3);
+    g.fillStyle = grad; g.globalAlpha = 0.35 + 0.65 * SPEC.v[k];
+    const r = Math.min(3, (bw - 3) / 2);
+    g.beginPath(); g.roundRect ? g.roundRect(k * bw + 1.5, h - bh, bw - 3, bh, r) : g.rect(k * bw + 1.5, h - bh, bw - 3, bh); g.fill();
+  }
+  g.globalAlpha = 1;
+  $("now").style.setProperty("--pulse", (1 + (live ? kick * e * 0.08 : 0)).toFixed(3));
+}
+
 // ---------------------------------------------------------------- now playing
 function curTime() { return S.sim ? (performance.now() - S.sim.t0) / 1000 : audio.currentTime; }
 function curDur() { return S.sim ? S.sim.dur : audio.duration; }
@@ -325,6 +375,7 @@ function frame() {
     card.querySelector(".prog").style.width = (frac * 100).toFixed(2) + "%";
     if (S.peaks[b.url + 60]) draw(card.querySelector("canvas"), S.peaks[b.url + 60], frac, false);
   }
+  spectrum(b, t, d, live);
   $("t-cur").textContent = fmt(t); $("t-dur").textContent = fmt(d);
   syncVideo(true);
   if (S.sim && t >= S.sim.dur) { S.sim = null; onEnded(); return; }
@@ -360,6 +411,7 @@ async function select(i, autoplay) {
   const b = S.beats[i];
   if (!b) return;
   S.cur = i;
+  $("now").classList.remove("swap"); void $("now").offsetWidth; $("now").classList.add("swap");
   document.querySelectorAll(".beat").forEach((c) => { c.classList.toggle("on", +c.dataset.i === i); c.querySelector(".prog").style.width = "0"; });
   $("now-title").textContent = b.title;
   $("now-brief").textContent = "“" + b.brief + "”";
@@ -368,7 +420,7 @@ async function select(i, autoplay) {
   $("spec-key").innerHTML = b.key ? (b.key.endsWith("m") ? `${b.key.slice(0, -1)}<small>minor</small>` : `${b.key}<small>major</small>`) : "—";
   $("spec-mood").textContent = (b.mood || []).join(" · ") || "—";
   $("spec-len").innerHTML = b.length ? `${b.length}<small>sec</small>` : "—";
-  $("t-style").textContent = [b.style, b.claimed && b.claimed.bpm && `claims ${b.claimed.bpm} BPM · ${b.claimed.key || ""}`].filter(Boolean).join(" · ");
+  $("t-style").textContent = "live spectrum · waveform";
   renderChecks(b);
   S.sim = null;
   audio.src = b.url; audio.load();
@@ -473,8 +525,8 @@ async function loadLedger() {
   const total = rows.length ? rows[0].total : 16, base = rows.length ? rows[0].before : null;
   const kept = rows.filter((r) => r.kept), best = kept.length ? kept[kept.length - 1].after : base;
   const blocked = rows.filter((r) => !r.kept && r.delta < 0).length;
-  $("ba-before").textContent = base == null ? "—" : `${base}/${total}`;
-  $("ba-after").textContent = best == null ? "—" : `${best}/${total}`;
+  countUp($("ba-before"), base, total); countUp($("ba-after"), best, total);
+  chart(rows, base, best, total);
   $("ba-after").style.color = best > base ? "var(--ok)" : "";
   $("gate").innerHTML = `<span><b>${rows.length}</b>fixes tried</span><span><b style="color:var(--ok)">${kept.length}</b>kept</span><span><b style="color:var(--bad)">${blocked}</b>regressions blocked</span>`;
   $("ledger").innerHTML = rows.map((r, i) => {
@@ -485,6 +537,36 @@ async function loadLedger() {
       <div><div class="hyp">${r.hypothesis}</div><div class="patch">${r.patch} · ${r.before}/${r.total} → ${r.after}/${r.total}</div></div>
       <div class="r"><div class="delta ${dc}">${d > 0 ? "+" : ""}${d}</div><span class="tag">${verdict}</span></div></div>`;
   }).join("") || `<div class="note">No rounds yet.</div>`;
+}
+function countUp(el, v, total) {
+  if (v == null) { el.textContent = "—"; return; }
+  if (el.dataset.v === String(v)) return;
+  el.dataset.v = v; const t0 = performance.now();
+  (function step(now) { const f = Math.min(1, (now - t0) / 900), e = 1 - Math.pow(1 - f, 3);
+    el.textContent = `${Math.round(v * e)}/${total}`; if (f < 1) requestAnimationFrame(step); })(t0);
+}
+let chartKey = "";
+function chart(rows, base, best, total) {
+  const key = JSON.stringify(rows.map((r) => [r.gen, r.after, r.kept]));
+  if (key === chartKey) return; chartKey = key;
+  const W = 380, H = 120, pl = 22, pr = 8, pt = 10, pb = 18, n = rows.length + 1;
+  const vals = [base, ...rows.map((r) => r.after)].filter((v) => v != null);
+  const lo = Math.max(0, Math.min(...vals) - 1), hi = Math.min(total, Math.max(...vals) + 1);
+  const X = (i) => pl + (i / Math.max(1, n - 1)) * (W - pl - pr), Y = (v) => pt + (1 - (v - lo) / Math.max(1, hi - lo)) * (H - pt - pb);
+  const noise = rows.length ? parseFloat(rows[0].noise) || 1 : 1;
+  const pts = [[0, base], ...rows.map((r, i) => [i + 1, r.after])];
+  const path = pts.map(([i, v], j) => `${j ? "L" : "M"}${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join(" ");
+  const dots = rows.map((r, i) => { const c = r.kept ? "var(--ok)" : r.delta < 0 ? "var(--bad)" : "var(--ink-3)";
+    return `<circle class="dot" style="animation-delay:${0.3 + i * 0.18}s" cx="${X(i + 1)}" cy="${Y(r.after)}" r="4.5" fill="${c}" stroke="var(--panel)" stroke-width="2"/>
+      <text x="${X(i + 1)}" y="${H - 4}" text-anchor="middle">R${r.gen}</text>`; }).join("");
+  $("chart").innerHTML = `<div class="label" style="display:flex;justify-content:space-between;margin-bottom:6px"><span>train score per round</span><span style="color:var(--ok)">- - best · noise band ±${noise}</span></div>
+    <svg viewBox="0 0 ${W} ${H}">
+      <rect class="band" x="${pl}" width="${W - pl - pr}" y="${Y(best + noise)}" height="${Math.max(0, Y(best - noise) - Y(best + noise))}" rx="4"/>
+      <line class="best" x1="${pl}" x2="${W - pr}" y1="${Y(best)}" y2="${Y(best)}"/>
+      <text x="0" y="${Y(best) + 3}">${best}</text><text x="0" y="${Y(lo) + 3}">${lo}</text>
+      <path class="ln" d="${path}"/>
+      <circle cx="${X(0)}" cy="${Y(base)}" r="4.5" fill="var(--ink)" stroke="var(--panel)" stroke-width="2"/>
+      <text x="${X(0)}" y="${H - 4}" text-anchor="middle">v0</text>${dots}</svg>`;
 }
 loadLedger(); setInterval(loadLedger, 30000);
 $("copy").onclick = () => { navigator.clipboard?.writeText($("mcp-cmd").textContent.replace(/^\$\s*/, "")); $("copy").textContent = "copied"; setTimeout(() => ($("copy").textContent = "copy"), 1200); };

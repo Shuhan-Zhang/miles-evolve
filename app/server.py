@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
+import os
 import re
 import time
 import uuid
@@ -113,7 +114,7 @@ async def api_gallery(req):
 
 
 async def index(req):
-    return web.FileResponse(HERE / "index.html", headers={"Cache-Control": "no-store"})
+    return web.FileResponse(HERE / os.environ.get("MILES_DEMO_INDEX", "index.html"), headers={"Cache-Control": "no-store"})
 
 
 def make_app():
