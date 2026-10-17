@@ -1,6 +1,6 @@
 {
  "loop": "loop-20261017-141624",
- "gen": 4,
+ "gen": 5,
  "gens": 6,
  "base": "~/miles-hackathon/evolve/versions/v0",
  "best": "~/miles-hackathon/evolve/versions/v0",
@@ -120,20 +120,35 @@
     "clean": 14
    },
    "kept": false
+  },
+  {
+   "gen": 5,
+   "hypothesis": "Miles frequently leaves the generated music in a default key (roughly A minor/A major) rather than transposing to the brief\u2019s specified key, so the detected key often disagrees with the brief.",
+   "kind": "addendum",
+   "patch": {
+    "hypothesis": "Miles frequently leaves the generated music in a default key (roughly A minor/A major) rather than transposing to the brief\u2019s specified key, so the detected key often disagrees with the brief.",
+    "kind": "addendum",
+    "text": "After arranging the track, run `detect_key` on the mixed audio. If the detected key does not match the brief\u2019s key (allowing relative major/minor as acceptable), compute the interval from the detected tonic to the brief\u2019s tonic and transpose all MIDI notes by that interval before finalizing."
+   },
+   "patch_desc": "addendum +1 rule",
+   "version": "~/miles-hackathon/evolve/versions/loop-20261017-141624/g5",
+   "run": "~/miles-hackathon/evolve/runs/loop-20261017-141624-g5/g5",
+   "before": 8,
+   "after": 5,
+   "n": 16,
+   "checks": {
+    "delivered": 8,
+    "tempo": 10,
+    "key": 7,
+    "clean": 11
+   },
+   "kept": false
   }
  ],
  "current": {
-  "gen": 5,
-  "phase": "scoring",
-  "stamp": "loop-20261017-141624-g5",
-  "version": "g5",
-  "hypothesis": "Miles frequently leaves the generated music in a default key (roughly A minor/A major) rather than transposing to the brief\u2019s specified key, so the detected key often disagrees with the brief.",
-  "patch": {
-   "hypothesis": "Miles frequently leaves the generated music in a default key (roughly A minor/A major) rather than transposing to the brief\u2019s specified key, so the detected key often disagrees with the brief.",
-   "kind": "addendum",
-   "text": "After arranging the track, run `detect_key` on the mixed audio. If the detected key does not match the brief\u2019s key (allowing relative major/minor as acceptable), compute the interval from the detected tonic to the brief\u2019s tonic and transpose all MIDI notes by that interval before finalizing."
-  },
-  "patch_desc": "addendum +1 rule"
+  "gen": 6,
+  "phase": "coach",
+  "version": "g6"
  },
  "baseline_runs": [
   "~/miles-hackathon/evolve/runs/loop-20261017-141624-g0/v0"
@@ -142,7 +157,7 @@
   "llm_usd": 0.0407,
   "llm_calls": 7
  },
- "at": 1792275561.0561228,
+ "at": 1792276071.166423,
  "best_checks": {
   "delivered": 15,
   "tempo": 13,

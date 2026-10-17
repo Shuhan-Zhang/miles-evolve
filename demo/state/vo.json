@@ -12,12 +12,14 @@
  "premium_installed": [],
  "lines": {
   "v01": {
-   "text": "Give Miles one line. It makes the beat.",
-   "seconds": 2.51
+   "text": "Every ad cue comes with a spec. Tempo. Key.",
+   "seconds": 2.84,
+   "rate_wpm": 185
   },
   "v02": {
-   "text": "And it says it's done.",
-   "seconds": 1.31
+   "text": "Miles writes it, and says it's done.",
+   "seconds": 2.3,
+   "rate_wpm": 185
   },
   "v03": {
    "text": "The audio says otherwise.",
@@ -56,9 +58,10 @@
    "seconds": 1.84
   },
   "v13": {
-   "text": "Miles N plus one. The agent that teaches itself.",
-   "seconds": 3.29
+   "text": "Miles N plus one. On-spec music, checked before anyone listens.",
+   "seconds": 3.17,
+   "rate_wpm": 265
   }
  },
- "total_seconds": 30.13
+ "total_seconds": 31.33
 }

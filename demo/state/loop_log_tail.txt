@@ -80,3 +80,8 @@ gen 5/6: coach reading 8 failures of v0
    w4 3-0fAuCjKsc-s1 fail
    w4 ESj67i9gYLY-s1 PASS
    w1 BD5u-zlbb8w-s1 fail
+   w3 GP-dvf2r6Z0-s1 fail
+   w2 IKg3NrH6YmU-s1 fail
+  train 8/16 → 5/16 (noise 1) ✗ rejected
+
+gen 6/6: coach reading 8 failures of v0

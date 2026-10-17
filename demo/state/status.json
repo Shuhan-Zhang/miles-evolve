@@ -2,7 +2,7 @@
  "stamp": "loop-20261017-141624-g5",
  "version": "g5",
  "total": 16,
- "done": 14,
+ "done": 15,
  "workers": {
   "w1": {
    "state": "idle",
@@ -136,33 +136,103 @@
    }
   },
   "w3": {
-   "state": "building",
-   "at": 1792275855.462542,
-   "brief": "GP-dvf2r6Z0",
+   "state": "idle",
+   "at": 1792276037.461007,
+   "brief": null,
    "seed": 1,
    "title": "METRO BOOMIN x 21 SAVAGE TYPE BEAT - \"GOLD TETH\"",
    "passed": false,
    "best": {
-    "song": null,
-    "tempo": null,
-    "key": null,
-    "clean": null,
+    "song": "s_52848b",
+    "tempo": true,
+    "key": false,
+    "clean": true,
     "delivered": false,
     "pass": false,
     "why": [
-     "not delivered: no song came back (no error)"
+     "not delivered in time: 182 s > 180 s",
+     "key: heard Em, brief says Am (song claims Em)"
     ],
+    "skipped": [],
+    "measured": {
+     "claimed_bpm": 164.0,
+     "claimed_key": "Em",
+     "status": "ready",
+     "bpm": 82.0,
+     "bpm_support": 1.0,
+     "key": "Em",
+     "key_r": 0.699,
+     "key_margin": 0.13,
+     "key_runner_up": "E",
+     "stems": [
+      "bass",
+      "drums",
+      "sample"
+     ],
+     "ear": {
+      "bass": {
+       "notes": 3,
+       "fit": 0.77,
+       "clash": 0.0,
+       "absent": 0.0,
+       "tune": -2.0,
+       "sample_tuning": 6.0,
+       "bass_pcs": [
+        4,
+        9
+       ]
+      },
+      "sample": {
+       "lock": 1.01,
+       "late_ms": 13.0,
+       "off": 0.12
+      },
+      "drums": {
+       "lock": 1.42,
+       "late_ms": 10.0,
+       "off": 0.0
+      },
+      "balance": {
+       "bass": -2.4,
+       "sample": -8.4
+      },
+      "missing": []
+     }
+    },
     "contract": {
-     "bpm": 92.0,
-     "key": "Fm",
-     "style": "bryson tiller",
+     "bpm": 164.0,
+     "key": "Am",
+     "style": "metro boomin",
      "refs": [
-      "~/miles-studio/bench/refs/JGcwgSWBx0Y.m4a",
-      "~/miles-studio/bench/refs/2G4CL1STU2o.m4a",
-      "~/miles-hackathon/bench/refs/aP5b3hmTsLw.m4a",
-      "~/miles-studio/bench/refs/zDy7zYJ1ZE8.m4a",
-      "~/miles-studio/bench/refs/EkgIoePtE4s.m4a"
+      "~/miles-studio/bench/refs/GP-dvf2r6Z0.webm",
+      "~/miles-studio/bench/refs/3-0fAuCjKsc.m4a",
+      "~/miles-studio/bench/refs/IKg3NrH6YmU.m4a",
+      "~/miles-studio/bench/refs/ESj67i9gYLY.m4a"
      ]
+    },
+    "ref": {
+     "score": 0.482,
+     "nearest": "GP-dvf2r6Z0",
+     "mean": 0.384,
+     "n_refs": 4,
+     "dims": {
+      "tempo": 0.0,
+      "timbre": 0.88,
+      "brightness": 0.21,
+      "low_end": 0.39,
+      "busyness": 0.43
+     },
+     "gaps": [
+      "tempo feel 83.4 vs the refs' 126",
+      "brighter than the refs (centroid 3411 vs 1414 Hz)"
+     ],
+     "ours": {
+      "bpm": 83.4,
+      "centroid": 3411,
+      "low": 0.662,
+      "onsets": 6.75
+     },
+     "pass": true
     }
    }
   },
