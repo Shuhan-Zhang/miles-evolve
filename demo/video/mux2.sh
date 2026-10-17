@@ -5,7 +5,7 @@
 set -euo pipefail
 VIDEO=$1 CUE=$2 BED=$3 BEFORE=$4 AFTER=$5 VO=$6 OUT=$7
 # voice line -> start second on the video's timeline
-LINES="n01:0.3 n03:3.6 n04:9.4 n06:14.2 n07:19.4 v05:21.6 v06:25.3 n08:30.6 n09:34.6 v11:42.6 v12:54.0 v13:56.5"
+LINES="n01:0.2 n03:3.4 n04:8.6 n06:13.4 n07:19.4 v05:21.6 v06:26.4 n08:31.3 n09:35.0 v11:41.5 v12:53.8 v13:56.0"
 A="aformat=sample_rates=48000:channel_layouts=stereo"
 inputs=(-i "$VIDEO" -i "$CUE" -i "$CUE" -i "$BED" -i "$BEFORE" -i "$AFTER")
 # trailer cue: in from 5.0 s (after the Make click), up when the track and checks show (9.6 s), out at 13.6 s
