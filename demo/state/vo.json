@@ -1,0 +1,64 @@
+{
+ "voice": "Samantha (macOS say, compact; no Premium/Enhanced English voices installed)",
+ "rate_wpm": 185,
+ "format": "wav 48 kHz mono, ~/miles-demo-audio/vo/vNN.wav (not pushed)",
+ "considered": [
+  "Samantha (en_US) - chosen, most natural installed",
+  "Daniel (en_GB)",
+  "Reed (en_US/en_GB, Eloquence, robotic)",
+  "Moira (en_IE)",
+  "Karen (en_AU)"
+ ],
+ "premium_installed": [],
+ "lines": {
+  "v01": {
+   "text": "Give Miles one line. It makes the beat.",
+   "seconds": 2.51
+  },
+  "v02": {
+   "text": "And it says it's done.",
+   "seconds": 1.31
+  },
+  "v03": {
+   "text": "The audio says otherwise.",
+   "seconds": 1.68
+  },
+  "v04": {
+   "text": "So now, Miles checks its own work.",
+   "seconds": 2.42
+  },
+  "v05": {
+   "text": "Four studios at once. Every beat tested against the brief.",
+   "seconds": 3.62
+  },
+  "v06": {
+   "text": "Then a Nemotron coach on Crusoe rewrites Miles's own playbook.",
+   "seconds": 3.56
+  },
+  "v07": {
+   "text": "It reads the failures, and writes one fix.",
+   "seconds": 2.66
+  },
+  "v08": {
+   "text": "Every change has to win. Or it's gone.",
+   "seconds": 2.41
+  },
+  "v09": {
+   "text": "Then we test it on beats it has never seen.",
+   "seconds": 2.41
+  },
+  "v11": {
+   "text": "Same brief. Before, and after.",
+   "seconds": 2.42
+  },
+  "v12": {
+   "text": "Built today, on Crusoe.",
+   "seconds": 1.84
+  },
+  "v13": {
+   "text": "Miles N plus one. The agent that teaches itself.",
+   "seconds": 3.29
+  }
+ },
+ "total_seconds": 30.13
+}
