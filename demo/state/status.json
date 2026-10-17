@@ -2,106 +2,109 @@
  "stamp": "loop-20261017-141624-heldout-v0",
  "version": "v0",
  "total": 16,
- "done": 7,
+ "done": 9,
  "workers": {
   "w1": {
    "state": "building",
-   "at": 1792277024.096256,
-   "brief": "pTiJ0BMwzGU",
+   "at": 1792277324.432786,
+   "brief": "60vMf8Z61Qg",
    "seed": 1,
-   "title": "Summer Walker x Kehlani Type Beat - \"Be Alone Tonight\"",
-   "passed": true,
+   "title": "21 Savage Type Beat - \"No Alibi\"",
+   "passed": false,
    "best": {
-    "song": "s_c9e327",
+    "song": "s_2ea019",
     "tempo": true,
     "key": true,
     "clean": true,
-    "delivered": true,
-    "pass": true,
-    "why": [],
+    "delivered": false,
+    "pass": false,
+    "why": [
+     "not delivered in time: 300 s > 180 s"
+    ],
     "skipped": [],
     "measured": {
-     "claimed_bpm": 61.0,
-     "claimed_key": "Bbm",
+     "claimed_bpm": 127.0,
+     "claimed_key": "F#m",
      "status": "ready",
-     "bpm": 123.0,
+     "bpm": 126.0,
      "bpm_support": 1.0,
-     "key": "A#m",
-     "key_r": 0.696,
-     "key_margin": 0.052,
-     "key_runner_up": "D#m",
+     "key": "F#m",
+     "key_r": 0.878,
+     "key_margin": 0.119,
+     "key_runner_up": "A",
      "stems": [
       "bass",
       "drums",
-      "sample"
+      "sample",
+      "sample2"
      ],
      "ear": {
       "bass": {
-       "notes": 8,
-       "fit": 0.6,
+       "notes": 7,
+       "fit": 0.66,
        "clash": 0.0,
-       "absent": 0.25,
-       "tune": -9.0,
-       "sample_tuning": 8.0,
+       "absent": 0.0,
+       "tune": -3.0,
+       "sample_tuning": -1.0,
        "bass_pcs": [
-        3,
-        5,
+        1,
+        2,
+        4,
         6,
-        8,
-        10,
         11
        ]
       },
       "sample": {
-       "lock": 1.25,
-       "late_ms": 21.0,
-       "off": 0.35
+       "lock": 1.16,
+       "late_ms": 10.0,
+       "off": 0.19
       },
       "drums": {
-       "lock": 2.5,
-       "late_ms": 12.0,
-       "off": 0.41
+       "lock": 1.05,
+       "late_ms": 23.0,
+       "off": 0.07
       },
       "balance": {
-       "bass": -2.2,
-       "sample": -5.8
+       "bass": -2.7,
+       "sample": -8.9,
+       "sample2": -12.2
       },
       "missing": []
      }
     },
     "contract": {
-     "bpm": 61.0,
-     "key": "A#m",
-     "style": "sade",
+     "bpm": 127.0,
+     "key": "F#m",
+     "style": "summer walker",
      "refs": [
-      "/Users/shuhanzhang/miles-hackathon/bench/refs/5ihsl_dbRFo.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/NHstEi3ChTc.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/SK4h63w7R8s.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/pTiJ0BMwzGU.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/iWXJBLcfgGE.m4a"
+      "~/miles-studio/bench/refs/pTiJ0BMwzGU.m4a",
+      "~/miles-studio/bench/refs/NHstEi3ChTc.m4a",
+      "~/miles-hackathon/bench/refs/5ihsl_dbRFo.m4a",
+      "~/miles-studio/bench/refs/SK4h63w7R8s.m4a",
+      "~/miles-studio/bench/refs/iWXJBLcfgGE.m4a"
      ]
     },
     "ref": {
-     "score": 0.777,
+     "score": 0.494,
      "nearest": "5ihsl_dbRFo",
-     "mean": 0.57,
+     "mean": 0.355,
      "n_refs": 5,
      "dims": {
-      "tempo": 0.43,
-      "timbre": 0.93,
-      "brightness": 0.58,
-      "low_end": 0.26,
-      "busyness": 0.65
+      "tempo": 0.29,
+      "timbre": 0.87,
+      "brightness": 0.21,
+      "low_end": 0.17,
+      "busyness": 0.24
      },
      "gaps": [
-      "less low end than the refs (57 % vs 75 % under 120 Hz)",
-      "tempo feel 123 vs the refs' 110"
+      "less low end than the refs (50 % vs 75 % under 120 Hz)",
+      "brighter than the refs (centroid 2056 vs 1070 Hz)"
      ],
      "ours": {
-      "bpm": 123.0,
-      "centroid": 1096,
-      "low": 0.566,
-      "onsets": 3.72
+      "bpm": 126.0,
+      "centroid": 2056,
+      "low": 0.503,
+      "onsets": 6.22
      },
      "pass": true
     }
@@ -181,7 +184,7 @@
      "key": "D#m",
      "style": "smino",
      "refs": [
-      "/Users/shuhanzhang/miles-hackathon/bench/refs/B-NiHdc4YaA.m4a"
+      "~/miles-hackathon/bench/refs/B-NiHdc4YaA.m4a"
      ]
     },
     "ref": {
@@ -212,96 +215,32 @@
   },
   "w3": {
    "state": "building",
-   "at": 1792276922.5208461,
-   "brief": "NHstEi3ChTc",
+   "at": 1792277224.114193,
+   "brief": "Qyf2QXxq1KI",
    "seed": 1,
-   "title": "R&B Type Beat - \"Love\"",
-   "passed": true,
+   "title": "Drake x Iceman Type Beat - ''Name''",
+   "passed": false,
    "best": {
-    "song": "s_e1962f",
-    "tempo": true,
-    "key": true,
-    "clean": true,
-    "delivered": true,
-    "pass": true,
-    "why": [],
-    "skipped": [],
-    "measured": {
-     "claimed_bpm": 118.0,
-     "claimed_key": "F#",
-     "status": "ready",
-     "bpm": 117.5,
-     "bpm_support": 1.0,
-     "key": "D#m",
-     "key_r": 0.82,
-     "key_margin": 0.213,
-     "key_runner_up": "F#",
-     "stems": [
-      "bass",
-      "drums",
-      "sample"
-     ],
-     "ear": {
-      "bass": {
-       "notes": 8,
-       "fit": 0.32,
-       "clash": 0.0,
-       "absent": 0.0,
-       "tune": 13.0,
-       "sample_tuning": -15.0,
-       "bass_pcs": [
-        3
-       ]
-      },
-      "sample": {
-       "lock": 1.04,
-       "late_ms": 33.0,
-       "off": 0.44
-      },
-      "drums": {
-       "lock": 2.34,
-       "late_ms": 6.0,
-       "off": 0.0
-      },
-      "balance": {
-       "bass": -4.0,
-       "sample": -6.8
-      },
-      "missing": []
-     }
-    },
+    "song": null,
+    "tempo": null,
+    "key": null,
+    "clean": null,
+    "delivered": false,
+    "pass": false,
+    "why": [
+     "not delivered: no song came back (timeout)"
+    ],
     "contract": {
-     "bpm": 118.0,
-     "key": "D#m",
-     "style": "kaytranada",
+     "bpm": 110.0,
+     "key": "G#m",
+     "style": "rnb",
      "refs": [
-      "/Users/shuhanzhang/miles-studio/bench/refs/qS_lZHSj6kQ.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/KnS9s9Pb97A.m4a"
+      "~/miles-studio/bench/refs/NHstEi3ChTc.m4a",
+      "~/miles-hackathon/bench/refs/5ihsl_dbRFo.m4a",
+      "~/miles-studio/bench/refs/SK4h63w7R8s.m4a",
+      "~/miles-studio/bench/refs/pTiJ0BMwzGU.m4a",
+      "~/miles-studio/bench/refs/iWXJBLcfgGE.m4a"
      ]
-    },
-    "ref": {
-     "score": 0.523,
-     "nearest": "KnS9s9Pb97A",
-     "mean": 0.518,
-     "n_refs": 2,
-     "dims": {
-      "tempo": 0.84,
-      "timbre": 0.91,
-      "brightness": 0.05,
-      "low_end": 0.03,
-      "busyness": 0.75
-     },
-     "gaps": [
-      "less low end than the refs (32 % vs 84 % under 120 Hz)",
-      "brighter than the refs (centroid 3067 vs 950 Hz)"
-     ],
-     "ours": {
-      "bpm": 117.5,
-      "centroid": 3067,
-      "low": 0.324,
-      "onsets": 3.81
-     },
-     "pass": true
     }
    }
   },
@@ -377,11 +316,11 @@
      "key": "Bm",
      "style": "brent faiyaz",
      "refs": [
-      "/Users/shuhanzhang/miles-studio/bench/refs/SK4h63w7R8s.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/NHstEi3ChTc.m4a",
-      "/Users/shuhanzhang/miles-hackathon/bench/refs/5ihsl_dbRFo.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/pTiJ0BMwzGU.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/iWXJBLcfgGE.m4a"
+      "~/miles-studio/bench/refs/SK4h63w7R8s.m4a",
+      "~/miles-studio/bench/refs/NHstEi3ChTc.m4a",
+      "~/miles-hackathon/bench/refs/5ihsl_dbRFo.m4a",
+      "~/miles-studio/bench/refs/pTiJ0BMwzGU.m4a",
+      "~/miles-studio/bench/refs/iWXJBLcfgGE.m4a"
      ]
     },
     "ref": {

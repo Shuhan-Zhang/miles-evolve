@@ -10,7 +10,7 @@ const { chromium } = require('playwright');
   const t0 = Date.now(), marks = {};
   const mark = k => { marks[k] = (Date.now() - t0) / 1000; console.log(k, marks[k]); };
   await page.goto(url, { waitUntil: 'networkidle' }); mark('loaded');
-  await page.waitForTimeout(2500);
+  await page.waitForTimeout(3000);   // the gallery autoplays; let it settle
   const make = page.locator('#make');
   if (await make.count()) { await make.hover(); await page.waitForTimeout(600); await make.click(); mark('make_clicked'); }
   await page.locator('#checks').waitFor({ state: 'visible', timeout: 120000 }).catch(() => {});
