@@ -1,0 +1,242 @@
+{
+ "brief": "wNmiL6TJEBo",
+ "seed": 1,
+ "version": "v0",
+ "worker": "w1",
+ "text": "Joey Bada$$ x Boom Bap Type Beat, 80 BPM, A minor \u2014 make 1 beat like that",
+ "task": {
+  "id": "wNmiL6TJEBo",
+  "query": "joey badass type beat",
+  "title": "(Free) Joey Bada$$ x Boom Bap Type Beat | \"The Night \" | Prod. Skywum\u2606",
+  "channel": "Skywum\u2606",
+  "stated_bpm": 80.0,
+  "stated_key": "Am",
+  "audio": "/Users/shuhanzhang/miles-studio/bench/refs/wNmiL6TJEBo.m4a",
+  "style": "boom_bap",
+  "source": "evolve/briefs_new.json"
+ },
+ "reply": "Made **#1**: Joey Bada$$ x Boom Bap Type Beat at 80\u202fBPM, A\u2011minor\u2014boom bap kit, chromatic bassline in Am, dusty\u2011toned piano sample. The groove feels solid and melodic, with the piano sitting just under the drums. Next, try adding a subtle sax layer or nudging the swing up a bit for more head\u2011nod.",
+ "songs": [
+  {
+   "number": 1,
+   "id": "s_00e831",
+   "title": "Joey Bada$$ x Boom Bap Type Beat",
+   "status": "ready",
+   "bpm": 80.0,
+   "key": "C",
+   "style": "boom bap",
+   "picked": false,
+   "score": null,
+   "parts": [
+    "drums: BOOM BAP KIT",
+    "bass: BASS \u00b7 BASS F",
+    "sample: GLOW BEYOND TAPED PIANO"
+   ],
+   "audio": "/Users/shuhanzhang/miles-hackathon/evolve/work/w1/songs/s_00e831/v0.wav",
+   "seconds": 12.0,
+   "versions": 1,
+   "last_change": "BOOM BAP KIT \u00b7 groove GOLDEN \u00b7 swing 54 \u00b7 92 BPM \u00b7 Tempo 92 \u2192 80 BPM \u00b7 Key \u2192 A minor \u00b7 Bassline \u00b7 8 notes in Am (no samp"
+  }
+ ],
+ "seconds": 68.5,
+ "check": {
+  "contract": {
+   "bpm": 80.0,
+   "key": "Am",
+   "style": "joey badass",
+   "refs": [
+    "/Users/shuhanzhang/miles-studio/bench/refs/wNmiL6TJEBo.m4a",
+    "/Users/shuhanzhang/miles-studio/bench/refs/sMH5ryP6IhQ.m4a",
+    "/Users/shuhanzhang/miles-hackathon/bench/refs/w298TXv-KJk.m4a"
+   ]
+  },
+  "songs": [
+   {
+    "song": "s_00e831",
+    "tempo": true,
+    "key": true,
+    "clean": true,
+    "delivered": true,
+    "pass": true,
+    "why": [],
+    "skipped": [],
+    "measured": {
+     "claimed_bpm": 80.0,
+     "claimed_key": "C",
+     "status": "ready",
+     "bpm": 79.5,
+     "bpm_support": 1.0,
+     "key": "C",
+     "key_r": 0.907,
+     "key_margin": 0.208,
+     "key_runner_up": "F",
+     "stems": [
+      "bass",
+      "drums",
+      "sample"
+     ],
+     "ear": {
+      "bass": {
+       "notes": 8,
+       "fit": 0.68,
+       "clash": 0.0,
+       "absent": 0.12,
+       "tune": 12.0,
+       "sample_tuning": -11.0,
+       "bass_pcs": [
+        0,
+        2,
+        5,
+        7,
+        9
+       ]
+      },
+      "sample": {
+       "lock": 1.21,
+       "late_ms": 25.0,
+       "off": 0.35
+      },
+      "drums": {
+       "lock": 2.7,
+       "late_ms": 6.0,
+       "off": 0.03
+      },
+      "balance": {
+       "bass": -3.0,
+       "sample": -7.7
+      },
+      "missing": []
+     }
+    },
+    "contract": {
+     "bpm": 80.0,
+     "key": "Am",
+     "style": "joey badass",
+     "refs": [
+      "/Users/shuhanzhang/miles-studio/bench/refs/wNmiL6TJEBo.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/sMH5ryP6IhQ.m4a",
+      "/Users/shuhanzhang/miles-hackathon/bench/refs/w298TXv-KJk.m4a"
+     ]
+    },
+    "ref": {
+     "score": 0.561,
+     "nearest": "wNmiL6TJEBo",
+     "mean": 0.505,
+     "n_refs": 3,
+     "dims": {
+      "tempo": 0.3,
+      "timbre": 0.86,
+      "brightness": 0.41,
+      "low_end": 0.31,
+      "busyness": 0.65
+     },
+     "gaps": [
+      "tempo feel 80.7 vs the refs' 92.3",
+      "less low end than the refs (61 % vs 80 % under 120 Hz)"
+     ],
+     "ours": {
+      "bpm": 80.7,
+      "centroid": 1948,
+      "low": 0.607,
+      "onsets": 4.5
+     },
+     "pass": true
+    }
+   }
+  ],
+  "best": {
+   "song": "s_00e831",
+   "tempo": true,
+   "key": true,
+   "clean": true,
+   "delivered": true,
+   "pass": true,
+   "why": [],
+   "skipped": [],
+   "measured": {
+    "claimed_bpm": 80.0,
+    "claimed_key": "C",
+    "status": "ready",
+    "bpm": 79.5,
+    "bpm_support": 1.0,
+    "key": "C",
+    "key_r": 0.907,
+    "key_margin": 0.208,
+    "key_runner_up": "F",
+    "stems": [
+     "bass",
+     "drums",
+     "sample"
+    ],
+    "ear": {
+     "bass": {
+      "notes": 8,
+      "fit": 0.68,
+      "clash": 0.0,
+      "absent": 0.12,
+      "tune": 12.0,
+      "sample_tuning": -11.0,
+      "bass_pcs": [
+       0,
+       2,
+       5,
+       7,
+       9
+      ]
+     },
+     "sample": {
+      "lock": 1.21,
+      "late_ms": 25.0,
+      "off": 0.35
+     },
+     "drums": {
+      "lock": 2.7,
+      "late_ms": 6.0,
+      "off": 0.03
+     },
+     "balance": {
+      "bass": -3.0,
+      "sample": -7.7
+     },
+     "missing": []
+    }
+   },
+   "contract": {
+    "bpm": 80.0,
+    "key": "Am",
+    "style": "joey badass",
+    "refs": [
+     "/Users/shuhanzhang/miles-studio/bench/refs/wNmiL6TJEBo.m4a",
+     "/Users/shuhanzhang/miles-studio/bench/refs/sMH5ryP6IhQ.m4a",
+     "/Users/shuhanzhang/miles-hackathon/bench/refs/w298TXv-KJk.m4a"
+    ]
+   },
+   "ref": {
+    "score": 0.561,
+    "nearest": "wNmiL6TJEBo",
+    "mean": 0.505,
+    "n_refs": 3,
+    "dims": {
+     "tempo": 0.3,
+     "timbre": 0.86,
+     "brightness": 0.41,
+     "low_end": 0.31,
+     "busyness": 0.65
+    },
+    "gaps": [
+     "tempo feel 80.7 vs the refs' 92.3",
+     "less low end than the refs (61 % vs 80 % under 120 Hz)"
+    ],
+    "ours": {
+     "bpm": 80.7,
+     "centroid": 1948,
+     "low": 0.607,
+     "onsets": 4.5
+    },
+    "pass": true
+   }
+  },
+  "pass": true
+ },
+ "pass": true
+}

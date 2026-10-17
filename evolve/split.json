@@ -1,0 +1,361 @@
+{
+ "seed": 20261017,
+ "rule": "by channel, stratified by style; only briefs stating BPM and key",
+ "train": [
+  {
+   "id": "wNmiL6TJEBo",
+   "query": "joey badass type beat",
+   "title": "(Free) Joey Bada$$ x Boom Bap Type Beat | \"The Night \" | Prod. Skywum☆",
+   "channel": "Skywum☆",
+   "stated_bpm": 80.0,
+   "stated_key": "Am",
+   "audio": "/Users/shuhanzhang/miles-studio/bench/refs/wNmiL6TJEBo.m4a",
+   "style": "boom_bap",
+   "source": "evolve/briefs_new.json"
+  },
+  {
+   "id": "sMH5ryP6IhQ",
+   "query": "90s boom bap type beat",
+   "title": "[FREE] \"ARRESTED\" - Rap Freestyle Type Beat | Dark Underground Boom Bap Type Beat 2026",
+   "channel": "DEXTAH",
+   "stated_bpm": 92.0,
+   "stated_key": "Dminor",
+   "audio": "/Users/shuhanzhang/miles-studio/bench/refs/sMH5ryP6IhQ.m4a",
+   "style": "boom_bap",
+   "source": "bench/tasks.json"
+  },
+  {
+   "id": "w298TXv-KJk",
+   "query": "kendrick lamar type beat",
+   "title": "[FREE] KENDRICK LAMAR TYPE BEAT \"TURF\"",
+   "channel": "MAXMIZACION",
+   "stated_bpm": 162.0,
+   "stated_key": "CMinor",
+   "audio": "/Users/shuhanzhang/miles-hackathon/bench/refs/w298TXv-KJk.m4a",
+   "style": "boom_bap",
+   "source": "evolve/briefs_new.json"
+  },
+  {
+   "id": "ym1N_7dqEVE",
+   "query": "lofi type beat chill",
+   "title": "[FREE FOR PROFIT] boombap x lofi type beat - \"SUMMERTIME FEELINGS\"",
+   "channel": "prod.laphea",
+   "stated_bpm": 87.0,
+   "stated_key": "C#Major",
+   "audio": "/Users/shuhanzhang/miles-studio/bench/refs/ym1N_7dqEVE.m4a",
+   "style": "lofi_jazz",
+   "source": "evolve/briefs_new.json"
+  },
+  {
+   "id": "vLp4WP_-tfk",
+   "query": "old school boom bap type beat jazzy",
+   "title": "(FREE) 90s Boom Bap Chill Jazz x LoFi Type Beat - \"Refresh\"",
+   "channel": "Txmmy Beats",
+   "stated_bpm": 86.0,
+   "stated_key": "Dminor",
+   "audio": "/Users/shuhanzhang/miles-studio/bench/refs/vLp4WP_-tfk.m4a",
+   "style": "lofi_jazz",
+   "source": "evolve/briefs_new.json"
+  },
+  {
+   "id": "2G4CL1STU2o",
+   "query": "giveon type beat",
+   "title": "( FREE ) Giveon x R&B Soul Type beat \"Deep In My Soul\"",
+   "channel": "Prod. Poks",
+   "stated_bpm": 57.0,
+   "stated_key": "Gmajor",
+   "audio": "/Users/shuhanzhang/miles-studio/bench/refs/2G4CL1STU2o.m4a",
+   "style": "rnb",
+   "source": "evolve/briefs_new.json"
+  },
+  {
+   "id": "aP5b3hmTsLw",
+   "query": "kehlani type beat",
+   "title": "(FREE) Kehlani x Aaliyah R&B Type Beat - \"Falling For You\"",
+   "channel": "prodbyajdee",
+   "stated_bpm": 127.0,
+   "stated_key": "FMinor",
+   "audio": "/Users/shuhanzhang/miles-hackathon/bench/refs/aP5b3hmTsLw.m4a",
+   "style": "rnb",
+   "source": "evolve/briefs_new.json"
+  },
+  {
+   "id": "zDy7zYJ1ZE8",
+   "query": "6lack type beat",
+   "title": "[FREE] 6LACK Type Beat - \"Trust Issues\" | Dark R&B Type Beat 2024",
+   "channel": "4K",
+   "stated_bpm": 93.0,
+   "stated_key": "Cminor",
+   "audio": "/Users/shuhanzhang/miles-studio/bench/refs/zDy7zYJ1ZE8.m4a",
+   "style": "rnb",
+   "source": "evolve/briefs_new.json"
+  },
+  {
+   "id": "EkgIoePtE4s",
+   "query": "frank ocean type beat",
+   "title": "(free) frank ocean type beat - california",
+   "channel": "QUBE",
+   "stated_bpm": 105.0,
+   "stated_key": "D",
+   "audio": "/Users/shuhanzhang/miles-studio/bench/refs/EkgIoePtE4s.m4a",
+   "style": "rnb",
+   "source": "evolve/briefs_new.json"
+  },
+  {
+   "id": "JGcwgSWBx0Y",
+   "query": "bryson tiller type beat",
+   "title": "(FREE) Bryson Tiller Trapsoul Type Beat 2026 - \"You Got It\"",
+   "channel": "Settimio",
+   "stated_bpm": 92.0,
+   "stated_key": "Fminor",
+   "audio": "/Users/shuhanzhang/miles-studio/bench/refs/JGcwgSWBx0Y.m4a",
+   "style": "rnb",
+   "source": "evolve/briefs_new.json"
+  },
+  {
+   "id": "sV4rANCXUG8",
+   "query": "sza type beat rnb",
+   "title": "(FREE) R&B Acoustic Guitar  X SZA Type Beat - \"YOU' RE MINE\"",
+   "channel": "Nundee acoustics",
+   "stated_bpm": 120.0,
+   "stated_key": "Cm",
+   "audio": "/Users/shuhanzhang/miles-studio/bench/refs/sV4rANCXUG8.m4a",
+   "style": "rnb",
+   "source": "bench/tasks.json"
+  },
+  {
+   "id": "3-0fAuCjKsc",
+   "query": "trap type beat dark",
+   "title": "\"NO TRESPASSING\" | Trap Type Beat | Freestyle Beat | Type Beat | Hard Type Beat | Rap Type Beat 2026",
+   "channel": "INNER BEATS",
+   "stated_bpm": 134.0,
+   "stated_key": "C♯m",
+   "audio": "/Users/shuhanzhang/miles-studio/bench/refs/3-0fAuCjKsc.m4a",
+   "style": "trap",
+   "source": "evolve/briefs_new.json"
+  },
+  {
+   "id": "GP-dvf2r6Z0",
+   "query": "metro boomin type beat dark",
+   "title": "[FREE] METRO BOOMIN x 21 SAVAGE TYPE BEAT - \"GOLD TETH\"",
+   "channel": "MORTE",
+   "stated_bpm": 164.0,
+   "stated_key": "Am",
+   "audio": "/Users/shuhanzhang/miles-studio/bench/refs/GP-dvf2r6Z0.webm",
+   "style": "trap",
+   "source": "bench/tasks.json"
+  },
+  {
+   "id": "IKg3NrH6YmU",
+   "query": "don toliver type beat",
+   "title": "[FREE] Don Toliver Type Beat “Pink” | Sosocamo Type Beat",
+   "channel": "RAZEEE",
+   "stated_bpm": 125.0,
+   "stated_key": "Dmin",
+   "audio": "/Users/shuhanzhang/miles-studio/bench/refs/IKg3NrH6YmU.m4a",
+   "style": "trap",
+   "source": "evolve/briefs_new.json"
+  },
+  {
+   "id": "BD5u-zlbb8w",
+   "query": "travis scott type beat dark",
+   "title": "FREE DON TOLIVER x TRAVIS SCOTT Type Beat - \"HALLWAY\"",
+   "channel": "Young Taylor",
+   "stated_bpm": 130.0,
+   "stated_key": "EMajor",
+   "audio": null,
+   "style": "trap",
+   "source": "evolve/briefs_new.json"
+  },
+  {
+   "id": "ESj67i9gYLY",
+   "query": "lil baby type beat",
+   "title": "[FREE] Lil Baby Type Beat - \"No Joke\"",
+   "channel": "Prod. Galaxy",
+   "stated_bpm": 126.0,
+   "stated_key": "D",
+   "audio": "/Users/shuhanzhang/miles-studio/bench/refs/ESj67i9gYLY.m4a",
+   "style": "trap",
+   "source": "evolve/briefs_new.json"
+  }
+ ],
+ "held_out": [
+  {
+   "id": "4PoCA4taNyg",
+   "query": "mf doom type beat",
+   "title": "(FREE) MF DOOM Type Beat - \"Food\"",
+   "channel": "Nero",
+   "stated_bpm": 92.0,
+   "stated_key": "Dmin",
+   "audio": "/Users/shuhanzhang/miles-studio/bench/refs/4PoCA4taNyg.m4a",
+   "style": "boom_bap",
+   "source": "evolve/briefs_new.json"
+  },
+  {
+   "id": "q_U0Ih0jrrM",
+   "query": "boom bap type beat",
+   "title": "(FREE) Freestyle Rap Beat - Dolla | Old School Freestyle Boom Bap Type Beat",
+   "channel": "BapLab",
+   "stated_bpm": 90.0,
+   "stated_key": "F",
+   "audio": "/Users/shuhanzhang/miles-studio/bench/refs/q_U0Ih0jrrM.m4a",
+   "style": "boom_bap",
+   "source": "evolve/briefs_new.json"
+  },
+  {
+   "id": "qS_lZHSj6kQ",
+   "query": "kaytranada type beat house",
+   "title": "Lofi House / Kaytranada / Goldlink Type Beat - All The Girls",
+   "channel": "slowmo",
+   "stated_bpm": 118.0,
+   "stated_key": "D#minor",
+   "audio": "/Users/shuhanzhang/miles-studio/bench/refs/qS_lZHSj6kQ.m4a",
+   "style": "lofi_jazz",
+   "source": "bench/tasks.json"
+  },
+  {
+   "id": "KnS9s9Pb97A",
+   "query": "jazz hop type beat",
+   "title": "[FREE] JAZZ RAP TYPE BEAT \"CHEMISTRY\" | CHILL RAP BEAT 2025",
+   "channel": "Xavien | XVN",
+   "stated_bpm": 120.0,
+   "stated_key": "Bm",
+   "audio": "/Users/shuhanzhang/miles-studio/bench/refs/KnS9s9Pb97A.m4a",
+   "style": "lofi_jazz",
+   "source": "evolve/briefs_new.json"
+  },
+  {
+   "id": "B-NiHdc4YaA",
+   "query": "smino type beat",
+   "title": "(FREE) SMINO TYPE BEAT \"HOME LATE\" | CHILL RAP TYPE BEAT",
+   "channel": "noizy",
+   "stated_bpm": 132.0,
+   "stated_key": "Ebminor",
+   "audio": "/Users/shuhanzhang/miles-hackathon/bench/refs/B-NiHdc4YaA.m4a",
+   "style": "other",
+   "source": "evolve/briefs_new.json"
+  },
+  {
+   "id": "NHstEi3ChTc",
+   "query": "rnb type beat",
+   "title": "R&B Type Beat - \"Love\"",
+   "channel": "R&B Beats Daily",
+   "stated_bpm": 110.0,
+   "stated_key": "Abm",
+   "audio": "/Users/shuhanzhang/miles-studio/bench/refs/NHstEi3ChTc.m4a",
+   "style": "rnb",
+   "source": "evolve/briefs_new.json"
+  },
+  {
+   "id": "5ihsl_dbRFo",
+   "query": "sade type beat rnb",
+   "title": "[FREE] SADE X ERYKAH BADU X NEO SOUL TYPE BEAT || \"FREEFALL\"",
+   "channel": "Avitaz",
+   "stated_bpm": 61.0,
+   "stated_key": "Bbminor",
+   "audio": "/Users/shuhanzhang/miles-hackathon/bench/refs/5ihsl_dbRFo.m4a",
+   "style": "rnb",
+   "source": "evolve/briefs_new.json"
+  },
+  {
+   "id": "SK4h63w7R8s",
+   "query": "brent faiyaz type beat",
+   "title": "[FREE] Brent Faiyaz Type Beat - \"You Don't Know Me\"",
+   "channel": "qciqa",
+   "stated_bpm": 125.0,
+   "stated_key": "Bminor",
+   "audio": "/Users/shuhanzhang/miles-studio/bench/refs/SK4h63w7R8s.m4a",
+   "style": "rnb",
+   "source": "evolve/briefs_new.json"
+  },
+  {
+   "id": "pTiJ0BMwzGU",
+   "query": "summer walker type beat",
+   "title": "Summer Walker x Kehlani Type Beat - \"Be Alone Tonight\"",
+   "channel": "Rich James",
+   "stated_bpm": 127.0,
+   "stated_key": "F#Minor",
+   "audio": "/Users/shuhanzhang/miles-studio/bench/refs/pTiJ0BMwzGU.m4a",
+   "style": "rnb",
+   "source": "evolve/briefs_new.json"
+  },
+  {
+   "id": "iWXJBLcfgGE",
+   "query": "daniel caesar type beat",
+   "title": "(FREE) Daniel Caesar x Giveon Type Beat - \"It's Nice Loving You\"",
+   "channel": "Sam Calisto",
+   "stated_bpm": 157.0,
+   "stated_key": "G#Major",
+   "audio": "/Users/shuhanzhang/miles-studio/bench/refs/iWXJBLcfgGE.m4a",
+   "style": "rnb",
+   "source": "evolve/briefs_new.json"
+  },
+  {
+   "id": "alBapK3ToSc",
+   "query": "frank ocean piano ballad type beat",
+   "title": "[FREE] Frank Ocean X Piano Ballad Type Beat - \"this is falling in love\"",
+   "channel": "StoneSoWavy!",
+   "stated_bpm": 70.0,
+   "stated_key": "Bmin",
+   "audio": "/Users/shuhanzhang/miles-studio/bench/refs/alBapK3ToSc.webm",
+   "style": "rnb",
+   "source": "bench/tasks.json"
+  },
+  {
+   "id": "Qyf2QXxq1KI",
+   "query": "drake type beat",
+   "title": "[FREE] Drake x Iceman Type Beat - ''Name''",
+   "channel": "ayozain cbfw",
+   "stated_bpm": 133.0,
+   "stated_key": "Em",
+   "audio": "/Users/shuhanzhang/miles-studio/bench/refs/Qyf2QXxq1KI.m4a",
+   "style": "trap",
+   "source": "bench/tasks.json"
+  },
+  {
+   "id": "60vMf8Z61Qg",
+   "query": "21 savage type beat",
+   "title": "21 Savage Type Beat - \"No Alibi\" | Metro Boomin Type Beat",
+   "channel": "Dreuce Beats",
+   "stated_bpm": 144.0,
+   "stated_key": "D#Minor",
+   "audio": "/Users/shuhanzhang/miles-studio/bench/refs/60vMf8Z61Qg.m4a",
+   "style": "trap",
+   "source": "evolve/briefs_new.json"
+  },
+  {
+   "id": "aNXItVNHEW8",
+   "query": "playboi carti type beat",
+   "title": "[free] playboi carti type beat - \"MADE OF HATE\"",
+   "channel": "8dan",
+   "stated_bpm": 152.0,
+   "stated_key": "F#m",
+   "audio": "/Users/shuhanzhang/miles-studio/bench/refs/aNXItVNHEW8.m4a",
+   "style": "trap",
+   "source": "bench/tasks.json"
+  },
+  {
+   "id": "blGl1h0zZSE",
+   "query": "ken carson type beat yale",
+   "title": "(FREE) Ken Carson Type Beat - \"Yale\"",
+   "channel": "wavy",
+   "stated_bpm": 137.0,
+   "stated_key": "F#Major",
+   "audio": "/Users/shuhanzhang/miles-studio/bench/refs/blGl1h0zZSE.m4a",
+   "style": "trap",
+   "source": "bench/tasks.json"
+  },
+  {
+   "id": "IE9i4HwbGpU",
+   "query": "gunna type beat",
+   "title": "[FREE] Gunna Type Beat - \"Rare Form\"",
+   "channel": "MIG",
+   "stated_bpm": 128.0,
+   "stated_key": "DMinor",
+   "audio": "/Users/shuhanzhang/miles-studio/bench/refs/IE9i4HwbGpU.m4a",
+   "style": "trap",
+   "source": "evolve/briefs_new.json"
+  }
+ ],
+ "sha256": "ee57cb13456bf55f31a8d953e30e1831a817b353d66f56fcebe0d33fbe75c356"
+}

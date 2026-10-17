@@ -1,0 +1,5 @@
+{
+ "MILES_SELF_CHECK": {"values": ["0", "1"], "what": "1 adds a verify_songs step: Miles self-tests its songs against the brief (tempo, key, clean) and may repair them with edit_songs up to twice before saying done"},
+ "MILES_BEST_OF": {"values": ["1", "2", "3"], "what": "how many takes the engine renders per part, keeping the best"},
+ "CRUSOE_PRODUCER_MODEL": {"values": ["nvidia/NVIDIA-Nemotron-3-Super-120B-A12B", "deepseek-ai/DeepSeek-V4-Pro", "nvidia/Nemotron-3.5-Lightning-30B-A3B"], "what": "which Crusoe model plays the producer"}
+}

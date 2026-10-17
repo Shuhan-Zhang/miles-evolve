@@ -1,0 +1,9 @@
+.env*
+work/
+*.wav
+*.mp3
+*.m4a
+__pycache__/
+*.pyc
+evolve/runs/
+evolve/cache/

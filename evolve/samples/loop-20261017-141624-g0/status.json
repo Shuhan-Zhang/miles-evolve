@@ -1,0 +1,422 @@
+{
+ "stamp": "loop-20261017-141624-g0",
+ "version": "v0",
+ "total": 16,
+ "done": 12,
+ "workers": {
+  "w1": {
+   "state": "building",
+   "at": 1792272087.5056,
+   "brief": "BD5u-zlbb8w",
+   "seed": 1,
+   "title": "FREE DON TOLIVER x TRAVIS SCOTT Type Beat - \"HALLWAY\"",
+   "passed": false,
+   "best": {
+    "song": "s_ca69c7",
+    "tempo": false,
+    "key": true,
+    "clean": true,
+    "delivered": true,
+    "pass": false,
+    "why": [
+     "tempo: measured 90.7 BPM, brief says 120 (song claims 90)"
+    ],
+    "skipped": [],
+    "measured": {
+     "claimed_bpm": 90.0,
+     "claimed_key": "Eb",
+     "status": "ready",
+     "bpm": 90.7,
+     "bpm_support": 0.69,
+     "key": "D#",
+     "key_r": 0.667,
+     "key_margin": 0.123,
+     "key_runner_up": "G#",
+     "stems": [
+      "bass",
+      "drums",
+      "sample"
+     ],
+     "ear": {
+      "bass": {
+       "notes": 32,
+       "fit": 0.79,
+       "clash": 0.03,
+       "absent": 0.09,
+       "tune": -9.0,
+       "sample_tuning": 7.0,
+       "bass_pcs": [
+        0,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10,
+        11
+       ]
+      },
+      "sample": {
+       "lock": 1.1,
+       "late_ms": 34.0,
+       "off": 0.47
+      },
+      "drums": {
+       "lock": 1.05,
+       "late_ms": 18.0,
+       "off": 0.32
+      },
+      "balance": {
+       "sample": -5.9,
+       "bass": -2.4
+      },
+      "missing": []
+     }
+    },
+    "contract": {
+     "bpm": 120.0,
+     "key": "Cm",
+     "style": "sza",
+     "refs": [
+      "/Users/shuhanzhang/miles-studio/bench/refs/sV4rANCXUG8.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/2G4CL1STU2o.m4a",
+      "/Users/shuhanzhang/miles-hackathon/bench/refs/aP5b3hmTsLw.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/zDy7zYJ1ZE8.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/EkgIoePtE4s.m4a"
+     ]
+    },
+    "ref": {
+     "score": 0.634,
+     "nearest": "2G4CL1STU2o",
+     "mean": 0.439,
+     "n_refs": 5,
+     "dims": {
+      "tempo": 0.25,
+      "timbre": 0.89,
+      "brightness": 0.32,
+      "low_end": 0.42,
+      "busyness": 0.31
+     },
+     "gaps": [
+      "tempo feel 90.7 vs the refs' 105.5",
+      "busier than the refs (5.39 vs 3.05 hits/s)"
+     ],
+     "ours": {
+      "bpm": 90.7,
+      "centroid": 1616,
+      "low": 0.556,
+      "onsets": 5.39
+     },
+     "pass": true
+    }
+   }
+  },
+  "w2": {
+   "state": "building",
+   "at": 1792272092.881072,
+   "brief": "ESj67i9gYLY",
+   "seed": 1,
+   "title": "Lil Baby Type Beat - \"No Joke\"",
+   "passed": false,
+   "best": {
+    "song": "s_223d26",
+    "tempo": true,
+    "key": false,
+    "clean": true,
+    "delivered": true,
+    "pass": false,
+    "why": [
+     "key: heard G#, brief says C#m (song claims Cm)"
+    ],
+    "skipped": [],
+    "measured": {
+     "claimed_bpm": 134.0,
+     "claimed_key": "Cm",
+     "status": "ready",
+     "bpm": 67.1,
+     "bpm_support": 1.0,
+     "key": "G#",
+     "key_r": 0.875,
+     "key_margin": 0.194,
+     "key_runner_up": "Cm",
+     "stems": [
+      "bass",
+      "drums",
+      "sample"
+     ],
+     "ear": {
+      "bass": {
+       "notes": 4,
+       "fit": 0.45,
+       "clash": 0.0,
+       "absent": 0.25,
+       "tune": 7.0,
+       "sample_tuning": 0.0,
+       "bass_pcs": [
+        5,
+        8
+       ]
+      },
+      "sample": {
+       "lock": 1.02,
+       "late_ms": 11.0,
+       "off": 0.1
+      },
+      "drums": {
+       "lock": 2.09,
+       "late_ms": 7.0,
+       "off": 0.03
+      },
+      "balance": {
+       "bass": -2.4,
+       "sample": -6.1
+      },
+      "missing": []
+     }
+    },
+    "contract": {
+     "bpm": 134.0,
+     "key": "C#m",
+     "style": "trap",
+     "refs": [
+      "/Users/shuhanzhang/miles-studio/bench/refs/3-0fAuCjKsc.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/GP-dvf2r6Z0.webm",
+      "/Users/shuhanzhang/miles-studio/bench/refs/IKg3NrH6YmU.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/ESj67i9gYLY.m4a"
+     ]
+    },
+    "ref": {
+     "score": 0.701,
+     "nearest": "3-0fAuCjKsc",
+     "mean": 0.514,
+     "n_refs": 4,
+     "dims": {
+      "tempo": 0.48,
+      "timbre": 0.88,
+      "brightness": 0.38,
+      "low_end": 0.18,
+      "busyness": 0.64
+     },
+     "gaps": [
+      "less low end than the refs (55 % vs 79 % under 120 Hz)",
+      "brighter than the refs (centroid 2087 vs 1414 Hz)"
+     ],
+     "ours": {
+      "bpm": 132.5,
+      "centroid": 2087,
+      "low": 0.549,
+      "onsets": 5.51
+     },
+     "pass": true
+    }
+   }
+  },
+  "w3": {
+   "state": "building",
+   "at": 1792272069.589592,
+   "brief": "IKg3NrH6YmU",
+   "seed": 1,
+   "title": "Don Toliver Type Beat \u201cPink\u201d",
+   "passed": false,
+   "best": {
+    "song": "s_65c7e1",
+    "tempo": false,
+    "key": true,
+    "clean": true,
+    "delivered": true,
+    "pass": false,
+    "why": [
+     "tempo: measured 139.7 BPM, brief says 92 (song claims 140)"
+    ],
+    "skipped": [],
+    "measured": {
+     "claimed_bpm": 140.0,
+     "claimed_key": "Fm",
+     "status": "ready",
+     "bpm": 139.7,
+     "bpm_support": 0.82,
+     "key": "Fm",
+     "key_r": 0.669,
+     "key_margin": 0.16,
+     "key_runner_up": "F",
+     "stems": [
+      "bass",
+      "drums",
+      "sample"
+     ],
+     "ear": {
+      "bass": {
+       "notes": 16,
+       "fit": 0.9,
+       "clash": 0.0,
+       "absent": 0.0,
+       "tune": 21.0,
+       "sample_tuning": -1.0,
+       "bass_pcs": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        10
+       ]
+      },
+      "sample": {
+       "lock": 1.23,
+       "late_ms": 8.0,
+       "off": 0.12
+      },
+      "drums": {
+       "lock": 1.99,
+       "late_ms": 4.0,
+       "off": 0.0
+      },
+      "balance": {
+       "sample": -9.1,
+       "bass": -2.3
+      },
+      "missing": []
+     }
+    },
+    "contract": {
+     "bpm": 92.0,
+     "key": "Fm",
+     "style": "bryson tiller",
+     "refs": [
+      "/Users/shuhanzhang/miles-studio/bench/refs/JGcwgSWBx0Y.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/2G4CL1STU2o.m4a",
+      "/Users/shuhanzhang/miles-hackathon/bench/refs/aP5b3hmTsLw.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/zDy7zYJ1ZE8.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/EkgIoePtE4s.m4a"
+     ]
+    },
+    "ref": {
+     "score": 0.494,
+     "nearest": "aP5b3hmTsLw",
+     "mean": 0.396,
+     "n_refs": 5,
+     "dims": {
+      "tempo": 0.04,
+      "timbre": 0.81,
+      "brightness": 0.15,
+      "low_end": 0.73,
+      "busyness": 0.25
+     },
+     "gaps": [
+      "tempo feel 139.7 vs the refs' 92.3",
+      "brighter than the refs (centroid 2761 vs 842 Hz)"
+     ],
+     "ours": {
+      "bpm": 139.7,
+      "centroid": 2761,
+      "low": 0.605,
+      "onsets": 6.12
+     },
+     "pass": true
+    }
+   }
+  },
+  "w4": {
+   "state": "building",
+   "at": 1792272046.5402792,
+   "brief": "GP-dvf2r6Z0",
+   "seed": 1,
+   "title": "METRO BOOMIN x 21 SAVAGE TYPE BEAT - \"GOLD TETH\"",
+   "passed": true,
+   "best": {
+    "song": "s_11ce4d",
+    "tempo": true,
+    "key": true,
+    "clean": true,
+    "delivered": true,
+    "pass": true,
+    "why": [],
+    "skipped": [],
+    "measured": {
+     "claimed_bpm": 93.0,
+     "claimed_key": "Cm",
+     "status": "ready",
+     "bpm": 92.3,
+     "bpm_support": 1.01,
+     "key": "Cm",
+     "key_r": 0.633,
+     "key_margin": 0.016,
+     "key_runner_up": "G#",
+     "stems": [
+      "bass",
+      "drums",
+      "sample"
+     ],
+     "ear": {
+      "bass": {
+       "notes": 7,
+       "fit": 0.49,
+       "clash": 0.0,
+       "absent": 0.43,
+       "tune": -9.0,
+       "sample_tuning": 9.0,
+       "bass_pcs": [
+        0,
+        1,
+        5,
+        7,
+        8
+       ]
+      },
+      "sample": {
+       "lock": 1.15,
+       "late_ms": 14.0,
+       "off": 0.28
+      },
+      "drums": {
+       "lock": 1.23,
+       "late_ms": 14.0,
+       "off": 0.28
+      },
+      "balance": {
+       "bass": -2.5,
+       "sample": -5.9
+      },
+      "missing": []
+     }
+    },
+    "contract": {
+     "bpm": 93.0,
+     "key": "Cm",
+     "style": "6lack",
+     "refs": [
+      "/Users/shuhanzhang/miles-studio/bench/refs/zDy7zYJ1ZE8.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/2G4CL1STU2o.m4a",
+      "/Users/shuhanzhang/miles-hackathon/bench/refs/aP5b3hmTsLw.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/EkgIoePtE4s.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/JGcwgSWBx0Y.m4a"
+     ]
+    },
+    "ref": {
+     "score": 0.596,
+     "nearest": "zDy7zYJ1ZE8",
+     "mean": 0.519,
+     "n_refs": 5,
+     "dims": {
+      "tempo": 0.49,
+      "timbre": 0.91,
+      "brightness": 0.19,
+      "low_end": 0.76,
+      "busyness": 0.25
+     },
+     "gaps": [
+      "brighter than the refs (centroid 2510 vs 842 Hz)",
+      "busier than the refs (6.15 vs 3.05 hits/s)"
+     ],
+     "ours": {
+      "bpm": 92.3,
+      "centroid": 2510,
+      "low": 0.684,
+      "onsets": 6.15
+     },
+     "pass": true
+    }
+   }
+  }
+ }
+}

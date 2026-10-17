@@ -1,0 +1,43 @@
+{
+ "loop": "loop-20261017-141624",
+ "gen": 0,
+ "gens": 6,
+ "base": "/Users/shuhanzhang/miles-hackathon/evolve/versions/v0",
+ "best": "/Users/shuhanzhang/miles-hackathon/evolve/versions/v0",
+ "best_pass": null,
+ "noise": 1,
+ "n": 16,
+ "workers": 4,
+ "seeds": 1,
+ "briefs": [
+  "wNmiL6TJEBo",
+  "sMH5ryP6IhQ",
+  "w298TXv-KJk",
+  "ym1N_7dqEVE",
+  "vLp4WP_-tfk",
+  "2G4CL1STU2o",
+  "aP5b3hmTsLw",
+  "zDy7zYJ1ZE8",
+  "EkgIoePtE4s",
+  "JGcwgSWBx0Y",
+  "sV4rANCXUG8",
+  "3-0fAuCjKsc",
+  "GP-dvf2r6Z0",
+  "IKg3NrH6YmU",
+  "BD5u-zlbb8w",
+  "ESj67i9gYLY"
+ ],
+ "history": [],
+ "current": {
+  "gen": 0,
+  "phase": "baseline",
+  "stamp": "loop-20261017-141624-g0",
+  "version": "v0"
+ },
+ "baseline_runs": [],
+ "spent": {
+  "llm_usd": 0.0,
+  "llm_calls": 0
+ },
+ "at": 1792271784.539145
+}

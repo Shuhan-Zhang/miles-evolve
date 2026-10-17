@@ -1,0 +1,162 @@
+diff --git a/server/app.py b/server/app.py
+index 70230e3..2d5e3d5 100644
+--- a/server/app.py
++++ b/server/app.py
+@@ -408,7 +408,9 @@ async def task(req):
+         return web.json_response({"error": "still working — check the studio", "partial": True}, status=202)
+     touched = [s for sid, s in hub.songs.items() if s.created >= t0 or len(s.versions) != before.get(sid, -1)]
+     reply = next((m["text"] for m in reversed(hub.messages) if m["role"] == "agent" and m["text"]), "")
+-    return web.json_response({"reply": reply, "songs": [song_brief(s) for s in touched]})
++    verify = (hub.producer.reply or {}).get("verify")              # MILES_SELF_CHECK=1: the job's verify_songs calls
++    return web.json_response({"reply": reply, "songs": [song_brief(s) for s in touched],
++                              **({"verify": verify} if verify is not None else {})})
+ 
+ 
+ def song_brief(s) -> dict:
+diff --git a/server/producer.py b/server/producer.py
+index 7bd8b7d..8c219b4 100644
+--- a/server/producer.py
++++ b/server/producer.py
+@@ -161,6 +161,27 @@ TOOLS = [
+ ]
+ 
+ 
++# Self-check (MILES_SELF_CHECK=1 only; off, the tools and the prompt are exactly as without it): the producer measures
++# its new songs against the brief's contract (evolve/check.py: tempo, key, clean, delivered) and repairs what fails.
++VERIFY_TOOL = tool(
++    "verify_songs", "Measure songs against the brief from the audio (tempo, key, clean, delivered). Returns pass / "
++    "fail per song and why. Default: the songs made or edited in this job.",
++    {"song_ids": {"type": "array", "items": {"type": "string"}, "description": "ids or numbers like '#4'; omit = this "
++                  "job's songs"}})
++VERIFY_LINE = ("\n\nBefore saying you're done, call verify_songs on your new songs; if a song fails, repair it with "
++               "edit_songs, then verify again. At most 2 repair rounds, then deliver as is and say what still fails.")
++VERIFY_REPAIRS = 2                                 # verify calls per job: the first + one after each repair round
++VERIFY_TIMEOUT = 90                                # seconds per song
++
++
++def self_check() -> bool:
++    return os.environ.get("MILES_SELF_CHECK") == "1"
++
++
++def tools() -> list[dict]:
++    return TOOLS + [VERIFY_TOOL] if self_check() else TOOLS
++
++
+ def best_of(n_songs: int) -> int:
+     """How many takes of each requested song Miles builds and listens to (MILES_BEST_OF overrides): 3 for a few
+     songs, 2 for a handful, 1 for big batches (time)."""
+@@ -217,11 +238,14 @@ class Producer:
+         reply = await hub.message("agent", "", None)
+         self.reply = reply
+         self.digs = 0                                    # find_records calls this job (each takes minutes)
++        self.brief_text, self.touched, self.verify_log = text, [], []   # for verify_songs
+         await hub.busy(True, "thinking…")
+         system = SYSTEM.replace("{styles}", ", ".join(engine.library().grooves["styles"]))
+         notes = memory_text()
+         if notes:
+             system += "\n\nThe producer's notes (MILES.md — their taste and rules; follow them unless told otherwise):\n" + notes
++        if self_check():
++            system += VERIFY_LINE
+         messages = [{"role": "system", "content": system},
+                     *hub.history(12),
+                     {"role": "user", "content": self.context(text, song_id, upload_ids)}]
+@@ -295,7 +319,7 @@ class Producer:
+         wait for the first model to come back and go on. A daily limit still raises."""
+         for attempt in range(4):
+             try:
+-                return await fallback.chat(messages, TOOLS, timeout=60)
++                return await fallback.chat(messages, tools(), timeout=60)
+             except RuntimeError:
+                 rest = [t for m, t in fallback._openai_rest.items() if m in fallback.AGENT_MODELS]
+                 wait = min(rest, default=0) - time.time()
+@@ -529,6 +553,7 @@ class Producer:
+ 
+         await asyncio.gather(*[build(i, m, s) for i, (m, s) in enumerate(zip(list(made), songs))])
+         await hub.step_update(step, song_ids=[m.id for m in made])
++        self.note_touched(m.id for m in made)
+         ok = [m for m in made if m.status == "ready"]
+         await hub.step_update(step, status="done" if ok else "error",
+                               detail=f"{len(ok)}/{len(made)} ready" + (
+@@ -561,9 +586,52 @@ class Producer:
+             return {"song": f"#{self.hub.number(s.id)}", "results": [f"{'✓' if r.ok else '✗'} {r.summary}" for r in res],
+                     **({"problems": bad} if bad else {})}
+         out = await asyncio.gather(*[one(s) for s in targets])
++        self.note_touched(s.id for s in targets)
+         await self.hub.step_update(step, status="done", detail=f"{len(targets)} updated")
+         return {"edits": out}
+ 
++    def note_touched(self, ids):
++        touched = getattr(self, "touched", None)
++        if touched is not None:
++            touched += [i for i in ids if i not in touched]
++
++    async def t_verify_songs(self, mid: str, song_ids: list[str] | None = None):
++        """Self-check: each song against the contract of this job's brief, measured from the audio (evolve/check.py).
++        Every call is logged on the job's reply (reply["verify"]) and in /api/task's result, for the outer loop."""
++        if not self_check():
++            return {"error": "no tool verify_songs"}
++        log_ = self.verify_log
++        if len(log_) > VERIFY_REPAIRS:
++            log_.append({"call": len(log_) + 1, "refused": True, "songs": []})
++            self.save_verify()
++            return {"error": "repair budget used; deliver as is"}
++        targets = [s for s in (self.resolve(i) for i in song_ids) if s] if song_ids else \
++            [self.hub.songs[i] for i in self.touched if i in self.hub.songs]
++        if not targets:
++            return {"error": "no songs to verify (make or edit some first, or pass song_ids)"}
++        step = await self.hub.step(mid, "verify_songs", f"Checking {', '.join('#' + str(self.hub.number(s.id)) for s in targets)} "
++                                   "against the brief", song_ids=[s.id for s in targets], progress=(0, len(targets)))
++        results = []
++        for n, s in enumerate(targets):
++            results.append(await verify_one(engine.SONGS / s.id, self.brief_text) | {"song": f"#{self.hub.number(s.id)}",
++                                                                                    "id": s.id})
++            await self.hub.step_update(step, progress=(n + 1, len(targets)))
++        ok = sum(r["pass"] for r in results)
++        log_.append({"call": len(log_) + 1, "songs": [{k: r.get(k) for k in ("id", "pass", "why")} for r in results]})
++        self.save_verify()
++        await self.hub.step_update(step, status="done" if ok == len(results) else "error",
++                                   detail=f"{ok}/{len(results)} pass" + "".join(
++                                       f" · {r['song']}: {'; '.join(r['why'])[:80]}" for r in results if not r["pass"]))
++        left = VERIFY_REPAIRS + 1 - len(log_)
++        return {"songs": results, "verify_calls_left": left,
++                **({"next": "repair the failing songs with edit_songs, then verify_songs again" if left else
++                    "repair budget used; deliver as is and say what still fails"} if ok < len(results) else {})}
++
++    def save_verify(self):
++        if self.reply is not None:
++            self.reply["verify"] = self.verify_log
++            self.hub.save()
++
+     async def t_arrange_songs(self, mid: str, song_ids: list[str], structure: list[str] | None = None, bars: int = 8):
+         targets = [s for s in (self.resolve(i) for i in song_ids) if s and s.status == "ready"]
+         step = await self.hub.step(mid, "arrange_songs", f"Arranging {', '.join('#' + str(self.hub.number(s.id)) for s in targets)}",
+@@ -960,6 +1028,29 @@ def titled(path: str, title: str | None) -> str:
+     return str(link)
+ 
+ 
++async def verify_one(song_dir: Path, brief: str) -> dict:
++    """evolve/check.py on one song, compact; an exception or a timeout is a failure line, never a crash."""
++    def run():
++        import sys
++        evolve = Path(__file__).resolve().parents[1] / "evolve"
++        if str(evolve) not in sys.path:
++            sys.path.insert(0, str(evolve))
++        from check import check
++        from contract import contract
++        return check(song_dir, contract(brief))
++    try:
++        r = await asyncio.wait_for(asyncio.to_thread(run), VERIFY_TIMEOUT)
++    except asyncio.TimeoutError:
++        return {"pass": False, "why": [f"check timed out after {VERIFY_TIMEOUT} s"]}
++    except Exception as e:                                       # noqa: BLE001
++        log.exception("verify_songs")
++        return {"pass": False, "why": [f"check failed: {type(e).__name__}: {str(e)[:120]}"]}
++    m = r.get("measured") or {}
++    return {"pass": bool(r.get("pass")), "tempo": r.get("tempo"), "key": r.get("key"), "clean": r.get("clean"),
++            "delivered": r.get("delivered"), "why": r.get("why") or [],
++            "measured": {"bpm": m.get("bpm"), "key": m.get("key")}, "contract": r.get("contract")}
++
++
+ def tags_for(song) -> list[str]:
+     tags = []
+     for l in song.log:
