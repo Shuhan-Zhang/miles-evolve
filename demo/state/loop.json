@@ -147,17 +147,25 @@
  ],
  "current": {
   "gen": 6,
-  "phase": "coach",
-  "version": "g6"
+  "phase": "scoring",
+  "stamp": "loop-20261017-141624-g6",
+  "version": "g6",
+  "hypothesis": "Miles often substitutes the relative major for a requested minor key, making detectors hear the relative major as the tonic.",
+  "patch": {
+   "hypothesis": "Miles often substitutes the relative major for a requested minor key, making detectors hear the relative major as the tonic.",
+   "kind": "addendum",
+   "text": "If the brief specifies a minor key (e.g., 'C#m', 'Fm'), verify that the tonic chord is minor (i) and not the relative major (III); write a i\u2011iv\u2011v progression in the minor key unless otherwise instructed."
+  },
+  "patch_desc": "addendum +1 rule"
  },
  "baseline_runs": [
   "~/miles-hackathon/evolve/runs/loop-20261017-141624-g0/v0"
  ],
  "spent": {
-  "llm_usd": 0.0407,
-  "llm_calls": 7
+  "llm_usd": 0.0482,
+  "llm_calls": 8
  },
- "at": 1792276071.166423,
+ "at": 1792276136.809925,
  "best_checks": {
   "delivered": 15,
   "tempo": 13,
