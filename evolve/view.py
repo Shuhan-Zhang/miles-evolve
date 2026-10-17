@@ -3,6 +3,7 @@
 
     python evolve/view.py              # refresh every 2 s (Ctrl-C to quit)
     python evolve/view.py --once       # print one frame (screenshots, tests)
+    python evolve/view.py --svg f.svg  # save one frame as SVG (width 120)
     python evolve/view.py --loop loop-20261017-141624 --width 140
 
 It reads what run.py and pool.py write: evolve/runs/loop-*/loop.json (loop state, history, held-out),
@@ -281,7 +282,13 @@ def main():
     ap.add_argument("--loop", help="loop name (default: latest)")
     ap.add_argument("--every", type=float, default=2.0)
     ap.add_argument("--width", type=int)
+    ap.add_argument("--svg", help="save one frame to this SVG file and exit")
     a = ap.parse_args()
+    if a.svg:
+        con = Console(record=True, width=a.width or 120, file=open("/dev/null", "w"))
+        con.print(frame(a.loop))
+        con.save_svg(a.svg, title="evolve watch")
+        return
     con = Console(width=a.width) if a.width else Console()
     if a.once:
         con.print(frame(a.loop))
