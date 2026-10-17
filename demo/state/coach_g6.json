@@ -1,0 +1,21 @@
+{
+ "gen": 6,
+ "hypothesis": "Miles often substitutes the relative major for a requested minor key, making detectors hear the relative major as the tonic.",
+ "kind": "addendum",
+ "patch": {
+  "hypothesis": "Miles often substitutes the relative major for a requested minor key, making detectors hear the relative major as the tonic.",
+  "kind": "addendum",
+  "text": "If the brief specifies a minor key (e.g., 'C#m', 'Fm'), verify that the tonic chord is minor (i) and not the relative major (III); write a i‑iv‑v progression in the minor key unless otherwise instructed."
+ },
+ "patch_desc": "addendum +1 rule",
+ "before": 8,
+ "after": 5,
+ "n": 16,
+ "checks": {
+  "delivered": 12,
+  "tempo": 12,
+  "key": 6,
+  "clean": 13
+ },
+ "kept": false
+}

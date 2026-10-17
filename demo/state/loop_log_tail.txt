@@ -102,3 +102,7 @@ gen 6/6: coach reading 8 failures of v0
    w4 GP-dvf2r6Z0-s1 PASS
    w1 BD5u-zlbb8w-s1 fail
    w2 IKg3NrH6YmU-s1 fail
+   w3 ESj67i9gYLY-s1 PASS
+  train 8/16 → 5/16 (noise 1) ✗ rejected
+
+done: best v0 8/16 (v0 8/16), coach spend $0.0482
