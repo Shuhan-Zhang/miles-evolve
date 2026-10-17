@@ -2,35 +2,413 @@
  "stamp": "loop-20261017-141624-heldout-v0",
  "version": "v0",
  "total": 16,
- "done": 0,
+ "done": 7,
  "workers": {
   "w1": {
    "state": "building",
-   "at": 1792276847.886623,
-   "brief": "4PoCA4taNyg",
+   "at": 1792277024.096256,
+   "brief": "pTiJ0BMwzGU",
    "seed": 1,
-   "title": "MF DOOM Type Beat - \"Food\""
+   "title": "Summer Walker x Kehlani Type Beat - \"Be Alone Tonight\"",
+   "passed": true,
+   "best": {
+    "song": "s_c9e327",
+    "tempo": true,
+    "key": true,
+    "clean": true,
+    "delivered": true,
+    "pass": true,
+    "why": [],
+    "skipped": [],
+    "measured": {
+     "claimed_bpm": 61.0,
+     "claimed_key": "Bbm",
+     "status": "ready",
+     "bpm": 123.0,
+     "bpm_support": 1.0,
+     "key": "A#m",
+     "key_r": 0.696,
+     "key_margin": 0.052,
+     "key_runner_up": "D#m",
+     "stems": [
+      "bass",
+      "drums",
+      "sample"
+     ],
+     "ear": {
+      "bass": {
+       "notes": 8,
+       "fit": 0.6,
+       "clash": 0.0,
+       "absent": 0.25,
+       "tune": -9.0,
+       "sample_tuning": 8.0,
+       "bass_pcs": [
+        3,
+        5,
+        6,
+        8,
+        10,
+        11
+       ]
+      },
+      "sample": {
+       "lock": 1.25,
+       "late_ms": 21.0,
+       "off": 0.35
+      },
+      "drums": {
+       "lock": 2.5,
+       "late_ms": 12.0,
+       "off": 0.41
+      },
+      "balance": {
+       "bass": -2.2,
+       "sample": -5.8
+      },
+      "missing": []
+     }
+    },
+    "contract": {
+     "bpm": 61.0,
+     "key": "A#m",
+     "style": "sade",
+     "refs": [
+      "/Users/shuhanzhang/miles-hackathon/bench/refs/5ihsl_dbRFo.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/NHstEi3ChTc.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/SK4h63w7R8s.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/pTiJ0BMwzGU.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/iWXJBLcfgGE.m4a"
+     ]
+    },
+    "ref": {
+     "score": 0.777,
+     "nearest": "5ihsl_dbRFo",
+     "mean": 0.57,
+     "n_refs": 5,
+     "dims": {
+      "tempo": 0.43,
+      "timbre": 0.93,
+      "brightness": 0.58,
+      "low_end": 0.26,
+      "busyness": 0.65
+     },
+     "gaps": [
+      "less low end than the refs (57 % vs 75 % under 120 Hz)",
+      "tempo feel 123 vs the refs' 110"
+     ],
+     "ours": {
+      "bpm": 123.0,
+      "centroid": 1096,
+      "low": 0.566,
+      "onsets": 3.72
+     },
+     "pass": true
+    }
+   }
   },
   "w2": {
    "state": "building",
-   "at": 1792276847.8871,
-   "brief": "q_U0Ih0jrrM",
+   "at": 1792277173.083977,
+   "brief": "iWXJBLcfgGE",
    "seed": 1,
-   "title": "Freestyle Rap Beat - Dolla"
+   "title": "Daniel Caesar x Giveon Type Beat - \"It's Nice Loving You\"",
+   "passed": false,
+   "best": {
+    "song": "s_c83243",
+    "tempo": true,
+    "key": false,
+    "clean": true,
+    "delivered": false,
+    "pass": false,
+    "why": [
+     "not delivered in time: 253 s > 180 s",
+     "key: heard G#, brief says D#m (song claims Ebm)"
+    ],
+    "skipped": [],
+    "measured": {
+     "claimed_bpm": 132.0,
+     "claimed_key": "Ebm",
+     "status": "ready",
+     "bpm": 132.5,
+     "bpm_support": 1.08,
+     "key": "G#",
+     "key_r": 0.571,
+     "key_margin": 0.017,
+     "key_runner_up": "G#m",
+     "stems": [
+      "bass",
+      "drums",
+      "sample",
+      "sample2"
+     ],
+     "ear": {
+      "bass": {
+       "notes": 16,
+       "fit": 0.64,
+       "clash": 0.0,
+       "absent": 0.06,
+       "tune": 9.0,
+       "sample_tuning": 2.0,
+       "bass_pcs": [
+        1,
+        3,
+        4,
+        8,
+        11
+       ]
+      },
+      "sample": {
+       "lock": 1.06,
+       "late_ms": 8.0,
+       "off": 0.06
+      },
+      "drums": {
+       "lock": 1.76,
+       "late_ms": 6.0,
+       "off": 0.0
+      },
+      "balance": {
+       "sample": -4.0,
+       "bass": 1.8,
+       "sample2": -8.1
+      },
+      "missing": []
+     }
+    },
+    "contract": {
+     "bpm": 132.0,
+     "key": "D#m",
+     "style": "smino",
+     "refs": [
+      "/Users/shuhanzhang/miles-hackathon/bench/refs/B-NiHdc4YaA.m4a"
+     ]
+    },
+    "ref": {
+     "score": 0.457,
+     "nearest": "B-NiHdc4YaA",
+     "mean": 0.457,
+     "n_refs": 1,
+     "dims": {
+      "tempo": 0.66,
+      "timbre": 0.9,
+      "brightness": 0.06,
+      "low_end": 0.48,
+      "busyness": 0.2
+     },
+     "gaps": [
+      "brighter than the refs (centroid 2300 vs 724 Hz)",
+      "busier than the refs (8.46 vs 3.68 hits/s)"
+     ],
+     "ours": {
+      "bpm": 132.5,
+      "centroid": 2300,
+      "low": 0.655,
+      "onsets": 8.46
+     },
+     "pass": true
+    }
+   }
   },
   "w3": {
    "state": "building",
-   "at": 1792276847.887521,
-   "brief": "qS_lZHSj6kQ",
+   "at": 1792276922.5208461,
+   "brief": "NHstEi3ChTc",
    "seed": 1,
-   "title": "Lofi House / Kaytranada / Goldlink Type Beat - All The Girls"
+   "title": "R&B Type Beat - \"Love\"",
+   "passed": true,
+   "best": {
+    "song": "s_e1962f",
+    "tempo": true,
+    "key": true,
+    "clean": true,
+    "delivered": true,
+    "pass": true,
+    "why": [],
+    "skipped": [],
+    "measured": {
+     "claimed_bpm": 118.0,
+     "claimed_key": "F#",
+     "status": "ready",
+     "bpm": 117.5,
+     "bpm_support": 1.0,
+     "key": "D#m",
+     "key_r": 0.82,
+     "key_margin": 0.213,
+     "key_runner_up": "F#",
+     "stems": [
+      "bass",
+      "drums",
+      "sample"
+     ],
+     "ear": {
+      "bass": {
+       "notes": 8,
+       "fit": 0.32,
+       "clash": 0.0,
+       "absent": 0.0,
+       "tune": 13.0,
+       "sample_tuning": -15.0,
+       "bass_pcs": [
+        3
+       ]
+      },
+      "sample": {
+       "lock": 1.04,
+       "late_ms": 33.0,
+       "off": 0.44
+      },
+      "drums": {
+       "lock": 2.34,
+       "late_ms": 6.0,
+       "off": 0.0
+      },
+      "balance": {
+       "bass": -4.0,
+       "sample": -6.8
+      },
+      "missing": []
+     }
+    },
+    "contract": {
+     "bpm": 118.0,
+     "key": "D#m",
+     "style": "kaytranada",
+     "refs": [
+      "/Users/shuhanzhang/miles-studio/bench/refs/qS_lZHSj6kQ.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/KnS9s9Pb97A.m4a"
+     ]
+    },
+    "ref": {
+     "score": 0.523,
+     "nearest": "KnS9s9Pb97A",
+     "mean": 0.518,
+     "n_refs": 2,
+     "dims": {
+      "tempo": 0.84,
+      "timbre": 0.91,
+      "brightness": 0.05,
+      "low_end": 0.03,
+      "busyness": 0.75
+     },
+     "gaps": [
+      "less low end than the refs (32 % vs 84 % under 120 Hz)",
+      "brighter than the refs (centroid 3067 vs 950 Hz)"
+     ],
+     "ours": {
+      "bpm": 117.5,
+      "centroid": 3067,
+      "low": 0.324,
+      "onsets": 3.81
+     },
+     "pass": true
+    }
+   }
   },
   "w4": {
    "state": "building",
-   "at": 1792276847.88797,
-   "brief": "KnS9s9Pb97A",
+   "at": 1792277177.097014,
+   "brief": "alBapK3ToSc",
    "seed": 1,
-   "title": "JAZZ RAP TYPE BEAT \"CHEMISTRY\""
+   "title": "Frank Ocean X Piano Ballad Type Beat - \"this is falling in love\"",
+   "passed": false,
+   "best": {
+    "song": "s_409145",
+    "tempo": true,
+    "key": true,
+    "clean": true,
+    "delivered": false,
+    "pass": false,
+    "why": [
+     "not delivered in time: 242 s > 180 s"
+    ],
+    "skipped": [],
+    "measured": {
+     "claimed_bpm": 125.0,
+     "claimed_key": "Bm",
+     "status": "ready",
+     "bpm": 126.0,
+     "bpm_support": 1.09,
+     "key": "Bm",
+     "key_r": 0.853,
+     "key_margin": 0.113,
+     "key_runner_up": "G",
+     "stems": [
+      "bass",
+      "drums",
+      "sample",
+      "sample2"
+     ],
+     "ear": {
+      "bass": {
+       "notes": 7,
+       "fit": 0.58,
+       "clash": 0.0,
+       "absent": 0.43,
+       "tune": -3.0,
+       "sample_tuning": 3.0,
+       "bass_pcs": [
+        0,
+        6,
+        7,
+        11
+       ]
+      },
+      "sample": {
+       "lock": 1.12,
+       "late_ms": 12.0,
+       "off": 0.16
+      },
+      "drums": {
+       "lock": 2.18,
+       "late_ms": 3.0,
+       "off": 0.04
+      },
+      "balance": {
+       "bass": -2.3,
+       "sample": -5.6,
+       "sample2": -11.4
+      },
+      "missing": []
+     }
+    },
+    "contract": {
+     "bpm": 125.0,
+     "key": "Bm",
+     "style": "brent faiyaz",
+     "refs": [
+      "/Users/shuhanzhang/miles-studio/bench/refs/SK4h63w7R8s.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/NHstEi3ChTc.m4a",
+      "/Users/shuhanzhang/miles-hackathon/bench/refs/5ihsl_dbRFo.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/pTiJ0BMwzGU.m4a",
+      "/Users/shuhanzhang/miles-studio/bench/refs/iWXJBLcfgGE.m4a"
+     ]
+    },
+    "ref": {
+     "score": 0.526,
+     "nearest": "5ihsl_dbRFo",
+     "mean": 0.382,
+     "n_refs": 5,
+     "dims": {
+      "tempo": 0.29,
+      "timbre": 0.88,
+      "brightness": 0.14,
+      "low_end": 0.27,
+      "busyness": 0.33
+     },
+     "gaps": [
+      "brighter than the refs (centroid 2417 vs 1070 Hz)",
+      "less low end than the refs (57 % vs 75 % under 120 Hz)"
+     ],
+     "ours": {
+      "bpm": 126.0,
+      "centroid": 2417,
+      "low": 0.573,
+      "onsets": 5.27
+     },
+     "pass": true
+    }
+   }
   }
  }
 }
