@@ -1,0 +1,21 @@
+{
+ "gen": 3,
+ "hypothesis": "Miles's bass lines often emphasize the fifth scale degree, causing automatic key detection to hear a key a fourth/fifth away from the intended tonic.",
+ "kind": "addendum",
+ "patch": {
+  "hypothesis": "Miles's bass lines often emphasize the fifth scale degree, causing automatic key detection to hear a key a fourth/fifth away from the intended tonic.",
+  "kind": "addendum",
+  "text": "When writing the bass part, ensure the bass emphasizes the root note of the key (tonic) rather than the fifth: start each bar on the root, and avoid making the fifth the most frequent or loudest note in the bass track."
+ },
+ "patch_desc": "addendum +1 rule",
+ "before": 8,
+ "after": 6,
+ "n": 16,
+ "checks": {
+  "delivered": 11,
+  "tempo": 13,
+  "key": 8,
+  "clean": 14
+ },
+ "kept": false
+}
