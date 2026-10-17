@@ -33,7 +33,7 @@ TITLES = {1: "You Got It · trapsoul", 2: "Pink · melodic trap", 3: "Refresh ·
 
 def from_cache(name: str) -> dict:
     r = json.loads((HERE / "cache" / f"{name}.json").read_text())
-    return {"audio": HERE / "cache" / r["cached_audio"], "title": r["song"]["title"], "style": r["song"].get("style"),
+    return {"song_dir": str(Path(r["song"]["audio"]).parent), "audio": HERE / "cache" / r["cached_audio"], "title": r["song"]["title"], "style": r["song"].get("style"),
             "checks": r["checks"], "pass": r["pass"], "measured": r["measured"], "why": r.get("why") or [],
             "seconds": r["seconds"], "bpm": r["brief"]["bpm"], "key": r["brief"]["key"],
             "verify_calls": len(r.get("verify") or []), "source": f"demo run · {r.get('made_at', '')}",
@@ -63,12 +63,20 @@ def main():
         it = from_cache(src[6:]) if src.startswith("cache:") else from_loop(src)
         dst = OUT / f"{i:02d}{it['audio'].suffix}"
         shutil.copyfile(it["audio"], dst)
+        stems = {}
+        for role in ("drums", "bass", "sample"):
+            src = it["audio"].parent / f"{it['audio'].stem}_{role}.wav"
+            if not src.exists() and it.get("song_dir"):
+                src = Path(it["song_dir"]) / f"v0_{role}.wav"
+            if src.exists():
+                shutil.copyfile(src, OUT / f"{i:02d}_{role}.wav")
+                stems[role] = f"/cache/gallery/{i:02d}_{role}.wav"
         m = it["measured"]
         items.append({"id": i, "brief": brief, "mood": mood, "length": length, "bpm": it["bpm"], "key": it["key"],
                       "title": TITLES.get(i, it["title"]), "style": it["style"], "url": f"/cache/gallery/{dst.name}",
                       "checks": it["checks"], "pass": it["pass"], "why": it["why"], "seconds": it["seconds"],
                       "heard": {"bpm": m.get("bpm"), "key": m.get("key")}, "claimed": it["claimed"],
-                      "verify_calls": it["verify_calls"], "source": it["source"]})
+                      "verify_calls": it["verify_calls"], "source": it["source"], "stems": stems})
     (HERE / "cache" / "gallery.json").write_text(json.dumps(items, indent=1, default=str))
     print(f"{len(items)} beats -> {OUT}")
 

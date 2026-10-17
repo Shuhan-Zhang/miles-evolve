@@ -66,6 +66,28 @@ def make_music(brief: str, use_cache: bool = False) -> dict:
             "self_check_calls": len(res.get("verify") or []), "replayed_from_cache": bool(res.get("cached"))}
 
 
+def pretty(o: dict) -> str:
+    if o.get("error"):
+        return f"Miles: error: {o['error']}"
+    b, m, c = o.get("brief") or {}, o.get("measured") or {}, o.get("checks") or {}
+    mark = lambda k: "✓" if c.get(k) else "✗" if c.get(k) is False else "·"
+    bpm, want = m.get("bpm"), b.get("bpm")
+    tempo = f"{bpm:.1f} BPM" if bpm else "—"
+    if bpm and want and abs(bpm / want - 2) < 0.08:
+        tempo = f"{bpm / 2:.1f} BPM (heard {bpm:.1f}, double-time)"
+    lines = [f"♪ {o.get('title') or 'track'}", f"  track    {o.get('track_path')}",
+             *( [f"  url      {o['track_url']}"] if o.get("track_url") else []), "",
+             f"  Self-check {'PASS' if o.get('pass') else 'FAIL'} (measured from the audio):",
+             f"  {mark('delivered')} Delivered  built in {o.get('build_seconds') or 0:.0f} s (bar 180 s)",
+             f"  {mark('tempo')} Tempo      {tempo}   asked {want:g} BPM" if want else f"  {mark('tempo')} Tempo      {tempo}",
+             f"  {mark('key')} Key        {m.get('key') or '—'}   asked {b.get('key') or '—'}",
+             f"  {mark('clean')} Clean      Miles's ear on the stems"]
+    lines += [f"  why: {w}" for w in o.get("why_failed") or []]
+    if o.get("replayed_from_cache"):
+        lines.append("  (replay of a real earlier run of this brief)")
+    return "\n".join(lines)
+
+
 def reply(id_, result=None, error=None):
     msg = {"jsonrpc": "2.0", "id": id_}
     msg.update({"error": error} if error else {"result": result})
@@ -100,8 +122,8 @@ def main():
             a = p.get("arguments") or {}
             try:
                 out = make_music(str(a.get("brief") or ""), bool(a.get("use_cache")))
-                reply(id_, {"content": [{"type": "text", "text": json.dumps(out, indent=1)}],
-                            "structuredContent": out, "isError": bool(out.get("error"))})
+                reply(id_, {"content": [{"type": "text", "text": pretty(out)}],
+                            "isError": bool(out.get("error"))})
             except Exception as e:                                  # noqa: BLE001
                 reply(id_, {"content": [{"type": "text", "text": f"error: {e!r}"[:500]}], "isError": True})
         elif method == "ping":

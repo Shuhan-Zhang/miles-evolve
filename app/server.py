@@ -75,7 +75,7 @@ async def api_make(req):
     jid = uuid.uuid4().hex[:8]
     job = JOBS[jid] = {"id": jid, "state": "running", "t0": time.time(), "text": text, "result": None}
     hit = None if body.get("live") else next((cached(n) for n in ("trailer_b", "trailer") if (cached(n) or {}).get("brief", {})
-                                              .get("text", "").strip().lower() == text.lower()), None)
+                                              .get("text", "").strip().lower() in text.lower()), None)
     if hit:
         job.update(replay=True, eta=6)
 
