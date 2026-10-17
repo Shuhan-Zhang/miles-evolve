@@ -26,7 +26,7 @@ over HTTP (`POST /api/task` on N scratch studios), plus the one server-side chan
    run.py gate: re-score on train → keep iff after > best + noise ──► ledger.md row, view.py
           │
           ▼
-   run.py heldout: v0 vs vBest on the held-out split, 2 seeds (16 briefs × 2 = 32 runs)
+   run.py heldout: v0 vs a candidate on the held-out split (16 briefs × 1 seed)
 ```
 
 - **contract.py** — brief → `{bpm, key, style, refs}` from what the uploader actually stated. No LLM.
@@ -48,7 +48,7 @@ over HTTP (`POST /api/task` on N scratch studios), plus the one server-side chan
 ## Results
 
 Loop `loop-20261017-141624` (4 workers, 16 train briefs × 1 seed, noise floor 1 pass; the two v0 noise runs agreed
-with about 0 flips once a checker bug on revised beats was fixed). Gens 1–4 so far; `evolve/ledger.md` is the live record.
+with about 0 flips once a checker bug on revised beats was fixed). Six generations; `evolve/ledger.md` is the record. Coach spend for the whole loop: $0.048.
 
 | gen | coach hypothesis (Nemotron on Crusoe) | patch | train before → after | kept |
 |---|---|---|---|---|
@@ -57,15 +57,19 @@ with about 0 flips once a checker bug on revised beats was fixed). Gens 1–4 so
 | 2 | Miles doesn't check its own output, so key and tempo errors go uncorrected | flag `MILES_SELF_CHECK=1` | 8 → 8 | ✗ |
 | 3 | bass lines lean on the fifth, so key detection hears the wrong tonic | addendum +1 rule | 8 → 6 | ✗ |
 | 4 | loops start on the V chord, so the dominant is heard as the tonic | addendum +1 rule | 8 → 8 | ✗ |
+| 5 | beats default to A, so transpose out of it | addendum +1 rule | 8 → 5 | ✗ |
+| 6 | Miles swaps a requested minor key for its relative major | addendum +1 rule | 8 → 5 | ✗ |
 
-No patch has beaten v0 by more than the noise floor yet, so the gate has shipped nothing. That is the gate working:
-a change that doesn't measurably help never reaches the producer.
+No patch beat v0 by more than the noise floor, so the gate shipped nothing, and three patches (gens 3, 5, 6) would
+have made Miles worse. That is the gate working: a change that doesn't measurably help never reaches the producer.
 
-| held-out (16 briefs × 2 seeds) | pass |
+Held-out (running): v0 vs the gen-1 patch on the 16 held-out briefs, 1 seed. g1 was rejected on train; it is tested
+on held-out for transparency, not as a shipped version.
+
+| held-out (16 briefs × 1 seed) | pass |
 |---|---|
-| v0 | **TBD** /32 |
-| vBest | **TBD** /32 |
-| noise floor | **TBD** |
+| v0 | **TBD** /16 |
+| g1 (rejected on train) | **TBD** /16 |
 
 ## Built today vs pre-existing Miles
 
@@ -89,7 +93,7 @@ the loop, gate, ledger and view work end to end.
 # the Crusoe key: CRUSOE_API_KEY in the environment or in .env.crusoe (gitignored, never printed)
 evolve/RUN_LOOP.sh                       # 6 generations, 4 workers on ports 8861-8864, log in evolve/runs/loop.log
 python evolve/run.py --gens 6 --resume   # pick up where it stopped
-python evolve/run.py heldout             # v0 vs the best on held-out, 2 seeds
+python evolve/run.py heldout --seeds 1 --candidate g1   # v0 vs a candidate on held-out
 python evolve/view.py                    # watch it live (needs rich: pip install rich); --once prints one frame
 EVOLVE_FAKE_POOL=1 EVOLVE_FAKE_LLM=1 python evolve/run.py --gens 3   # offline dry run, no Miles, no key
 ```
