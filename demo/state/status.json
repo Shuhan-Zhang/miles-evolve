@@ -2,7 +2,7 @@
  "stamp": "loop-20261017-141624-g5",
  "version": "g5",
  "total": 16,
- "done": 8,
+ "done": 10,
  "workers": {
   "w1": {
    "state": "building",
@@ -73,9 +73,9 @@
      "key": "Am",
      "style": "joey badass",
      "refs": [
-      "/Users/shuhanzhang/miles-studio/bench/refs/wNmiL6TJEBo.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/sMH5ryP6IhQ.m4a",
-      "/Users/shuhanzhang/miles-hackathon/bench/refs/w298TXv-KJk.m4a"
+      "~/miles-studio/bench/refs/wNmiL6TJEBo.m4a",
+      "~/miles-studio/bench/refs/sMH5ryP6IhQ.m4a",
+      "~/miles-hackathon/bench/refs/w298TXv-KJk.m4a"
      ]
     },
     "ref": {
@@ -106,41 +106,111 @@
   },
   "w2": {
    "state": "building",
-   "at": 1792275774.5408828,
-   "brief": "sV4rANCXUG8",
+   "at": 1792275873.795855,
+   "brief": "IKg3NrH6YmU",
    "seed": 1,
-   "title": "R&B Acoustic Guitar X SZA Type Beat - \"YOU' RE MINE\"",
-   "passed": false,
+   "title": "Don Toliver Type Beat \u201cPink\u201d",
+   "passed": true,
    "best": {
-    "song": null,
-    "tempo": null,
-    "key": null,
-    "clean": null,
-    "delivered": false,
-    "pass": false,
-    "why": [
-     "not delivered: no song came back (no error)"
-    ],
+    "song": "s_207a63",
+    "tempo": true,
+    "key": true,
+    "clean": true,
+    "delivered": true,
+    "pass": true,
+    "why": [],
+    "skipped": [],
+    "measured": {
+     "claimed_bpm": 120.0,
+     "claimed_key": "Eb",
+     "status": "ready",
+     "bpm": 120.2,
+     "bpm_support": 1.0,
+     "key": "D#",
+     "key_r": 0.836,
+     "key_margin": 0.023,
+     "key_runner_up": "G#",
+     "stems": [
+      "bass",
+      "drums",
+      "sample"
+     ],
+     "ear": {
+      "bass": {
+       "notes": 13,
+       "fit": 0.9,
+       "clash": 0.0,
+       "absent": 0.0,
+       "tune": -12.0,
+       "sample_tuning": 9.0,
+       "bass_pcs": [
+        0,
+        3,
+        8,
+        10
+       ]
+      },
+      "sample": {
+       "lock": 1.29,
+       "late_ms": 10.0,
+       "off": 0.18
+      },
+      "drums": {
+       "lock": 1.59,
+       "late_ms": 11.0,
+       "off": 0.0
+      },
+      "balance": {
+       "sample": -5.9,
+       "bass": -2.4
+      },
+      "missing": []
+     }
+    },
     "contract": {
-     "bpm": 127.0,
-     "key": "Fm",
-     "style": "kehlani",
+     "bpm": 120.0,
+     "key": "Cm",
+     "style": "sza",
      "refs": [
-      "/Users/shuhanzhang/miles-hackathon/bench/refs/aP5b3hmTsLw.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/2G4CL1STU2o.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/zDy7zYJ1ZE8.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/EkgIoePtE4s.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/JGcwgSWBx0Y.m4a"
+      "~/miles-studio/bench/refs/sV4rANCXUG8.m4a",
+      "~/miles-studio/bench/refs/2G4CL1STU2o.m4a",
+      "~/miles-hackathon/bench/refs/aP5b3hmTsLw.m4a",
+      "~/miles-studio/bench/refs/zDy7zYJ1ZE8.m4a",
+      "~/miles-studio/bench/refs/EkgIoePtE4s.m4a"
      ]
+    },
+    "ref": {
+     "score": 0.598,
+     "nearest": "aP5b3hmTsLw",
+     "mean": 0.449,
+     "n_refs": 5,
+     "dims": {
+      "tempo": 0.25,
+      "timbre": 0.89,
+      "brightness": 0.3,
+      "low_end": 0.55,
+      "busyness": 0.25
+     },
+     "gaps": [
+      "tempo feel 120.2 vs the refs' 105.5",
+      "busier than the refs (6 vs 3.05 hits/s)"
+     ],
+     "ours": {
+      "bpm": 120.2,
+      "centroid": 1827,
+      "low": 0.596,
+      "onsets": 6.0
+     },
+     "pass": true
     }
    }
   },
   "w3": {
    "state": "building",
-   "at": 1792275760.173277,
-   "brief": "JGcwgSWBx0Y",
+   "at": 1792275855.462542,
+   "brief": "GP-dvf2r6Z0",
    "seed": 1,
-   "title": "Bryson Tiller Trapsoul Type Beat 2026 - \"You Got It\"",
+   "title": "METRO BOOMIN x 21 SAVAGE TYPE BEAT - \"GOLD TETH\"",
    "passed": false,
    "best": {
     "song": null,
@@ -153,15 +223,15 @@
      "not delivered: no song came back (no error)"
     ],
     "contract": {
-     "bpm": 93.0,
-     "key": "Cm",
-     "style": "6lack",
+     "bpm": 92.0,
+     "key": "Fm",
+     "style": "bryson tiller",
      "refs": [
-      "/Users/shuhanzhang/miles-studio/bench/refs/zDy7zYJ1ZE8.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/2G4CL1STU2o.m4a",
-      "/Users/shuhanzhang/miles-hackathon/bench/refs/aP5b3hmTsLw.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/EkgIoePtE4s.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/JGcwgSWBx0Y.m4a"
+      "~/miles-studio/bench/refs/JGcwgSWBx0Y.m4a",
+      "~/miles-studio/bench/refs/2G4CL1STU2o.m4a",
+      "~/miles-hackathon/bench/refs/aP5b3hmTsLw.m4a",
+      "~/miles-studio/bench/refs/zDy7zYJ1ZE8.m4a",
+      "~/miles-studio/bench/refs/EkgIoePtE4s.m4a"
      ]
     }
    }
@@ -188,11 +258,11 @@
      "key": "D",
      "style": "frank ocean",
      "refs": [
-      "/Users/shuhanzhang/miles-studio/bench/refs/EkgIoePtE4s.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/2G4CL1STU2o.m4a",
-      "/Users/shuhanzhang/miles-hackathon/bench/refs/aP5b3hmTsLw.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/zDy7zYJ1ZE8.m4a",
-      "/Users/shuhanzhang/miles-studio/bench/refs/JGcwgSWBx0Y.m4a"
+      "~/miles-studio/bench/refs/EkgIoePtE4s.m4a",
+      "~/miles-studio/bench/refs/2G4CL1STU2o.m4a",
+      "~/miles-hackathon/bench/refs/aP5b3hmTsLw.m4a",
+      "~/miles-studio/bench/refs/zDy7zYJ1ZE8.m4a",
+      "~/miles-studio/bench/refs/JGcwgSWBx0Y.m4a"
      ]
     }
    }

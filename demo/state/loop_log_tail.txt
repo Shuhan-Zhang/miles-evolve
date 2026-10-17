@@ -66,3 +66,14 @@ gen 4/6: coach reading 8 failures of v0
 gen 5/6: coach reading 8 failures of v0
   hypothesis: Miles frequently leaves the generated music in a default key (roughly A minor/A major) rather than transposing to the brief’s specified key, so the detected key often disagrees with the brief.
   patch: addendum +1 rule
+   w4 ym1N_7dqEVE-s1 PASS
+   w1 wNmiL6TJEBo-s1 PASS
+   w2 sMH5ryP6IhQ-s1 PASS
+   w3 w298TXv-KJk-s1 fail
+   w4 vLp4WP_-tfk-s1 fail
+   w3 zDy7zYJ1ZE8-s1 fail
+   w2 aP5b3hmTsLw-s1 fail
+   w4 EkgIoePtE4s-s1 fail
+   w3 JGcwgSWBx0Y-s1 fail
+   w2 sV4rANCXUG8-s1 PASS
+   w1 2G4CL1STU2o-s1 fail
