@@ -5,11 +5,11 @@ set -euo pipefail
 VIDEO=$1 BED=$2 BEFORE=$3 AFTER=$4 VO=$5 OUT=$6
 # line -> start second (matches the video's timeline)
 declare -a IDS=(v01 v02 v03 v04 v05 v06 v07 v08 v09 v10 v11 v12 v13)
-declare -a AT=(0.6 3.6 8.0 11.6 15.2 20.6 25.5 29.0 33.3 37.0 43.3 51.2 55.3)
+declare -a AT=(0.6 3.6 8.0 11.6 15.2 20.6 25.5 29.0 33.3 37.0 42.2 54.2 56.6)
 inputs=(-i "$VIDEO" -i "$BED" -i "$BEFORE" -i "$AFTER")
-filt="[1:a]aformat=sample_rates=48000:channel_layouts=stereo,atrim=0:60,asetpts=N/SR/TB,volume='if(between(t,43.6,51.2),0,0.22)':eval=frame,afade=t=in:d=0.8,afade=t=out:st=58.5:d=1.5[bed];"
-filt+="[2:a]aformat=sample_rates=48000:channel_layouts=stereo,atrim=0:3.4,afade=t=out:st=3.0:d=0.4,adelay=44200|44200,volume=0.9[bef];"
-filt+="[3:a]aformat=sample_rates=48000:channel_layouts=stereo,atrim=0:3.6,afade=t=out:st=3.2:d=0.4,adelay=47600|47600,volume=0.9[aft];"
+filt="[1:a]aformat=sample_rates=48000:channel_layouts=stereo,atrim=0:60,asetpts=N/SR/TB,volume='if(between(t,44.4,54.0),0,0.22)':eval=frame,afade=t=in:d=0.8,afade=t=out:st=58.5:d=1.5[bed];"
+filt+="[2:a]aformat=sample_rates=48000:channel_layouts=stereo,atrim=0:4.8,afade=t=out:st=4.4:d=0.4,adelay=44600|44600,volume=0.9[bef];"
+filt+="[3:a]aformat=sample_rates=48000:channel_layouts=stereo,atrim=0:4.6,afade=t=out:st=4.2:d=0.4,adelay=49400|49400,volume=0.9[aft];"
 mix="[bed][bef][aft]"; n=3; k=4
 for i in "${!IDS[@]}"; do
   f="$VO/${IDS[$i]}.wav"; [ -f "$f" ] || continue
