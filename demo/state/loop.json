@@ -1,6 +1,6 @@
 {
  "loop": "loop-20261017-141624",
- "gen": 2,
+ "gen": 3,
  "gens": 6,
  "base": "~/miles-hackathon/evolve/versions/v0",
  "best": "~/miles-hackathon/evolve/versions/v0",
@@ -74,20 +74,35 @@
     "clean": 13
    },
    "kept": false
+  },
+  {
+   "gen": 3,
+   "hypothesis": "Miles's bass lines often emphasize the fifth scale degree, causing automatic key detection to hear a key a fourth/fifth away from the intended tonic.",
+   "kind": "addendum",
+   "patch": {
+    "hypothesis": "Miles's bass lines often emphasize the fifth scale degree, causing automatic key detection to hear a key a fourth/fifth away from the intended tonic.",
+    "kind": "addendum",
+    "text": "When writing the bass part, ensure the bass emphasizes the root note of the key (tonic) rather than the fifth: start each bar on the root, and avoid making the fifth the most frequent or loudest note in the bass track."
+   },
+   "patch_desc": "addendum +1 rule",
+   "version": "~/miles-hackathon/evolve/versions/loop-20261017-141624/g3",
+   "run": "~/miles-hackathon/evolve/runs/loop-20261017-141624-g3/g3",
+   "before": 8,
+   "after": 6,
+   "n": 16,
+   "checks": {
+    "delivered": 11,
+    "tempo": 13,
+    "key": 8,
+    "clean": 14
+   },
+   "kept": false
   }
  ],
  "current": {
-  "gen": 3,
-  "phase": "scoring",
-  "stamp": "loop-20261017-141624-g3",
-  "version": "g3",
-  "hypothesis": "Miles's bass lines often emphasize the fifth scale degree, causing automatic key detection to hear a key a fourth/fifth away from the intended tonic.",
-  "patch": {
-   "hypothesis": "Miles's bass lines often emphasize the fifth scale degree, causing automatic key detection to hear a key a fourth/fifth away from the intended tonic.",
-   "kind": "addendum",
-   "text": "When writing the bass part, ensure the bass emphasizes the root note of the key (tonic) rather than the fifth: start each bar on the root, and avoid making the fifth the most frequent or loudest note in the bass track."
-  },
-  "patch_desc": "addendum +1 rule"
+  "gen": 4,
+  "phase": "coach",
+  "version": "g4"
  },
  "baseline_runs": [
   "~/miles-hackathon/evolve/runs/loop-20261017-141624-g0/v0"
@@ -96,7 +111,7 @@
   "llm_usd": 0.0237,
   "llm_calls": 5
  },
- "at": 1792274418.415652,
+ "at": 1792275018.541288,
  "best_checks": {
   "delivered": 15,
   "tempo": 13,
