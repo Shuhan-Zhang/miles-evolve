@@ -2,7 +2,7 @@
  "stamp": "loop-20261017-141624-g6",
  "version": "g6",
  "total": 16,
- "done": 14,
+ "done": 15,
  "workers": {
   "w1": {
    "state": "idle",
@@ -35,33 +35,101 @@
    }
   },
   "w2": {
-   "state": "building",
-   "at": 1792276576.814921,
-   "brief": "IKg3NrH6YmU",
+   "state": "idle",
+   "at": 1792276742.100671,
+   "brief": null,
    "seed": 1,
    "title": "Don Toliver Type Beat \u201cPink\u201d",
    "passed": false,
    "best": {
-    "song": null,
-    "tempo": null,
-    "key": null,
-    "clean": null,
-    "delivered": false,
+    "song": "s_09edb1",
+    "tempo": true,
+    "key": false,
+    "clean": true,
+    "delivered": true,
     "pass": false,
     "why": [
-     "not delivered: no song came back (no error)"
+     "key: heard A#, brief says Dm (song claims Dm)"
     ],
+    "skipped": [],
+    "measured": {
+     "claimed_bpm": 125.0,
+     "claimed_key": "Dm",
+     "status": "ready",
+     "bpm": 126.0,
+     "bpm_support": 1.16,
+     "key": "A#",
+     "key_r": 0.652,
+     "key_margin": 0.026,
+     "key_runner_up": "Dm",
+     "stems": [
+      "bass",
+      "drums",
+      "sample"
+     ],
+     "ear": {
+      "bass": {
+       "notes": 7,
+       "fit": 1.0,
+       "clash": 0.0,
+       "absent": 0.0,
+       "tune": 19.0,
+       "sample_tuning": -14.0,
+       "bass_pcs": [
+        2
+       ]
+      },
+      "sample": {
+       "lock": 0.97,
+       "late_ms": 13.0,
+       "off": 0.05
+      },
+      "drums": {
+       "lock": 2.27,
+       "late_ms": 7.0,
+       "off": 0.04
+      },
+      "balance": {
+       "bass": -6.8,
+       "sample": -6.2
+      },
+      "missing": []
+     }
+    },
     "contract": {
-     "bpm": 92.0,
-     "key": "Fm",
-     "style": "bryson tiller",
+     "bpm": 125.0,
+     "key": "Dm",
+     "style": "don toliver",
      "refs": [
-      "~/miles-studio/bench/refs/JGcwgSWBx0Y.m4a",
-      "~/miles-studio/bench/refs/2G4CL1STU2o.m4a",
-      "~/miles-hackathon/bench/refs/aP5b3hmTsLw.m4a",
-      "~/miles-studio/bench/refs/zDy7zYJ1ZE8.m4a",
-      "~/miles-studio/bench/refs/EkgIoePtE4s.m4a"
+      "~/miles-studio/bench/refs/IKg3NrH6YmU.m4a",
+      "~/miles-studio/bench/refs/3-0fAuCjKsc.m4a",
+      "~/miles-studio/bench/refs/GP-dvf2r6Z0.webm",
+      "~/miles-studio/bench/refs/ESj67i9gYLY.m4a"
      ]
+    },
+    "ref": {
+     "score": 0.615,
+     "nearest": "3-0fAuCjKsc",
+     "mean": 0.568,
+     "n_refs": 4,
+     "dims": {
+      "tempo": 0.63,
+      "timbre": 0.9,
+      "brightness": 0.39,
+      "low_end": 0.21,
+      "busyness": 0.7
+     },
+     "gaps": [
+      "less low end than the refs (57 % vs 79 % under 120 Hz)",
+      "brighter than the refs (centroid 2012 vs 1414 Hz)"
+     ],
+     "ours": {
+      "bpm": 126.0,
+      "centroid": 2012,
+      "low": 0.569,
+      "onsets": 5.27
+     },
+     "pass": true
     }
    }
   },
