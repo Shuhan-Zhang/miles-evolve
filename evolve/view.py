@@ -123,12 +123,12 @@ def short(s: str, n: int) -> str:
 # ------------------------------------------------------------------ panels
 def header(state: dict | None) -> Panel:
     if not state:
-        return Panel(Text("MILES N+1 · Crusoe Nemotron · no loop yet (evolve/runs/loop-*/loop.json)", style="bold"),
+        return Panel(Text("MILES · Crusoe Nemotron · no loop yet (evolve/runs/loop-*/loop.json)", style="bold"),
                      box=box.HEAVY)
     gen, gens = state.get("gen", 0), state.get("gens", "?")
     cur = state.get("current") or {}
     t = Text()
-    t.append("MILES N+1", style="bold magenta")
+    t.append("MILES", style="bold magenta")
     t.append(f" · Crusoe {model_name(state)} · ", style="bold")
     t.append(f"gen {cur.get('gen', gen)}/{gens}", style="bold cyan")
     phase = cur.get("phase")

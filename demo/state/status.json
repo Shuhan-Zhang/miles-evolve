@@ -2,7 +2,7 @@
  "stamp": "loop-20261017-141624-heldout-best",
  "version": "g1",
  "total": 16,
- "done": 6,
+ "done": 8,
  "workers": {
   "w1": {
    "state": "building",
@@ -113,89 +113,56 @@
   },
   "w2": {
    "state": "building",
-   "at": 1792277758.508194,
-   "brief": "q_U0Ih0jrrM",
+   "at": 1792278060.1045601,
+   "brief": "alBapK3ToSc",
    "seed": 1,
-   "title": "Freestyle Rap Beat - Dolla"
+   "title": "Frank Ocean X Piano Ballad Type Beat - \"this is falling in love\"",
+   "passed": false,
+   "best": {
+    "song": null,
+    "tempo": null,
+    "key": null,
+    "clean": null,
+    "delivered": false,
+    "pass": false,
+    "why": [
+     "not delivered: no song came back (timeout)"
+    ],
+    "contract": {
+     "bpm": 90.0,
+     "key": "F",
+     "style": "boom bap",
+     "refs": [
+      "~/miles-studio/bench/refs/q_U0Ih0jrrM.m4a",
+      "~/miles-studio/bench/refs/4PoCA4taNyg.m4a"
+     ]
+    }
+   }
   },
   "w3": {
    "state": "building",
-   "at": 1792277828.2948391,
-   "brief": "B-NiHdc4YaA",
+   "at": 1792278129.8454652,
+   "brief": "Qyf2QXxq1KI",
    "seed": 1,
-   "title": "SMINO TYPE BEAT \"HOME LATE\"",
+   "title": "Drake x Iceman Type Beat - ''Name''",
    "passed": false,
    "best": {
-    "song": "s_a618fd",
-    "tempo": true,
-    "key": false,
-    "clean": true,
-    "delivered": true,
+    "song": null,
+    "tempo": null,
+    "key": null,
+    "clean": null,
+    "delivered": false,
     "pass": false,
     "why": [
-     "key: heard D#, brief says D#m"
+     "not delivered: no song came back (timeout)"
     ],
-    "skipped": [],
-    "measured": {
-     "claimed_bpm": 118.0,
-     "claimed_key": null,
-     "status": "ready",
-     "bpm": 117.5,
-     "bpm_support": 1.03,
-     "key": "D#",
-     "key_r": 0.65,
-     "key_margin": 0.045,
-     "key_runner_up": "D#m",
-     "stems": [
-      "bass",
-      "drums"
-     ],
-     "ear": {
-      "bass": null,
-      "sample": null,
-      "drums": {
-       "lock": 1.59,
-       "late_ms": 5.0,
-       "off": 0.0
-      },
-      "balance": {
-       "bass": -2.8
-      },
-      "missing": []
-     }
-    },
     "contract": {
-     "bpm": 118.0,
+     "bpm": 132.0,
      "key": "D#m",
-     "style": "kaytranada",
+     "style": "smino",
      "refs": [
-      "~/miles-studio/bench/refs/qS_lZHSj6kQ.m4a",
-      "~/miles-studio/bench/refs/KnS9s9Pb97A.m4a"
+      "~/miles-hackathon/bench/refs/B-NiHdc4YaA.m4a"
      ]
-    },
-    "ref": {
-     "score": 0.533,
-     "nearest": "qS_lZHSj6kQ",
-     "mean": 0.524,
-     "n_refs": 2,
-     "dims": {
-      "tempo": 0.84,
-      "timbre": 0.89,
-      "brightness": 0.05,
-      "low_end": 0.55,
-      "busyness": 0.28
-     },
-     "gaps": [
-      "brighter than the refs (centroid 3182 vs 950 Hz)",
-      "busier than the refs (6.88 vs 3.565 hits/s)"
-     ],
-     "ours": {
-      "bpm": 117.5,
-      "centroid": 3182,
-      "low": 0.755,
-      "onsets": 6.88
-     },
-     "pass": true
     }
    }
   },

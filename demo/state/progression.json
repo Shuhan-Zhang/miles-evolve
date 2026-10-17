@@ -1,0 +1,13 @@
+{
+ "brief": "Kehlani x Aaliyah R&B Type Beat - \"Falling For You\" (aP5b3hmTsLw), 127 BPM, F minor",
+ "honesty": "Same brief across loop candidates. g1-g6 were each REJECTED on the 16-brief train set (no candidate beat v0 overall), so this is one brief's path through the candidates, not a kept v0->v1->v2 lineage.",
+ "steps": [
+  {"version": "v0", "verdict": "FAIL", "measured": "172.3 BPM, G#", "why": "tempo: measured 172.3 BPM, brief says 127 (song claims 127)", "ref": 0.739, "audio_on_mac": "~/miles-demo-audio/progression/kehlani_v0.wav", "seconds": 9.4},
+  {"version": "g1", "verdict": "FAIL", "measured": "126.0 BPM, C#", "why": "key: heard C#, brief says Fm (song claims C#)", "ref": 0.718, "audio_on_mac": "~/miles-demo-audio/progression/kehlani_g1.wav", "seconds": 15.1},
+  {"version": "g2", "verdict": "FAIL", "measured": "71.8 BPM, D", "why": "tempo 71.8 vs 127 and key D vs Fm", "ref": 0.607, "audio_on_mac": "~/miles-demo-audio/progression/kehlani_g2.wav", "seconds": 26.7},
+  {"version": "g3", "verdict": "PASS", "measured": "126.0 BPM, Fm", "why": "", "ref": 0.763, "audio_on_mac": "~/miles-demo-audio/progression/kehlani_g3.wav", "seconds": 15.1},
+  {"version": "g4", "verdict": "PASS", "measured": "129.2 BPM, Fm", "ref": 0.661, "audio_on_mac": "~/miles-demo-audio/progression/kehlani_g4.wav", "seconds": 7.6},
+  {"version": "g6", "verdict": "PASS", "measured": "126.0 BPM, Fm", "ref": 0.716, "audio_on_mac": "~/miles-demo-audio/progression/kehlani_g6.wav", "seconds": 15.1}
+ ],
+ "suggested_cut": "v0 (tempo off) -> g1 (key off) -> g3 (pass, highest ref similarity 0.763)"
+}
