@@ -1,0 +1,425 @@
+{
+ "note": "g1 was rejected on train; tested on held-out for transparency",
+ "v0": "4/16",
+ "g1": "2/16",
+ "v0_fail_g1_pass": [
+  "KnS9s9Pb97A"
+ ],
+ "v0_pass_g1_fail": [
+  "60vMf8Z61Qg",
+  "Qyf2QXxq1KI",
+  "qS_lZHSj6kQ"
+ ],
+ "briefs": [
+  {
+   "brief": "4PoCA4taNyg",
+   "seed": 1,
+   "title": "(FREE) MF DOOM Type Beat - \"Food\"",
+   "stated": "92.0 BPM Dmin",
+   "v0": {
+    "verdict": "FAIL",
+    "measured": "92.3 BPM G",
+    "why": [
+     "key: heard G, brief says Dm (song claims G)"
+    ],
+    "skipped": [],
+    "ref": 0.747,
+    "audio_on_mac": "~/miles-hackathon/evolve/work/w1/songs/s_0461df/v0.wav"
+   },
+   "g1": {
+    "verdict": "FAIL",
+    "measured": "92.3 BPM A#",
+    "why": [
+     "key: heard A#, brief says Dm (song claims Dm)"
+    ],
+    "skipped": [],
+    "ref": 0.642,
+    "audio_on_mac": "~/miles-hackathon/evolve/work/w1/songs/s_8e1528/v0.wav"
+   }
+  },
+  {
+   "brief": "5ihsl_dbRFo",
+   "seed": 1,
+   "title": "[FREE] SADE X ERYKAH BADU X NEO SOUL TYPE BEAT || \"FREEFALL\"",
+   "stated": "61.0 BPM Bbminor",
+   "v0": {
+    "verdict": "PASS",
+    "measured": "123.0 BPM A#m",
+    "why": [],
+    "skipped": [],
+    "ref": 0.777,
+    "audio_on_mac": "~/miles-hackathon/evolve/work/w1/songs/s_c9e327/v0.wav"
+   },
+   "g1": {
+    "verdict": "PASS",
+    "measured": "120.2 BPM C#",
+    "why": [],
+    "skipped": [],
+    "ref": 0.756,
+    "audio_on_mac": "~/miles-hackathon/evolve/work/w4/songs/s_b1edb2/v0.wav"
+   }
+  },
+  {
+   "brief": "60vMf8Z61Qg",
+   "seed": 1,
+   "title": "21 Savage Type Beat - \"No Alibi\" | Metro Boomin Type Beat",
+   "stated": "144.0 BPM D#Minor",
+   "v0": {
+    "verdict": "PASS",
+    "measured": "147.7 BPM D#m",
+    "why": [],
+    "skipped": [],
+    "ref": 0.47,
+    "audio_on_mac": "~/miles-hackathon/evolve/work/w1/songs/s_322c06/v1.wav"
+   },
+   "g1": {
+    "verdict": "FAIL",
+    "measured": "95.7 BPM C#m",
+    "why": [
+     "key: heard C#m, brief says D#m (song claims Ebm)"
+    ],
+    "skipped": [],
+    "ref": 0.444,
+    "audio_on_mac": "~/miles-hackathon/evolve/work/w1/songs/s_b97d06/v1.wav"
+   }
+  },
+  {
+   "brief": "B-NiHdc4YaA",
+   "seed": 1,
+   "title": "(FREE) SMINO TYPE BEAT \"HOME LATE\" | CHILL RAP TYPE BEAT",
+   "stated": "132.0 BPM Ebminor",
+   "v0": {
+    "verdict": "FAIL",
+    "measured": "132.5 BPM G#",
+    "why": [
+     "not delivered in time: 253 s > 180 s",
+     "key: heard G#, brief says D#m (song claims Ebm)"
+    ],
+    "skipped": [],
+    "ref": 0.457,
+    "audio_on_mac": "~/miles-hackathon/evolve/work/w2/songs/s_c83243/v1.wav"
+   },
+   "g1": {
+    "verdict": "FAIL",
+    "measured": "None BPM None",
+    "why": [
+     "not delivered: no song came back (timeout)"
+    ],
+    "skipped": [],
+    "ref": null,
+    "audio_on_mac": null
+   }
+  },
+  {
+   "brief": "IE9i4HwbGpU",
+   "seed": 1,
+   "title": "[FREE] Gunna Type Beat - \"Rare Form\"",
+   "stated": "128.0 BPM DMinor",
+   "v0": {
+    "verdict": "FAIL",
+    "measured": "None BPM None",
+    "why": [
+     "not delivered: no song came back (timeout)"
+    ],
+    "skipped": [],
+    "ref": null,
+    "audio_on_mac": null
+   },
+   "g1": {
+    "verdict": "FAIL",
+    "measured": "129.2 BPM Cm",
+    "why": [
+     "key: heard Cm, brief says Dm (song claims Cm)"
+    ],
+    "skipped": [],
+    "ref": 0.548,
+    "audio_on_mac": "~/miles-hackathon/evolve/work/w4/songs/s_0b1726/v1.wav"
+   }
+  },
+  {
+   "brief": "KnS9s9Pb97A",
+   "seed": 1,
+   "title": "[FREE] JAZZ RAP TYPE BEAT \"CHEMISTRY\" | CHILL RAP BEAT 2025",
+   "stated": "120.0 BPM Bm",
+   "v0": {
+    "verdict": "FAIL",
+    "measured": "90.7 BPM Em",
+    "why": [
+     "tempo: measured 90.7 BPM, brief says 120 (song claims 90)",
+     "key: heard Em, brief says Bm (song claims Em)"
+    ],
+    "skipped": [],
+    "ref": 0.403,
+    "audio_on_mac": "~/miles-hackathon/evolve/work/w4/songs/s_c0f51f/v0.wav"
+   },
+   "g1": {
+    "verdict": "PASS",
+    "measured": "120.2 BPM D",
+    "why": [],
+    "skipped": [],
+    "ref": 0.555,
+    "audio_on_mac": "~/miles-hackathon/evolve/work/w4/songs/s_4c0012/v1.wav"
+   }
+  },
+  {
+   "brief": "NHstEi3ChTc",
+   "seed": 1,
+   "title": "R&B Type Beat - \"Love\"",
+   "stated": "110.0 BPM Abm",
+   "v0": {
+    "verdict": "FAIL",
+    "measured": "None BPM None",
+    "why": [
+     "not delivered: no song came back (timeout)"
+    ],
+    "skipped": [],
+    "ref": null,
+    "audio_on_mac": null
+   },
+   "g1": {
+    "verdict": "FAIL",
+    "measured": "110.0 BPM F#",
+    "why": [
+     "key: heard F#, brief says G#m (song claims F#)"
+    ],
+    "skipped": [],
+    "ref": 0.469,
+    "audio_on_mac": "~/miles-hackathon/evolve/work/w1/songs/s_ea158a/v2.wav"
+   }
+  },
+  {
+   "brief": "Qyf2QXxq1KI",
+   "seed": 1,
+   "title": "[FREE] Drake x Iceman Type Beat - ''Name''",
+   "stated": "133.0 BPM Em",
+   "v0": {
+    "verdict": "PASS",
+    "measured": "132.5 BPM Em",
+    "why": [],
+    "skipped": [],
+    "ref": 0.44,
+    "audio_on_mac": "~/miles-hackathon/evolve/work/w3/songs/s_c5fbc4/v0.wav"
+   },
+   "g1": {
+    "verdict": "FAIL",
+    "measured": "136.0 BPM C",
+    "why": [
+     "key: heard C, brief says Em (song claims Em)"
+    ],
+    "skipped": [],
+    "ref": 0.533,
+    "audio_on_mac": "~/miles-hackathon/evolve/work/w3/songs/s_572416/v0.wav"
+   }
+  },
+  {
+   "brief": "SK4h63w7R8s",
+   "seed": 1,
+   "title": "[FREE] Brent Faiyaz Type Beat - \"You Don't Know Me\"",
+   "stated": "125.0 BPM Bminor",
+   "v0": {
+    "verdict": "FAIL",
+    "measured": "126.0 BPM Bm",
+    "why": [
+     "not delivered in time: 242 s > 180 s"
+    ],
+    "skipped": [],
+    "ref": 0.526,
+    "audio_on_mac": "~/miles-hackathon/evolve/work/w4/songs/s_409145/v0.wav"
+   },
+   "g1": {
+    "verdict": "FAIL",
+    "measured": "126.0 BPM G",
+    "why": [
+     "key: heard G, brief says Bm (song claims Bm)"
+    ],
+    "skipped": [],
+    "ref": 0.587,
+    "audio_on_mac": "~/miles-hackathon/evolve/work/w4/songs/s_9c9ac7/v0.wav"
+   }
+  },
+  {
+   "brief": "aNXItVNHEW8",
+   "seed": 1,
+   "title": "[free] playboi carti type beat - \"MADE OF HATE\"",
+   "stated": "152.0 BPM F#m",
+   "v0": {
+    "verdict": "FAIL",
+    "measured": "152.0 BPM A",
+    "why": [
+     "not delivered in time: 219 s > 180 s"
+    ],
+    "skipped": [],
+    "ref": 0.458,
+    "audio_on_mac": "~/miles-hackathon/evolve/work/w3/songs/s_e9a9ef/v1.wav"
+   },
+   "g1": {
+    "verdict": "FAIL",
+    "measured": "152.0 BPM F#",
+    "why": [
+     "key: heard F#, brief says F#m (song claims F#)"
+    ],
+    "skipped": [],
+    "ref": 0.568,
+    "audio_on_mac": "~/miles-hackathon/evolve/work/w3/songs/s_367c91/v1.wav"
+   }
+  },
+  {
+   "brief": "alBapK3ToSc",
+   "seed": 1,
+   "title": "[FREE] Frank Ocean X Piano Ballad Type Beat - \"this is falling in love\"",
+   "stated": "70.0 BPM Bmin",
+   "v0": {
+    "verdict": "FAIL",
+    "measured": "139.7 BPM A",
+    "why": [
+     "not delivered in time: 204 s > 180 s",
+     "key: heard A, brief says Bm (song claims D)"
+    ],
+    "skipped": [],
+    "ref": 0.579,
+    "audio_on_mac": "~/miles-hackathon/evolve/work/w4/songs/s_de3f92/v1.wav"
+   },
+   "g1": {
+    "verdict": "FAIL",
+    "measured": "139.7 BPM D",
+    "why": [
+     "not delivered in time: 278 s > 180 s"
+    ],
+    "skipped": [],
+    "ref": 0.569,
+    "audio_on_mac": "~/miles-hackathon/evolve/work/w2/songs/s_3085f8/v1.wav"
+   }
+  },
+  {
+   "brief": "blGl1h0zZSE",
+   "seed": 1,
+   "title": "(FREE) Ken Carson Type Beat - \"Yale\"",
+   "stated": "137.0 BPM F#Major",
+   "v0": {
+    "verdict": "FAIL",
+    "measured": "136.0 BPM A#",
+    "why": [
+     "not delivered in time: 194 s > 180 s",
+     "key: heard A#, brief says F# (song claims Dm)"
+    ],
+    "skipped": [],
+    "ref": 0.461,
+    "audio_on_mac": "~/miles-hackathon/evolve/work/w4/songs/s_38716f/v1.wav"
+   },
+   "g1": {
+    "verdict": "FAIL",
+    "measured": "110.0 BPM Em",
+    "why": [
+     "not delivered in time: 259 s > 180 s",
+     "key: heard Em, brief says F# (song claims Em)"
+    ],
+    "skipped": [],
+    "ref": 0.386,
+    "audio_on_mac": "~/miles-hackathon/evolve/work/w1/songs/s_d22842/v5.wav"
+   }
+  },
+  {
+   "brief": "iWXJBLcfgGE",
+   "seed": 1,
+   "title": "(FREE) Daniel Caesar x Giveon Type Beat - \"It's Nice Loving You\"",
+   "stated": "157.0 BPM G#Major",
+   "v0": {
+    "verdict": "FAIL",
+    "measured": "None BPM None",
+    "why": [
+     "not delivered: no song came back (timeout)"
+    ],
+    "skipped": [],
+    "ref": null,
+    "audio_on_mac": null
+   },
+   "g1": {
+    "verdict": "FAIL",
+    "measured": "None BPM None",
+    "why": [
+     "not delivered: no song came back (timeout)"
+    ],
+    "skipped": [],
+    "ref": null,
+    "audio_on_mac": null
+   }
+  },
+  {
+   "brief": "pTiJ0BMwzGU",
+   "seed": 1,
+   "title": "Summer Walker x Kehlani Type Beat - \"Be Alone Tonight\"",
+   "stated": "127.0 BPM F#Minor",
+   "v0": {
+    "verdict": "FAIL",
+    "measured": "126.0 BPM F#m",
+    "why": [
+     "not delivered in time: 300 s > 180 s"
+    ],
+    "skipped": [],
+    "ref": 0.494,
+    "audio_on_mac": "~/miles-hackathon/evolve/work/w1/songs/s_2ea019/v1.wav"
+   },
+   "g1": {
+    "verdict": "FAIL",
+    "measured": "126.0 BPM Bm",
+    "why": [
+     "not delivered in time: 207 s > 180 s",
+     "key: heard Bm, brief says F#m (song claims Bm)"
+    ],
+    "skipped": [],
+    "ref": 0.546,
+    "audio_on_mac": "~/miles-hackathon/evolve/work/w1/songs/s_bf1b8b/v1.wav"
+   }
+  },
+  {
+   "brief": "qS_lZHSj6kQ",
+   "seed": 1,
+   "title": "Lofi House / Kaytranada / Goldlink Type Beat - All The Girls",
+   "stated": "118.0 BPM D#minor",
+   "v0": {
+    "verdict": "PASS",
+    "measured": "117.5 BPM D#m",
+    "why": [],
+    "skipped": [],
+    "ref": 0.523,
+    "audio_on_mac": "~/miles-hackathon/evolve/work/w3/songs/s_e1962f/v0.wav"
+   },
+   "g1": {
+    "verdict": "FAIL",
+    "measured": "117.5 BPM D#",
+    "why": [
+     "key: heard D#, brief says D#m"
+    ],
+    "skipped": [],
+    "ref": 0.533,
+    "audio_on_mac": "~/miles-hackathon/evolve/work/w3/songs/s_a618fd/v0.wav"
+   }
+  },
+  {
+   "brief": "q_U0Ih0jrrM",
+   "seed": 1,
+   "title": "(FREE) Freestyle Rap Beat - Dolla | Old School Freestyle Boom Bap Type Beat",
+   "stated": "90.0 BPM F",
+   "v0": {
+    "verdict": "FAIL",
+    "measured": "None BPM None",
+    "why": [
+     "not delivered: no song came back (no error)"
+    ],
+    "skipped": [],
+    "ref": null,
+    "audio_on_mac": null
+   },
+   "g1": {
+    "verdict": "FAIL",
+    "measured": "None BPM None",
+    "why": [
+     "not delivered: no song came back (timeout)"
+    ],
+    "skipped": [],
+    "ref": null,
+    "audio_on_mac": null
+   }
+  }
+ ]
+}

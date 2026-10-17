@@ -1,0 +1,27 @@
+{
+ "held_out_pair": "the only held-out brief where v0 FAILED and g1 PASSED; g1 was rejected on train and scored 2/16 vs v0 4/16 on held-out, so this is one brief, not an improvement",
+ "brief": "KnS9s9Pb97A",
+ "title": "[FREE] JAZZ RAP TYPE BEAT \"CHEMISTRY\" | CHILL RAP BEAT 2025",
+ "stated": "120.0 BPM Bm",
+ "v0": {
+  "verdict": "FAIL",
+  "measured": "90.7 BPM Em",
+  "why": [
+   "tempo: measured 90.7 BPM, brief says 120 (song claims 90)",
+   "key: heard Em, brief says Bm (song claims Em)"
+  ],
+  "skipped": [],
+  "ref": 0.403,
+  "audio_on_mac": "~/miles-hackathon/evolve/work/w4/songs/s_c0f51f/v0.wav",
+  "audio_copy_on_mac": "~/miles-demo-audio/heldout_KnS9s9Pb97A_v0.wav"
+ },
+ "g1": {
+  "verdict": "PASS",
+  "measured": "120.2 BPM D",
+  "why": [],
+  "skipped": [],
+  "ref": 0.555,
+  "audio_on_mac": "~/miles-hackathon/evolve/work/w4/songs/s_4c0012/v1.wav",
+  "audio_copy_on_mac": "~/miles-demo-audio/heldout_KnS9s9Pb97A_g1.wav"
+ }
+}

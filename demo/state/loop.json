@@ -168,12 +168,7 @@
    "kept": false
   }
  ],
- "current": {
-  "gen": "held-out",
-  "phase": "best",
-  "stamp": "loop-20261017-141624-heldout-best",
-  "version": "g1"
- },
+ "current": null,
  "baseline_runs": [
   "~/miles-hackathon/evolve/runs/loop-20261017-141624-g0/v0"
  ],
@@ -181,7 +176,7 @@
   "llm_usd": 0.0137,
   "llm_calls": 3
  },
- "at": 1792277757.805366,
+ "at": 1792278564.6020632,
  "best_checks": {
   "delivered": 15,
   "tempo": 13,
@@ -205,6 +200,18 @@
     "clean": 12
    },
    "run": "~/miles-hackathon/evolve/runs/loop-20261017-141624-heldout-v0/v0"
+  },
+  "best": {
+   "version": "evolve/versions/loop-20261017-141624/g1",
+   "pass": 2,
+   "n": 16,
+   "checks": {
+    "delivered": 10,
+    "tempo": 13,
+    "key": 3,
+    "clean": 13
+   },
+   "run": "~/miles-hackathon/evolve/runs/loop-20261017-141624-heldout-best/g1"
   }
  }
 }
