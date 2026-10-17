@@ -2,7 +2,7 @@
  "stamp": "loop-20261017-141624-heldout-best",
  "version": "g1",
  "total": 16,
- "done": 14,
+ "done": 15,
  "workers": {
   "w1": {
    "state": "building",
@@ -315,33 +315,105 @@
    }
   },
   "w4": {
-   "state": "building",
-   "at": 1792278329.510816,
-   "brief": "IE9i4HwbGpU",
+   "state": "idle",
+   "at": 1792278445.2302048,
+   "brief": null,
    "seed": 1,
    "title": "Gunna Type Beat - \"Rare Form\"",
    "passed": false,
    "best": {
-    "song": null,
-    "tempo": null,
-    "key": null,
-    "clean": null,
-    "delivered": false,
+    "song": "s_0b1726",
+    "tempo": true,
+    "key": false,
+    "clean": true,
+    "delivered": true,
     "pass": false,
     "why": [
-     "not delivered: no song came back (timeout)"
+     "key: heard Cm, brief says Dm (song claims Cm)"
     ],
+    "skipped": [],
+    "measured": {
+     "claimed_bpm": 128.0,
+     "claimed_key": "Cm",
+     "status": "ready",
+     "bpm": 129.2,
+     "bpm_support": 1.21,
+     "key": "Cm",
+     "key_r": 0.778,
+     "key_margin": 0.183,
+     "key_runner_up": "C",
+     "stems": [
+      "bass",
+      "drums",
+      "sample",
+      "sample2"
+     ],
+     "ear": {
+      "bass": {
+       "notes": 8,
+       "fit": 0.66,
+       "clash": 0.0,
+       "absent": 0.0,
+       "tune": -4.0,
+       "sample_tuning": 4.0,
+       "bass_pcs": [
+        0,
+        3
+       ]
+      },
+      "sample": {
+       "lock": 1.05,
+       "late_ms": 10.0,
+       "off": 0.12
+      },
+      "drums": {
+       "lock": 2.05,
+       "late_ms": 6.0,
+       "off": 0.0
+      },
+      "balance": {
+       "sample": -0.9,
+       "sample2": -1.7,
+       "bass": 0.6
+      },
+      "missing": []
+     }
+    },
     "contract": {
-     "bpm": 157.0,
-     "key": "G#",
-     "style": "daniel caesar",
+     "bpm": 128.0,
+     "key": "Dm",
+     "style": "gunna",
      "refs": [
-      "~/miles-studio/bench/refs/iWXJBLcfgGE.m4a",
-      "~/miles-studio/bench/refs/NHstEi3ChTc.m4a",
-      "~/miles-hackathon/bench/refs/5ihsl_dbRFo.m4a",
-      "~/miles-studio/bench/refs/SK4h63w7R8s.m4a",
-      "~/miles-studio/bench/refs/pTiJ0BMwzGU.m4a"
+      "~/miles-studio/bench/refs/IE9i4HwbGpU.m4a",
+      "~/miles-studio/bench/refs/Qyf2QXxq1KI.m4a",
+      "~/miles-studio/bench/refs/60vMf8Z61Qg.m4a",
+      "~/miles-studio/bench/refs/aNXItVNHEW8.m4a",
+      "~/miles-studio/bench/refs/blGl1h0zZSE.m4a"
      ]
+    },
+    "ref": {
+     "score": 0.548,
+     "nearest": "IE9i4HwbGpU",
+     "mean": 0.426,
+     "n_refs": 5,
+     "dims": {
+      "tempo": 0.34,
+      "timbre": 0.83,
+      "brightness": 0.36,
+      "low_end": 0.1,
+      "busyness": 0.51
+     },
+     "gaps": [
+      "less low end than the refs (52 % vs 86 % under 120 Hz)",
+      "tempo feel 129.2 vs the refs' 101.3"
+     ],
+     "ours": {
+      "bpm": 129.2,
+      "centroid": 1608,
+      "low": 0.521,
+      "onsets": 5.87
+     },
+     "pass": true
     }
    }
   }

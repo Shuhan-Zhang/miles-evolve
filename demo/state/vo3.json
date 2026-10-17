@@ -4,8 +4,8 @@
  "model": "eleven_v4_turbo",
  "lines": {
   "n01": {
-   "text": "Need a score for your trailer? Ask Claude.",
-   "seconds": 2.96
+   "text": "Need music for your ad? Ask Claude.",
+   "seconds": 2.8
   },
   "n03": {
    "text": "A self-improving music agent for anything. One MCP away.",
@@ -40,8 +40,8 @@
    "seconds": 5.28
   },
   "v11": {
-   "text": "Same brief. Before, and after.",
-   "seconds": 3.04
+   "text": "One brief. Three tries. Listen to it find the groove.",
+   "seconds": 4.4
   },
   "v12": {
    "text": "Built today, on Crusoe.",
