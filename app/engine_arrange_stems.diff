@@ -1,0 +1,74 @@
+diff --git a/server/engine.py b/server/engine.py
+index 4ce8c78..d32dc14 100644
+--- a/server/engine.py
++++ b/server/engine.py
+@@ -492,16 +492,18 @@ class Song:
+             self.save()
+             return self.versions[-1]
+ 
+-    def _arrange(self, v: dict, structure: list[str], bars: int) -> dict:
++    def _arrange(self, v: dict, structure: list[str], bars: int, write: bool = True) -> dict:
+         import soundfile as sf
+         from scipy.signal import butter, sosfilt
+         d = SONGS / self.id
+         stems = {role: sf.read(str(d / Path(url).name), always_2d=True)[0] for role, url in (v.get("stems") or {}).items()
+                  if (d / Path(url).name).exists()}
+         beat, sr = sf.read(str(d / Path(v["audio_url"]).name), always_2d=True)
++        has_stems = bool(stems)
+         if not stems:
+             stems = {"sample": beat}
+         L = len(beat)
++        parts: dict[str, list] = {}                                  # per-role sections: the arranged song's stems
+         bpm = float(self.describe().get("bpm") or 90)
+         bar = int(round(sr * 240.0 / bpm))
+         loop_bars = max(1, int(round(L / bar)))
+@@ -513,6 +515,7 @@ class Song:
+             reps = max(1, n_bars // loop_bars)
+             nxt = structure[idx + 1] if idx + 1 < len(structure) else None
+             sec = np.zeros((L * reps, beat.shape[1]), np.float32)
++            psec = {r.rstrip("0123456789"): np.zeros_like(sec) for r in stems}
+             for role, y in stems.items():
+                 role = role.rstrip("0123456789")                     # "sample2" (a layer) plays where "sample" does
+                 if role not in spec["parts"]:
+@@ -527,21 +530,38 @@ class Song:
+                 if name == "hook":
+                     y = y * 1.12                                     # the hook sits a touch hotter
+                 sec[:len(y)] += y
++                psec[role][:len(y)] += y
+             if nxt == "hook" and len(sec) > bar:                      # a reversed swell of the sample into the hook
+                 sw = swell_src[: bar].astype(np.float32)[::-1] * np.linspace(0, 1, bar, dtype=np.float32)[:, None] ** 2
+                 sec[-len(sw):] += sw[: len(sec)] * 0.8
++                if "sample" in psec:
++                    psec["sample"][-len(sw):] += sw[: len(sec)] * 0.8
+             if spec.get("fade"):
+-                sec *= np.linspace(1, 0, len(sec), dtype=np.float32)[:, None] ** 1.5
++                env = np.linspace(1, 0, len(sec), dtype=np.float32)[:, None] ** 1.5
++                sec *= env
++                for r in psec:
++                    psec[r] *= env
++            for r, a in psec.items():
++                parts.setdefault(r, []).append(a)
+             marks.append({"name": name, "t": round(t, 3)})
+             t += len(sec) / sr
+             out.append(sec)
+         y = np.concatenate(out)
+         pk = float(np.abs(y).max()) or 1.0
+-        y *= min(1.0, 0.95 / pk)
++        g = min(1.0, 0.95 / pk)
++        y *= g
+         n = len(self.versions)
+         path = d / f"v{n}.wav"
++        if not write:                                                # backfill: the parts only, for a version made earlier
++            return {"mix": y, "sr": sr, "parts": {r: np.concatenate(a) * g for r, a in parts.items()} if has_stems else {}}
+         sf.write(str(path), y, sr)
+-        return {"audio_url": f"/files/songs/{self.id}/{path.name}", "stems": {}, "peaks": peaks(y),
++        out_stems = {}
++        if has_stems:                                                # exact per-role stems: they sum to the mix
++            for r, a in parts.items():
++                sp = d / f"v{n}_{r}.wav"
++                sf.write(str(sp), np.concatenate(a) * g, sr)
++                out_stems[r] = f"/files/songs/{self.id}/{sp.name}"
++        return {"audio_url": f"/files/songs/{self.id}/{path.name}", "stems": out_stems, "peaks": peaks(y),
+                 "seconds": round(len(y) / sr, 3), "sections": marks}
+ 
+     def auto_mix(self, r: dict, parts: list[dict]) -> bool:

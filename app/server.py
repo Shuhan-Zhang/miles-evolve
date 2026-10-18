@@ -123,6 +123,15 @@ def beat_of(res: dict, jid: str | None = None) -> dict | None:
             "stems": {} if res.get("cached") or not audio else song_stems(audio)}
 
 
+def fresh_stems(b: dict) -> dict:
+    """Stems written after the beat was recorded (arranged songs, backfill) show up too."""
+    if b.get("song_id") and not b.get("stems") and b.get("v") is not None:
+        d = core.song_dir(b["song_id"])
+        if d and (d / f"v{b['v']}.wav").exists():
+            b["stems"] = song_stems(d / f"v{b['v']}.wav")
+    return b
+
+
 def remember(beat: dict):
     items = [x for x in load_json(LIVE, []) if x.get("id") != beat["id"]]
     LIVE.write_text(json.dumps([beat] + items[:49], default=str))
@@ -273,7 +282,7 @@ async def api_cached(req):
 
 async def api_gallery(req):
     f = core.CACHE / "gallery.json"
-    live = load_json(LIVE, [])
+    live = [fresh_stems(b) for b in load_json(LIVE, [])]
     urls = {b.get("url") for b in live}
     return web.json_response(live + [b for b in (json.loads(f.read_text()) if f.exists() else []) if b.get("url") not in urls])
 
@@ -283,7 +292,7 @@ async def api_song(req):
     sid, v = req.query.get("id", ""), req.query.get("v")
     for b in load_json(LIVE, []):
         if b.get("song_id") == sid and (v is None or str(b.get("v")) == str(v)):
-            return web.json_response(b)
+            return web.json_response(fresh_stems(b))
     d = core.song_dir(sid) if re.fullmatch(r"s_[0-9a-f]+", sid) else None
     if not d:
         raise web.HTTPNotFound(text="no such song")
