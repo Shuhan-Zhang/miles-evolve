@@ -43,7 +43,19 @@ def http(method: str, path: str, body: dict | None = None, timeout: float = 30) 
 PUBLIC = os.environ.get("MILES_DEMO_PUBLIC", "http://localhost:8850").rstrip("/")
 
 
+INSTRUCTIONS = (
+    "Miles is a music producer agent. To make a track, use the step tools in order and narrate briefly between "
+    "steps so the user can follow along: plan_beat → find_reference (optional, a YouTube track to learn from) → "
+    "build_beat → check_beat → if a check fails, revise_beat with a concrete fix, then check_beat again (max 2 "
+    "repairs). After each step, write one or two sentences quoting Miles's key decision (tempo/key chosen, sample "
+    "picked, what passed or failed and why) and show the 'Open in the DAW' link for every take. make_music does the "
+    "whole chain in one call when the user just wants the result.")
+
+
 def notify(token, n: int, message: str):
+    sys.stdout.write(json.dumps({"jsonrpc": "2.0", "method": "notifications/message",
+                                 "params": {"level": "info", "logger": "miles", "data": message}}) + "\n")
+    sys.stdout.flush()
     if token is None:
         return
     sys.stdout.write(json.dumps({"jsonrpc": "2.0", "method": "notifications/progress",
@@ -181,6 +193,23 @@ def pretty_step(name: str, r: dict) -> str:
     L = []
     link = lambda d: f"{PUBLIC}{d}" if d else None
     mk = lambda v: "✓" if v else "✗" if v is False else "·"
+    g = r.get("genre") or {}
+    m0 = r.get("measured") or r
+    say = {
+        "plan_beat": lambda: f"Miles: I read the brief and I'm holding myself to {r['bpm']:g} BPM in {r['key']}"
+                             + (f" — {g['name']} usually sits around {g['typical_bpm']:g} BPM" if g.get("typical_bpm") else "") + ".",
+        "find_reference": lambda: f"Miles: I pulled “{r.get('title')}” from YouTube and listened: it's {m0.get('bpm')} BPM in {m0.get('key')}.",
+        "analyze_audio": lambda: f"Miles: I listened to {Path(str(r.get('path'))).name}: {m0.get('bpm')} BPM, {m0.get('key')}, {m0.get('seconds')} s.",
+        "build_beat": lambda: f"Miles: I built “{r['title']}” — {r.get('bpm') or '?'} BPM in {r.get('key') or '?'}, {r.get('seconds') or 0:.0f} s of work.",
+        "check_beat": lambda: ("Miles: I measured it from the audio and it passes everything." if r["pass"] else
+                               "Miles: I measured it from the audio and it fails: " + "; ".join(r.get("why") or []) + "."),
+        "revise_beat": lambda: f"Miles: I revised it (v{r['from_v']} → v{r['v']}): “{r.get('instruction', '')[:90]}”. "
+                               + ("Now it passes." if r["pass"] else "Still failing: " + "; ".join(r.get("why") or []) + "."),
+        "list_beats": lambda: f"Miles: here are my {len(r['beats'])} latest beats.",
+        "get_stems": lambda: f"Miles: here are the stems for {r['song_id']} v{r['v']}.",
+    }.get(name)
+    if say:
+        L.append(say())
     if r.get("daw"):
         L.append(f"Open in the DAW: {link(r['daw'])}")
     if name == "plan_beat":
@@ -199,18 +228,30 @@ def pretty_step(name: str, r: dict) -> str:
               f"  loudness  {m.get('loudness_db_rms')} dB RMS, peak {m.get('peak_db')} dB",
               f"  length    {m.get('seconds')} s analysed", f"  file      {r.get('path')}"]
     elif name == "build_beat":
-        L += [f"♪ {r['title']}  ·  song_id {r['song_id']} v{r['v']}  ·  built in {r.get('seconds') or 0:.0f} s",
-              f"  file  {r['audio']}", f"  play  {PUBLIC}{r['url']}", "Next: check_beat(song_id=…, plan_id=…)"]
+        L += [f"♪ {r['title']}  ·  song_id {r['song_id']} v{r['v']}  ·  built in {r.get('seconds') or 0:.0f} s"]
+        if r.get("parts"):
+            L += ["  parts:"] + [f"    {x}" for x in r["parts"]]
+        if r.get("steps"):
+            L += ["  what I did:"] + [f"    {i}. {x}" for i, x in enumerate(r["steps"][:12], 1)]
+        L += [f"  play  {PUBLIC}{r['url']}", f"  file  {r['audio']}", "Next: check_beat(song_id=…, plan_id=…)"]
     elif name in ("check_beat", "revise_beat"):
         c, a, m = r["checks"], r["asked"], r["measured"]
         if name == "revise_beat":
             L.append(f"♪ {r.get('title')}  v{r['from_v']} → v{r['v']}")
+            if r.get("steps"):
+                L += ["  what I did:"] + [f"    {i}. {x}" for i, x in enumerate(r["steps"][:10], 1)]
         L += [f"Self-check {'PASS' if r['pass'] else 'FAIL'}  ({r['song_id']} v{r['v']})",
               f"  {mk(c.get('delivered'))} Delivered", f"  {mk(c.get('tempo'))} Tempo  {m.get('bpm')} BPM   asked {a.get('bpm')}",
               f"  {mk(c.get('key'))} Key    {m.get('key')}   asked {a.get('key')}", f"  {mk(c.get('clean'))} Clean"]
         L += [f"  why: {w}" for w in r.get("why") or []]
         if not r["pass"]:
-            L.append("Next: revise_beat(song_id=…, instruction='fix …'), then check_beat again")
+            fix = []
+            if c.get("tempo") is False and a.get("bpm"):
+                fix.append(f"set the tempo to exactly {a['bpm']:g} BPM")
+            if c.get("key") is False and a.get("key"):
+                fix.append(f"move everything to {a['key']} (bass root on {a['key'].rstrip('m')})")
+            L.append("Decision: " + (" and ".join(fix) or "fix what failed") +
+                     " → revise_beat(song_id=…, instruction=…), then check_beat again")
     elif name == "list_beats":
         for i, b in enumerate(r["beats"], 1):
             c = b.get("checks") or {}
@@ -246,8 +287,7 @@ def main():
             reply(id_, {"protocolVersion": (m.get("params") or {}).get("protocolVersion", "2025-06-18"),
                         "capabilities": {"tools": {}},
                         "serverInfo": {"name": "miles", "version": "0.1.0"},
-                        "instructions": "Miles makes music. Call make_music with a brief; it returns a track and "
-                                        "Miles's self-check of it (delivered, tempo, key, clean)."})
+                        "instructions": INSTRUCTIONS})
         elif method == "tools/list":
             reply(id_, {"tools": [TOOL] + STEP_TOOLS})
         elif method == "tools/call":

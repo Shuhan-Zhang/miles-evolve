@@ -185,6 +185,53 @@ def latest_version(sid: str) -> tuple[int, Path | None]:
     return (int(wavs[-1].stem[1:]), wavs[-1]) if wavs else (0, None)
 
 
+WORDS = {"make_songs": "Building", "edit_songs": "Repairing", "verify_songs": "Self-check", "rank_songs": "Ranking",
+         "pick": "Keeping", "study_reference": "Listening", "genre_profile": "Genre", "find_records": "Digging records",
+         "arrange": "Arranging", "remember": "Noting", "plan": "Plan"}
+
+
+def follow(run, emit):
+    """Run a backend job (run(note) -> out) while streaming the producer's own steps (sample picked, repairs,
+    self-checks, arrangement) to emit as they happen. Returns (out, steps)."""
+    import threading
+    box, port, seen, steps = {}, {}, set(), []
+
+    def note(label, text):
+        if label == "_skip":                                 # steps already in the session before this job
+            seen.update(text.split(","))
+            seen.add("_")
+            return
+        if label == "Studio":
+            port["p"] = int(text.rsplit(":", 1)[-1])
+        emit(label, text, status="running" if label.startswith("Waiting") else "done")
+
+    th = threading.Thread(target=lambda: box.update(out=run(note)), daemon=True)
+    th.start()
+    while th.is_alive() or not seen:
+        th.join(1.5)
+        if not port.get("p"):
+            if not th.is_alive():
+                break
+            continue
+        try:
+            st = core.pool.call(port["p"], "GET", "/api/state", None, 5)[1] or {}
+        except Exception:                                    # noqa: BLE001
+            continue
+        for x in st.get("steps") or []:
+            key = (x.get("id"), x.get("status"))
+            if x.get("status") == "running" or key in seen or x.get("id") in seen:
+                continue
+            seen.add(key)
+            seen.add(x.get("id"))
+            label = WORDS.get(x.get("tool"), (x.get("tool") or "").replace("_", " ").capitalize())
+            line = (x.get("title") or "") + (f" — {x['detail']}" if x.get("detail") else "")
+            steps.append(f"{label}: {line}"[:220])
+            emit(label, (x.get("title") or "")[:160], (x.get("detail") or "")[:200])
+        if not th.is_alive():
+            break
+    return box.get("out") or {}, steps
+
+
 def build_beat(a: dict, emit) -> dict:
     spec = spec_of(a)
     ref = a.get("reference")
@@ -194,15 +241,22 @@ def build_beat(a: dict, emit) -> dict:
     if ref:
         text += f". Reference to study: {ref}"
     emit("Building", text[:160], status="running")
-    out = core.job(text, f"build · {time.strftime('%H:%M:%S')}", 420,
-                   lambda l, t: emit(l, t, status="running"))
+    out, steps = follow(lambda note: core.job(text, f"build · {time.strftime('%H:%M:%S')}", 420, note), emit)
     songs = [s for s in out.get("songs") or [] if s.get("audio")]
+    if not songs:                                           # a render that died: one more try before giving up
+        why = (out.get("error") or (out.get("reply") or "")[:200] or "no audio came back").replace("\n", " ")
+        emit("Decision", f"that take didn't render ({why[:120]}) → trying once more", status="error")
+        out, more = follow(lambda note: core.job(text, f"build retry · {time.strftime('%H:%M:%S')}", 420, note), emit)
+        steps += more
+        songs = [s for s in out.get("songs") or [] if s.get("audio")]
     if not songs:
-        raise RuntimeError(out.get("error") or "no song came back")
+        raise RuntimeError("Miles couldn't deliver a song: " + (out.get("error") or (out.get("reply") or "")[:300]
+                                                                 or "no audio came back"))
     s = songs[0]
     v = int(Path(s["audio"]).stem[1:] or 0)
     emit("Built", f"{s['title']} · {s.get('bpm')} BPM · {s.get('key')} · v{v} in {out.get('seconds', 0):.0f} s")
     return {"song_id": s["id"], "v": v, "title": s["title"], "audio": s["audio"], "seconds": out.get("seconds"),
+            "steps": steps, "parts": s.get("parts") or [], "bpm": s.get("bpm"), "key": s.get("key"),
             "spec": spec, "daw": daw(s["id"], v), "reply": (out.get("reply") or "")[:400],
             "url": f"/track/{s['id']}/{Path(s['audio']).name}"}
 
@@ -236,21 +290,31 @@ def revise_beat(a: dict, emit) -> dict:
     v0, _ = latest_version(sid)
     emit("Revising", f"{meta.get('title')} (v{v0}): “{instr[:120]}”", status="running")
     port = core.port_of(sid)
-    lease = core.acquire(lambda l, t: emit(l, t, status="running"), only=port)
-    try:
-        if meta.get("session"):
+
+    def run(note):
+        lease = core.acquire(lambda l, t: note(l, t), only=port)
+        try:
+            if meta.get("session"):
+                try:
+                    core.pool.call(port, "POST", f"/api/sessions/{meta['session']}/open", {}, 15)
+                except Exception:                                # noqa: BLE001
+                    pass
             try:
-                core.pool.call(port, "POST", f"/api/sessions/{meta['session']}/open", {}, 15)
+                old = core.pool.call(port, "GET", "/api/state", None, 5)[1].get("steps") or []
+                note("_skip", ",".join(x.get("id") or "" for x in old))
             except Exception:                                    # noqa: BLE001
                 pass
-        st, out = core.pool.call(port, "POST", "/api/task", {"text": instr, "song_id": sid, "timeout": 400}, 430)
-    finally:
-        lease.release()
+            note("Studio", f"working on :{port}")
+            return core.pool.call(port, "POST", "/api/task", {"text": instr, "song_id": sid, "timeout": 400}, 430)[1]
+        finally:
+            lease.release()
+    out, steps = follow(run, emit)
     v, audio = latest_version(sid)
     emit("Revised", f"v{v0} → v{v} · " + ((out or {}).get("reply") or "")[:160].replace("\n", " "))
     res = check_beat({"song_id": sid, "spec": a.get("spec") or {"brief": meta.get("brief") or meta.get("title") or ""}},
                      emit)
-    return res | {"from_v": v0, "title": meta.get("title"), "url": f"/track/{sid}/{audio.name}" if audio else None}
+    return res | {"from_v": v0, "title": meta.get("title"), "url": f"/track/{sid}/{audio.name}" if audio else None,
+                  "steps": steps, "instruction": instr, "reply": ((out or {}).get("reply") or "")[:300]}
 
 
 # ------------------------------------------------------------------ catalogue
