@@ -33,7 +33,9 @@ def brief(text: str) -> dict:
     low = text.lower()
     moods = [m for m in MOODS if m in low][:3]
     secs = None
-    m = re.search(r"(\d{1,3})\s*(?:s\b|sec|second)", low)
+    m = re.search(r"(\d{1,3})\s*(s\b|sec|second)", low)
+    if m and m.group(2) == "s" and m.group(1) in ("50", "60", "70", "80", "90"):   # "90s japanese piano" is a decade
+        m = None
     if m:
         secs = int(m.group(1))
     elif re.search(r"\b(trailer|commercial|spot|ad)\b", low):
