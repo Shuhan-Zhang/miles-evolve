@@ -45,8 +45,8 @@ def track_url(res: dict, name: str | None = None) -> str | None:
     if name and res.get("cached_audio"):
         return f"/cache/{res['cached_audio']}"
     a = (res.get("song") or {}).get("audio")
-    if a and Path(a).resolve().is_relative_to((core.DATA / "songs").resolve()):
-        return "/track/" + str(Path(a).resolve().relative_to((core.DATA / "songs").resolve()))
+    if a and core.song_dir(Path(a).parent.name):
+        return f"/track/{Path(a).parent.name}/{Path(a).name}"
     return None
 
 
@@ -91,8 +91,18 @@ def song_stems(audio: Path) -> dict:
     for role in ("drums", "bass", "sample"):
         f = audio.parent / f"{audio.stem}_{role}.wav"
         if f.exists():
-            out[role] = "/track/" + str(f.resolve().relative_to((core.DATA / "songs").resolve()))
+            out[role] = f"/track/{audio.parent.name}/{f.name}"
     return out
+
+
+async def track(req):
+    """/track/<song>/<file>: a song's audio from whichever studio in the pool made it."""
+    sid, name = req.match_info["sid"], req.match_info["name"]
+    d = core.song_dir(sid) if re.fullmatch(r"s_[0-9a-f]+", sid) else None
+    f = d / name if d else None
+    if not f or not re.fullmatch(r"[\w.\-]+\.wav", name) or not f.exists():
+        raise web.HTTPNotFound()
+    return web.FileResponse(f)
 
 
 def beat_of(res: dict, jid: str | None = None) -> dict | None:
@@ -138,9 +148,14 @@ async def watch(job: dict):
     """Mirror the backend's steps onto the job while it runs (the page and the MCP server poll /api/jobs/<id>)."""
     await asyncio.sleep(1.5)                                  # let the job open its own session first
     while job["state"] == "running":
+        if not job.get("port"):
+            await asyncio.sleep(1)
+            continue
         try:
-            _, st = await asyncio.to_thread(core.pool.call, core.PORT, "GET", "/api/state", None, 5)
+            _, st = await asyncio.to_thread(core.pool.call, job["port"], "GET", "/api/state", None, 5)
+            pre = [e for e in job.get("events") or [] if e.get("kind") == "wait"]
             job.update(events_from(st or {}))
+            job["events"] = pre + job["events"]
         except Exception:                                     # noqa: BLE001
             pass
         await asyncio.sleep(1)
@@ -189,7 +204,12 @@ async def api_make(req):
 
         async def live():
             try:
-                res = await asyncio.to_thread(core.make, text)
+                def note(label, text_):
+                    if label == "Studio":
+                        job["port"] = int(text_.rsplit(":", 1)[-1])
+                    job.setdefault("events", []).append({"kind": "wait", "label": label, "text": text_,
+                                                         "status": "done" if label == "Studio" else "running"})
+                res = await asyncio.to_thread(core.make, text, 420, note)
                 res["url"] = track_url(res)
                 job["events"] = (job.get("events") or []) + [check_event(res)]
                 b = beat_of(res, jid)
@@ -204,6 +224,40 @@ async def api_make(req):
         asyncio.create_task(live())
         asyncio.create_task(watch(job))
     return web.json_response({"id": jid, "replay": job["replay"], "daw": f"/?job={jid}"})
+
+
+async def api_job_new(req):
+    """Step tools (demo/tools.py via the MCP server) open a job here so the DAW's ?job= panel shows their steps."""
+    body = await req.json()
+    jid = uuid.uuid4().hex[:8]
+    JOBS[jid] = {"id": jid, "state": "running", "t0": time.time(), "text": str(body.get("text") or "")[:300],
+                 "tool": body.get("tool"), "events": [], "plan": [], "result": None, "replay": False, "eta": 120}
+    return web.json_response({"id": jid, "daw": f"/?job={jid}"})
+
+
+async def api_job_event(req):
+    job = JOBS.get(req.match_info["id"])
+    if not job:
+        raise web.HTTPNotFound()
+    e = await req.json()
+    ev = job.setdefault("events", [])
+    if ev and ev[-1].get("status") == "running":
+        ev[-1]["status"] = "done"
+    ev.append({k: str(e.get(k) or "")[:400] for k in ("label", "text", "detail", "status", "kind")})
+    return web.json_response({"ok": True})
+
+
+async def api_job_done(req):
+    job = JOBS.get(req.match_info["id"])
+    if not job:
+        raise web.HTTPNotFound()
+    body = await req.json()
+    for e in job.get("events") or []:
+        if e.get("status") == "running":
+            e["status"] = "done"
+    job.update(state="error" if body.get("error") else "done", error=body.get("error"), song=body.get("song"))
+    save_jobs()
+    return web.json_response({"ok": True})
 
 
 async def api_job(req):
@@ -230,8 +284,8 @@ async def api_song(req):
     for b in load_json(LIVE, []):
         if b.get("song_id") == sid and (v is None or str(b.get("v")) == str(v)):
             return web.json_response(b)
-    d = core.DATA / "songs" / sid
-    if not re.fullmatch(r"s_[0-9a-f]+", sid) or not d.is_dir():
+    d = core.song_dir(sid) if re.fullmatch(r"s_[0-9a-f]+", sid) else None
+    if not d:
         raise web.HTTPNotFound(text="no such song")
     wavs = sorted((p for p in d.glob("v*.wav") if "_" not in p.stem), key=lambda p: int(p.stem[1:] or 0))
     audio = next((p for p in wavs if v is not None and p.stem == f"v{v}"), wavs[-1] if wavs else None)
@@ -260,12 +314,13 @@ async def index(req):
 def make_app():
     app = web.Application(client_max_size=1 << 30)
     app.add_routes([web.get("/", index), web.get("/api/brief", api_brief), web.get("/api/ledger", api_ledger),
-                    web.post("/api/make", api_make), web.get("/api/jobs/{id}", api_job),
+                    web.post("/api/make", api_make), web.post("/api/jobs", api_job_new),
+                    web.post("/api/jobs/{id}/event", api_job_event), web.post("/api/jobs/{id}/done", api_job_done), web.get("/api/jobs/{id}", api_job),
                     web.get("/api/cached", api_cached), web.get("/api/gallery", api_gallery), web.get("/api/song", api_song)])
     core.CACHE.mkdir(exist_ok=True)
     (core.DATA / "songs").mkdir(parents=True, exist_ok=True)
     app.router.add_static("/cache", core.CACHE)
-    app.router.add_static("/track", core.DATA / "songs")
+    app.router.add_get("/track/{sid}/{name}", track)
     return app
 
 

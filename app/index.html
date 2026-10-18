@@ -643,6 +643,11 @@ async function poll(id, replay, t0) {
     if (Date.now() - t0 > 480000) return done("live render timed out — try again, or untick live render");
     return setTimeout(() => poll(id, replay, t0), 400);
   }
+  if (j.state === "done" && !j.result) {
+    done("done");
+    if (j.song && j.song.song_id) { try { const r = await fetch(`/api/song?id=${j.song.song_id}` + (j.song.v != null ? `&v=${j.song.v}` : "")); if (r.ok) addBeat(await r.json(), false); } catch (e) {} }
+    return;
+  }
   if (j.state === "error" || !j.result || !j.result.url) return done("render failed — " + String(j.error || (j.result && j.result.error) || "no track").slice(0, 80));
   $("bar").style.width = "100%"; done("done · self-checked");
   if (j.beat) { addBeat(j.beat, S.autoplayNext !== false); S.autoplayNext = true; return; }

@@ -8,9 +8,22 @@ up() { curl -s -o /dev/null -m 3 "http://127.0.0.1:$1/$2"; }
 while [ "$(date +%s)" -lt "$UNTIL" ]; do
   if ! up 8851 api/state; then
     echo "$(date) starting backend :8851"
-    (cd "$ROOT" && env $(python3 -c "import json;d=json.load(open('evolve/versions/v0/flags.json'));d['MILES_SELF_CHECK']='1';print(' '.join(f'{k}={v}' for k,v in d.items()))") \
+    # producer: OpenAI (AGENT_PROVIDER=openai, key from ~/logicagent/.env); Crusoe only for the coach loop
+    (cd "$ROOT" && env -u CRUSOE_PRODUCER -u CRUSOE_PRODUCER_MODEL MILES_SELF_CHECK=1 AGENT_PROVIDER=openai \
+      OPENAI_AGENT_MODEL="${OPENAI_AGENT_MODEL:-gpt-6-sol}" \
       MILES_STUDIO_DATA="$ROOT/evolve/work/ui" nohup "$PY" server/app.py --port 8851 >> "$ROOT/evolve/work/ui/server.out" 2>&1 &)
   fi
+  # the MCP pool: more studios, same producer env, own data dirs (never 886x / work/w*)
+  for pd in 8853:mcp1 8854:mcp2; do
+    P=${pd%%:*}; D="$ROOT/evolve/work/${pd##*:}"
+    if ! up $P api/state; then
+      echo "$(date) starting pool studio :$P"
+      mkdir -p "$D"; [ -f "$D/MILES.md" ] || cp "$ROOT/evolve/versions/v0/MILES.md" "$D/MILES.md"
+      (cd "$ROOT" && env -u CRUSOE_PRODUCER -u CRUSOE_PRODUCER_MODEL MILES_SELF_CHECK=1 AGENT_PROVIDER=openai \
+        OPENAI_AGENT_MODEL="${OPENAI_AGENT_MODEL:-gpt-6-sol}" \
+        MILES_STUDIO_DATA="$D" nohup "$PY" server/app.py --port $P >> "$D/server.out" 2>&1 &)
+    fi
+  done
   if ! up 8850 api/ledger; then
     echo "$(date) starting page :8850"
     (cd "$ROOT/demo" && nohup "$PY" server.py --port 8850 >> "$ROOT/demo/server.log" 2>&1 &)

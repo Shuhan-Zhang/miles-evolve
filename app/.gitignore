@@ -2,3 +2,7 @@ cache/**/*.wav
 cache/*.wav
 *.log
 __pycache__/
+!cache/fonts/
+cache/refs/
+cache/locks/
+cache/*.json

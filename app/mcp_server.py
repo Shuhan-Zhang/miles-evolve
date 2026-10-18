@@ -110,6 +110,120 @@ def pretty(o: dict) -> str:
     return "\n".join(lines)
 
 
+ORDER = ("Natural order: plan_beat → find_reference (optional) → build_beat → check_beat → revise_beat if a check "
+         "fails → check_beat again. make_music does all of it in one call.")
+S = lambda **p: {"type": "object", "properties": p, "required": [k for k, v in p.items() if not v.pop("_opt", False)]}
+STR = lambda d, opt=False: {"type": "string", "description": d, **({"_opt": True} if opt else {})}
+NUM = lambda d, opt=True: {"type": "number", "description": d, **({"_opt": True} if opt else {})}
+STEP_TOOLS = [
+    {"name": "plan_beat", "description": "Step 1. Turn a brief into a spec Miles will be held to: BPM, key, mood, length, "
+     "instruments, plus the genre's typical tempo/keys from real uploads. Returns plan_id for build_beat. " + ORDER,
+     "inputSchema": S(brief=STR("what the music is for"))},
+    {"name": "find_reference", "description": "Step 2 (optional). Search YouTube for a reference track, download a short "
+     "audio clip (never played) and measure its BPM, key and loudness. " + ORDER,
+     "inputSchema": S(query=STR("e.g. 'nujabes aruarian dance'"))},
+    {"name": "build_beat", "description": "Step 3. Miles produces the track from a plan (plan_id) or a spec/brief; 1-4 "
+     "minutes. Returns song_id, version and a DAW link. " + ORDER,
+     "inputSchema": S(plan_id=STR("from plan_beat", True), brief=STR("if no plan_id", True),
+                      reference=STR("optional reference (title or URL) to study", True))},
+    {"name": "check_beat", "description": "Step 4. Miles's self-check, measured from the audio: Delivered, Tempo, Key, "
+     "Clean vs what was asked. " + ORDER,
+     "inputSchema": S(song_id=STR("s_…"), plan_id=STR("the plan it was built from", True),
+                      brief=STR("or the brief", True))},
+    {"name": "revise_beat", "description": "Step 5. Change an existing song by instruction (e.g. 'tempo is off, make it "
+     "exactly 90 BPM', 'darker, add swing'); returns the new version, its checks and a DAW link. " + ORDER,
+     "inputSchema": S(song_id=STR("s_…"), instruction=STR("what to change"))},
+    {"name": "analyze_audio", "description": "Measure any audio: BPM, key, loudness, length. Takes a local path, a song "
+     "id (s_…), a localhost track URL or a YouTube URL.", "inputSchema": S(path_or_url=STR("what to analyze"))},
+    {"name": "list_beats", "description": "Recent beats with title, BPM, key, self-check results and DAW links.",
+     "inputSchema": S(limit=NUM("how many (default 10)"))},
+    {"name": "get_stems", "description": "Stem files (drums, bass, sample) of a song, with paths and play URLs.",
+     "inputSchema": S(song_id=STR("s_…"), v=NUM("version (default latest)"))},
+]
+
+
+def run_step_tool(name: str, args: dict, token) -> str:
+    sys.path.insert(0, str(HERE))
+    import tools
+    n = [0]
+    try:
+        jid = http("POST", "/api/jobs", {"tool": name, "text": f"{name}({json.dumps(args)[:200]})"})["id"]
+        notify(token, 0, f"{name} started · live in the DAW: {PUBLIC}/?job={jid}")
+    except Exception:                                               # noqa: BLE001
+        jid = None
+
+    def emit(label, text, detail="", status="done"):
+        n[0] += 1
+        notify(token, n[0], f"{label}: {text}")
+        if jid:
+            try:
+                http("POST", f"/api/jobs/{jid}/event", {"label": label, "text": text, "detail": detail, "status": status})
+            except Exception:                                       # noqa: BLE001
+                pass
+    try:
+        r = tools.TOOLS[name](args, emit)
+    except Exception as e:                                          # noqa: BLE001
+        if jid:
+            try:
+                http("POST", f"/api/jobs/{jid}/done", {"error": str(e)[:300]})
+            except Exception:                                       # noqa: BLE001
+                pass
+        return f"{name} failed: {e}"
+    if jid:
+        try:
+            http("POST", f"/api/jobs/{jid}/done", {"song": {"song_id": r["song_id"], "v": r.get("v")} if r.get("song_id") else None})
+        except Exception:                                           # noqa: BLE001
+            pass
+    return pretty_step(name, r) + (f"\nLive log: {PUBLIC}/?job={jid}" if jid else "")
+
+
+def pretty_step(name: str, r: dict) -> str:
+    L = []
+    link = lambda d: f"{PUBLIC}{d}" if d else None
+    mk = lambda v: "✓" if v else "✗" if v is False else "·"
+    if r.get("daw"):
+        L.append(f"Open in the DAW: {link(r['daw'])}")
+    if name == "plan_beat":
+        g = r.get("genre") or {}
+        L += [f"plan_id {r['plan_id']}", f"  tempo   {r['bpm']:g} BPM", f"  key     {r['key']}",
+              f"  mood    {', '.join(r['mood']) or '—'}", f"  length  {r['length']} s",
+              f"  parts   {', '.join(r['instruments'])}"]
+        if g:
+            L.append(f"  genre   {g['name']}: typical ~{g['typical_bpm']} BPM, keys {', '.join(g['common_keys'])}")
+        L.append("Next: build_beat(plan_id=…)")
+    elif name in ("find_reference", "analyze_audio"):
+        m = r.get("measured") or r
+        if r.get("title"):
+            L += [f"♪ {r['title']}", f"  {r['url']}"]
+        L += [f"  tempo     {m.get('bpm')} BPM", f"  key       {m.get('key')} (runner-up {m.get('key_runner_up')})",
+              f"  loudness  {m.get('loudness_db_rms')} dB RMS, peak {m.get('peak_db')} dB",
+              f"  length    {m.get('seconds')} s analysed", f"  file      {r.get('path')}"]
+    elif name == "build_beat":
+        L += [f"♪ {r['title']}  ·  song_id {r['song_id']} v{r['v']}  ·  built in {r.get('seconds') or 0:.0f} s",
+              f"  file  {r['audio']}", f"  play  {PUBLIC}{r['url']}", "Next: check_beat(song_id=…, plan_id=…)"]
+    elif name in ("check_beat", "revise_beat"):
+        c, a, m = r["checks"], r["asked"], r["measured"]
+        if name == "revise_beat":
+            L.append(f"♪ {r.get('title')}  v{r['from_v']} → v{r['v']}")
+        L += [f"Self-check {'PASS' if r['pass'] else 'FAIL'}  ({r['song_id']} v{r['v']})",
+              f"  {mk(c.get('delivered'))} Delivered", f"  {mk(c.get('tempo'))} Tempo  {m.get('bpm')} BPM   asked {a.get('bpm')}",
+              f"  {mk(c.get('key'))} Key    {m.get('key')}   asked {a.get('key')}", f"  {mk(c.get('clean'))} Clean"]
+        L += [f"  why: {w}" for w in r.get("why") or []]
+        if not r["pass"]:
+            L.append("Next: revise_beat(song_id=…, instruction='fix …'), then check_beat again")
+    elif name == "list_beats":
+        for i, b in enumerate(r["beats"], 1):
+            c = b.get("checks") or {}
+            L.append(f"{i:>2}. {b['title']}  ·  {b.get('bpm') and round(b['bpm'])} BPM {b.get('key') or ''}  ·  "
+                     + " ".join(f"{k} {mk(c.get(k))}" for k in ("delivered", "tempo", "key", "clean"))
+                     + (f"\n    {link(b['daw'])}" if b.get("daw") else f"\n    {PUBLIC}{b['url']}"))
+    elif name == "get_stems":
+        if r.get("note"):
+            L.append(f"  ({r['note']})")
+        L += [f"  {k:<7} {v['path']}\n          {PUBLIC}{v['url']}" for k, v in r["stems"].items()]
+    return "\n".join(L)
+
+
 def reply(id_, result=None, error=None):
     msg = {"jsonrpc": "2.0", "id": id_}
     msg.update({"error": error} if error else {"result": result})
@@ -135,9 +249,13 @@ def main():
                         "instructions": "Miles makes music. Call make_music with a brief; it returns a track and "
                                         "Miles's self-check of it (delivered, tempo, key, clean)."})
         elif method == "tools/list":
-            reply(id_, {"tools": [TOOL]})
+            reply(id_, {"tools": [TOOL] + STEP_TOOLS})
         elif method == "tools/call":
             p = m.get("params") or {}
+            if p.get("name") in [t["name"] for t in STEP_TOOLS]:
+                txt = run_step_tool(p["name"], p.get("arguments") or {}, (p.get("_meta") or {}).get("progressToken"))
+                reply(id_, {"content": [{"type": "text", "text": txt}], "isError": txt.startswith(p["name"] + " failed")})
+                continue
             if p.get("name") != "make_music":
                 reply(id_, error={"code": -32602, "message": f"unknown tool {p.get('name')}"})
                 continue
